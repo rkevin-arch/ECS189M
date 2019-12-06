@@ -1,0 +1,12 @@
+title: Addition
+description: >
+  John's homework is due soon! Help him do his homework!
+
+  Connect to `twinpeaks.cs.ucdavis.edu` port `30001`.
+flag: ECS{W3LC0M3_0E08436ACF7DA35A9D508E7A3BF8690A}
+points: 100
+type: xinetd
+xinetd_config:
+  base: base_python
+  port: 30001
+  executable: python3 /server.py
