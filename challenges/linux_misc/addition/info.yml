@@ -3,10 +3,10 @@ description: >
   John's homework is due soon! Help him do his homework!
 
   Connect to `twinpeaks.cs.ucdavis.edu` port `30001`.
-flag: ECS{W3LC0M3_0E08436ACF7DA35A9D508E7A3BF8690A}
+flag: ECS{N0W_W3'R3_T4LK1NG_47F0A66CE4EFB09F46AC93FE0B218E72}
 points: 100
 type: xinetd
 xinetd_config:
-  base: base_python
+  base: python
   port: 30001
   executable: python3 /server.py
