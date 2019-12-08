@@ -54,15 +54,24 @@ def main():
         y=yaml.safe_load(f)
         categories=y['categories']
     mellivora_sql,category_mapping=categories_to_sql(categories)
+    mellivora_sql="DELETE FROM categories; DELETE FROM challenges;\n"+mellivora_sql
 
+    challenges={}
 
     for category in categories:
         for challenge in os.listdir("challenges/%s"%category):
             print("Processing %s/%s..."%(category,challenge))
+            if challenge in challenges:
+                raise Exception("Challenge is a duplicate!")
             with open("challenges/%s/%s/info.yml"%(category,challenge)) as f:
                 y=yaml.safe_load(f)
-                mellivora_sql+=challenge_to_sql(y,category_mapping[category])
 
+                #process prebuild script
+                if 'prebuild' in y:
+                    os.chdir("challenges/%s/%s"%(category,challenge))
+                    if os.system(y['prebuild']):
+                        raise Exception("Prebuild script failed!")
+                    os.chdir("../../..")
                 if y['type']=="misc":
                     pass
                 elif y['type']=="xinetd":
@@ -72,9 +81,14 @@ def main():
                     shutil.copytree("challenges/%s/%s/dist"%(category,challenge),"build/xinetd/src/%s"%challenge,dirs_exist_ok=True)
                     with open("build/xinetd/src/%s/flag"%challenge,"w") as wf:
                         wf.write(y['flag']+"\n")
-                #TODO: add more types, like webapps, ssh-able challenges, and downloadable ones
+                else:
+                    raise Exception("Unrecognized challenge type %s!"%y['type'])
+
+                y['category']=category
+                challenges[challenge]=y
 
 
+    mellivora_sql+=challenges_to_sql(challenges,categories,category_mapping)
     with open("build/mellivora.sql","w") as f:
         f.write(mellivora_sql)
     print("Done!")
@@ -85,23 +99,49 @@ def categories_to_sql(config):
     id=1
     for c in config:
         sql+="(%d,%d,%d,'%s','%s',1,%d,%d)\n"%(
-                 id, #id
-                 int(datetime.datetime.now().timestamp()), #creation time
-                 1, #creator (uid=1, the admin)
-                 config[c]['name'], #category name
-                 "", #category description, left blank for now
-                 int(datetime.datetime.fromisoformat(config[c]['start']).timestamp()), #start time
-                 int(datetime.datetime.fromisoformat(config[c]['end']).timestamp())) #end time
+                id, #id
+                curtimestamp(), #creation time
+                1, #creator (uid=1, the admin)
+                config[c]['name'], #category name
+                "", #category description, left blank for now
+                iso2timestamp(config[c]['start']), #start time
+                iso2timestamp(config[c]['end'])) #end time
         if c in category_mapping:
             raise Exception("duplicate category %s"%c)
         category_mapping[c]=id
         id+=1
-    return sql+';',category_mapping
+    return sql+';\n\n',category_mapping
 
-def challenge_to_sql(config,category_id):
-    #TODO: bleh
-    #might need to change function signature as well cuz available_from to available_to, and autoincrement id
-    return ""
+def challenges_to_sql(challenges, categories, category_mapping):
+    sql="INSERT INTO `challenges` VALUES \n"
+    id=1
+    for challenge in challenges:
+        c=challenges[challenge]
+        sql+="(%d,%d,%d,'%s',%d,'%s',%d,%d,%d,'%s',%d,%d,%d,%d,%d,%d)"%(
+                id, #id
+                int(datetime.datetime.now().timestamp()), #creation time
+                1, #added by (uid=1)
+                c['title'], #title
+                category_mapping[c['category']], #category (id)
+                c['description'], #description
+                1, #exposed
+                iso2timestamp(categories[c['category']]['start']), #start time
+                iso2timestamp(categories[c['category']]['end']), #end time
+                c['flag'], #flag
+                0, #case insensitive? no
+                1, #automark
+                c['points'], #points
+                0, #num attempts allowed? unlimited
+                0, #min seconds between submissions? 0
+                0) #doesnt rely on another challenge
+        id+=1
+    return sql+';\n'
+
+def iso2timestamp(s):
+    return int(datetime.datetime.fromisoformat(s).timestamp())
+
+def curtimestamp():
+    return int(datetime.datetime.now().timestamp())
 
 if __name__=="__main__":
      main()
