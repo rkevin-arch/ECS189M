@@ -1,0 +1,13 @@
+title: Format String Basic
+description: >
+  Guess my Secure random number.
+
+  Connect to `twinpeaks.cs.ucdavis.edu` port `30014`.
+flag: ECS{PR1NTF_15_5C4R13R_TH4N_1T_533M5_652CB1EBBB215E3881D5115AE8939225}
+points: 100
+type: xinetd
+prebuild: rm -rf dist; mkdir dist && gcc -fno-pie -no-pie guessme.c -o dist/guessme
+xinetd_config:
+  base: binary
+  port: 30014
+  executable: /bin/noaslr /guessme
