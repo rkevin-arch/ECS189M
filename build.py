@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 '''
 Script to parse challenges in the `challenges` directory and outputs configuration files.
 
@@ -34,7 +34,17 @@ XINETD_CONF_BASE="""service {0}
 }}
 """
 
+def version_check():
+    """ Validate Python version supports modules """
+
+    # datetime.date.isoformat() is not present below Python 3.7
+    if sys.version_info < (3, 7):
+        print("Please install Python 3.7 or above.")
+        sys.exit(1)
+
 def main():
+
+    version_check()
     mellivora_sql=""
 
     os.chdir(os.path.dirname(__file__))
@@ -59,7 +69,15 @@ def main():
     challenges={}
 
     for category in categories:
-        for challenge in os.listdir("challenges/%s"%category):
+
+        # Report and Fail gracefully if category doesn't exist on disk
+        try:
+            listdir = os.listdir("challenges/%s" % category)
+        except FileNotFoundError as e:
+            print("Skipping (%s). Not found" % category, e)
+            continue
+
+        for challenge in listdir:
             print("Processing %s/%s..."%(category,challenge))
             if challenge in challenges:
                 raise Exception("Challenge is a duplicate!")
