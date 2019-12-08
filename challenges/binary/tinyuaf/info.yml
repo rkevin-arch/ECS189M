@@ -1,0 +1,13 @@
+title: TinyUAF
+description: >
+  A very simple use-after-free exploit.
+
+  Connect to `twinpeaks.cs.ucdavis.edu` port `30016`.
+flag: ECS{UN10N1Z3_E28D9CD3C88A713A4CD32D58927B89F3}
+points: 100
+type: xinetd
+prebuild: rm -rf dist; mkdir dist && gcc -fno-pie -no-pie tinyuaf.c -o dist/tinyuaf
+xinetd_config:
+  base: binary
+  port: 30016
+  executable: /bin/noaslr /tinyuaf
