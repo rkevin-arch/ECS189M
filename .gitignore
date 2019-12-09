@@ -1,5 +1,8 @@
 # directories
 build/
 
+# ignore the dir "dist" in all challenges
+challenges/*/*/dist/
+
 # files
 *.sw?
