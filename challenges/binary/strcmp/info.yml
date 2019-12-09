@@ -1,0 +1,13 @@
+title: Strcmp
+description: >
+  Figure out my password of 20 lowercase letters.
+
+  Connect to `twinpeaks.cs.ucdavis.edu` port `30004`.
+flag: ECS{81N4RY_534RCH_50AF9F479667C26EBF4EE74E956371D5}
+points: 100
+type: xinetd
+prebuild: rm -rf dist; mkdir dist 
+xinetd_config:
+  base: binary
+  port: 30004
+  executable: python3 /server.py
