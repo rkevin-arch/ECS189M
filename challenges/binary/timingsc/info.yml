@@ -1,0 +1,13 @@
+title: TimingSC
+description: >
+  A side channel timing attack
+
+  Connect to `twinpeaks.cs.ucdavis.edu` port `30003`.
+flag: 
+points: 100
+type: xinetd
+prebuild: rm -rf dist; mkdir dist ; cp server.py ./dist/; cp secret.py ./dist/;
+xinetd_config:
+  base: binary
+  port: 30003
+  executable: python3 /server.py
