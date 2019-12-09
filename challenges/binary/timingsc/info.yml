@@ -3,7 +3,7 @@ description: >
   A side channel timing attack
 
   Connect to `twinpeaks.cs.ucdavis.edu` port `30003`.
-flag: NONE
+flag: ECS{T1CK_T0CK_86EB9A0242E94E66DB372F75E1BCF415}
 points: 100
 type: xinetd
 prebuild: rm -rf dist; mkdir dist ; cp server.py ./dist/; cp secret.py ./dist/;
