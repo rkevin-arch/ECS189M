@@ -6,8 +6,8 @@ description: >
 flag: ECS{PR1NTF_C4N_4L50_5C4NF_6F63D4E0CD7295618A7AE9710695F255}
 points: 100
 type: xinetd
-prebuild: rm -rf dist; mkdir dist && gcc -fno-pie -no-pie guessme.c -o dist/guessme
+prebuild: rm -rf dist; mkdir dist && gcc -fno-pie -no-pie write.c -o dist/write
 xinetd_config:
   base: binary
   port: 30015
-  executable: /bin/noaslr /guessme
+  executable: /bin/noaslr /write
