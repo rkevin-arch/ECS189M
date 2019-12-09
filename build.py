@@ -34,6 +34,20 @@ XINETD_CONF_BASE="""service {0}
 }}
 """
 
+SSH_SUID_CLIENT_BASE="""#include <stdio.h>
+#include <unistd.h>
+int main(){{
+    puts("Setting up challenge environment for {0}, please wait...");
+    fflush(stdout);
+    char *argv[]={{"docker", "run", "--rm", "-it", "{0}", NULL}};
+    execve("/usr/bin/docker", argv, NULL);
+    puts("Something has gone wrong, please contact rk!");
+    fflush(stdout);
+    return 1;
+}}
+
+"""
+
 def version_check():
     """ Validate Python version supports modules """
 
@@ -59,6 +73,7 @@ def main():
     os.mkdir("build/xinetd")
     os.mkdir("build/xinetd/src")
     os.mkdir("build/xinetd/xinetd.d")
+    os.mkdir("build/sshable")
 
     with open("challenges/categories.yml") as f:
         y=yaml.safe_load(f)
@@ -90,6 +105,7 @@ def main():
                     if os.system(y['prebuild']):
                         raise Exception("Prebuild script failed!")
                     os.chdir("../../..")
+
                 if y['type']=="misc":
                     pass
                 elif y['type']=="xinetd":
@@ -99,6 +115,16 @@ def main():
                     shutil.copytree("challenges/%s/%s/dist"%(category,challenge),"build/xinetd/src/%s"%challenge,dirs_exist_ok=True)
                     with open("build/xinetd/src/%s/flag"%challenge,"w") as wf:
                         wf.write(y['flag']+"\n")
+                elif y['type']=="sshable":
+                    os.chdir("challenges/%s/%s"%(category,challenge))
+                    if os.system("docker build -t %s ."%challenge):
+                        raise Exception("Building docker container failed!")
+                    os.chdir("../../..")
+                    with open("build/sshable/%s_client.c"%challenge,"w") as wf:
+                        wf.write(SSH_SUID_CLIENT_BASE.format(challenge))
+                    if os.system("gcc build/sshable/%s_client.c -o build/sshable/%s_client"%(challenge,challenge)):
+                        raise Exception("Compiling the SUID client went horribly wrong!")
+                    #TODO: make a script that creates all the right users and copies the %s_clients to the right place and makes it suid?
                 else:
                     raise Exception("Unrecognized challenge type %s!"%y['type'])
 

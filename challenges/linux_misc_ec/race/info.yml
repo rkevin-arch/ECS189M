@@ -1,0 +1,9 @@
+title: Race
+description: >
+  A simple race condition.
+
+  SSH into `race@twinpeaks.cs.ucdavis.edu`.
+flag: ECS{RUN_5P0T_RUN_FF99EC3FD4AD4016DB15B237FDE575B9}
+points: 100
+type: sshable
+prebuild: rm -f src/race; gcc src/race.c -o src/race
