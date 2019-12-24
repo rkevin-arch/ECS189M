@@ -1,0 +1,112 @@
+Syllabus
+  Literally what it says on the tin. Do last because syllabus might change
+Linux commands and Linux OS basics (model from bashbasics):
+  What's bash
+  man help info apropos
+  pwd cd ls
+  cat less stat file
+  cp mv rm
+  what are hidden files (.), special folders . ..
+  linux file permissions, reading 777 notation
+  users and groups, passwd/shadow/group
+  id
+  chmod chown
+  setuid
+  what is a process (pid), signals (SIGINT)
+  ps kill
+Advanced bash skills and log analysis (model from bashbasics, basic log analysis)
+  stdin and stdout, piping, redirection (emphasize diff b/w cmdline args and stdin)
+  exit status, for loops and if statements (gigantic if, doesn't seem useful?)
+  `` and $() (doesn't seem useful?)
+  job control (& ^Z fg bg)
+  head tail
+  find (?)
+  cut sort uniq wc
+  grep (regexes)
+  sed (?)
+  awk (?)
+  give a couple examples in lecture, using a separate log file
+TCP ports and talking to remote servers
+  literally copy talking to remote servers workshop
+System enumeration and privilege escalation
+  for enumeration, gather intel
+  /etc/passwd, groups, sudoers, user home folders
+  lastlog w
+  ps (sift through running services), netstat, ip (lateral movement)
+  systemd (prob way too advanced, skip)
+  for escalation, emphasize you're already on the system as unpriv user, looking to exec as root
+  key is always to find a way to execute processes as another user
+  gather intel (/etc/passwd? ssh keys?)
+  suid binaries, sudo
+  exploit services (look at netstat and ps) (cronjobs)
+  lateral movement?
+  be creative, leave no stone unturned
+  challenge: sudo, cron, password in ps
+
+HTTP basics:
+  http is on top of tcp, human readable format, show nc google.com
+  request type (get, post), response code (200 404 500)
+  headers
+  cookies (stateless, preserve state)
+  how php works (server side, interpret <?php ?> as _server side_ code, not shown to client)
+  how javascript works
+  basic js alert example
+  hint at how client just renders everything server sends, hint at xss
+XSS/CSRF:
+  remember from last time, server sends html, client renders
+  e.g. comments on facebook, you type whatever, server stores it and sends to client. what if comment contains <b>? (example)
+  what if comment contains <script>? now we have XSS
+  what can you do with XSS? steal cookies and impersonate(example w/ xmlhttprequest), or do CSRF
+  what is CSRF
+  example, detele a resource as the admin
+  mitigation: sanitization (also mitigation for any type of injection)
+  maybe CSRF tokens? if we have time (almost certainly not)
+SQLI:
+  server needs to store stuff in a database. how does it talk to the database?
+  intro to sql statements (at least select * where *) (demo on a sqlite database on localhost)
+  show sample code for server side sql code for login, point out obvious sqli
+  use 'or 1=1; -- to bypass login (example)
+  other types of injection (union injection, blind) (show off examples for each in sqlite database (not across internet))
+LFI:
+  ??  
+
+x86 assembly refresher:
+  copy CSC workshop
+  if time left, show ghidra and reverse engineering, otherwise skip
+stack buffer overflows:
+  copy CSC workshop
+rop chains:
+  copy CSC workshop
+
+classic ciphers:
+  maybe forewarning? learning this doesnt make you an expert and this is massively simplified
+  the idea of encrypting a message in transit goes way back, to caesar era
+  caesar cipher (also introduce concept of ciphertext plaintext and key)
+  can you break it? brute force easily
+  you might generalize it to a substitution cipher with a code book
+  frequency analysis (demonstrate on gigantic piece of text)
+  to prevent frequency analysis, we need to not substitute the same letter with same ciphertext  
+  vigenere
+  can you still break it? yes, either by guessing the key length and then frequency analysis, or by zigzag if key is human readable
+  but what if key is uniformly random and of infinite length?
+  one time pad, provably secure
+block ciphers:
+  time for modern encryption!
+  what is a block cipher (pseudorandom permutation)
+  DES, decent block cipher, too short key length, considered insecure
+  AES, commonly used today
+  not gonna go into detail of AES, just see how we can use it
+  ECB vs CBC vs CTR
+DHKE and RSA:
+  so far all the encryption schemes are symmetric, gets more complicated with multiple parties
+  before RSA, lets consider if it's possible for two people to establish a secure connection w/o pre sharing a key?
+  yes! DHKE (if attacker doesn't have write access to the wire)
+  walk through example
+  entire problem rests on discrete log problem
+  transform the thing into a public key scheme by presharing g^a
+  now we have the notion of a public key cryptographic system!
+  another good example is rsa
+  go through rsa example
+  cert
+  https
+
