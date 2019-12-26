@@ -31,15 +31,19 @@ XINETD_CONF_BASE="""service {0}
 	server_args = --userspec=user:user /challenges/{0} {1}
 	port = {2}
 	bind = 0.0.0.0
+	nice = 10
+	rlimit_as = 64M
+	rlimit_cpu = 20
 }}
 """
 
 SSH_SUID_CLIENT_BASE="""#include <stdio.h>
 #include <unistd.h>
 int main(){{
+    alarm(21600); //6 hours
     puts("Setting up challenge environment for {0}, please wait...");
     fflush(stdout);
-    char *argv[]={{"docker", "run", "--rm", "-it", "{0}", NULL}};
+    char *argv[]={{"docker", "run", "--memory=64m", "--memory-swap=128m", "--cpus=.25", "--rm", "-it", "{0}", NULL}};
     execve("/usr/bin/docker", argv, NULL);
     puts("Something has gone wrong, please contact rk!");
     fflush(stdout);
