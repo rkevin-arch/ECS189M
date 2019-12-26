@@ -1,6 +1,6 @@
 # Beamsplitter
 
-This is a Python server that allows unprivileged processes to control the creation of Docker containers. It's solely intended for ECS189 purposes, especially for the LFI and race condition challenges.
+This is a Python server that allows unprivileged processes to control the creation of Docker containers. It's solely intended for ECS189 purposes, especially for the LFI and challenges.
 
 ## Usage
 
