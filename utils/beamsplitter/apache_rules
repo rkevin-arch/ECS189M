@@ -1,0 +1,9 @@
+RewriteEngine on
+RewriteMap beamsplitter "prg:/var/www/client.py" www-data:beamsplitter
+RewriteRule ^/webchal/start/([a-z]*)$ /webchal/start.php?challenge=$1 [QSD]
+RewriteRule ^/webchal/([a-z]*)/(.*)$ ${beamsplitter:$1_%{HTTP_COOKIE}}/$2 [P]
+
+<Location /webchal>
+	ProxyPass !
+	Options -Indexes
+</Location>
