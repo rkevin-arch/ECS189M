@@ -13,6 +13,7 @@ useradd -s /bin/false -d / -u 1003 -G user,admin rose && \
 useradd -s /bin/false -d / -u 1004 -G user       jade
 
 COPY dist/* /usr/local/bin/
+COPY README /home/user/README
 COPY myfile.txt /home/user
 
 RUN chmod 111 /usr/local/bin/answer && \
