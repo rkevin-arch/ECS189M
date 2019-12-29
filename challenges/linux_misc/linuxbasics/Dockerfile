@@ -23,6 +23,9 @@ chmod 754 /home/user/myfile.txt && \
 touch /home/user/chme && \
 chown user:admin /home/user/chme
 
+RUN mkdir /tmp/qaframework && \
+chown root:user /tmp/qaframework && \
+chmod 730 /tmp/qaframework
 USER user
 ENTRYPOINT ["/bin/bash"]
 WORKDIR "/home/user/"
