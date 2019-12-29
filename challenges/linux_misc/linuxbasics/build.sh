@@ -9,7 +9,7 @@ fi
 if [ ! -d $2 ]; then
     mkdir -p $2
 fi
-tmp=`mktemp`
+tmp=`mktemp -d`
 python3 -m nuitka --python-flag=no_site --standalone --output-dir $tmp $1
 mv $tmp/*.dist/* $2
 rm -rf $tmp
