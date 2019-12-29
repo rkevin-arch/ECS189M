@@ -11,6 +11,8 @@
 '''
 import os
 import sys
+import datetime
+import stat
 
 class COLORS:
     PURPLE = '\033[95m%s\033[0m'
@@ -30,6 +32,26 @@ def chmodhandler():
 
 FLAG="ECS{M45T3R1NG_TH3_8451C5_29D681ECC64D3BF68DCABFA2D24270DD}"
 HIDDENFLAG="ECS{D1D_Y0U_U53_PTR4C3_PL3453_L3T_M3_KN0W_0292EA3496F29E820FA611ED1D6E96E6}"
+
+class Challenge:
+    def __init__(self,handler,secret):
+        self.handler=handler
+        self.secret=secret
+    def solved(self):
+        return os.access("/tmp/qaframework/%s"%self.secret,os.F_OK)
+
+class SimpleChallenge(Challenge):
+    def __init__(self,question,answer,secret):
+        self.question=question
+        self.answer=answer
+        self.secret=secret
+    def handler(self):
+        while True:
+            print(COLORS.BLUE%self.question)
+            useranswer=input().strip()
+            if useranswer==self.answer:
+                return
+            print(COLORS.YELLOW%"Sorry that's wrong, try again!")
 
 CONFIG={
 "1": SimpleChallenge("What's your current working directory?",
@@ -67,26 +89,6 @@ CONFIG={
                      "69afff61f7005f94203d7423ea4623c2"),
 "11":Challenge(chmodhandler, "3dbd152de50179208711f8e02966a0b4")
 }
-
-class Challenge:
-    def __init__(self,handler,secret):
-        self.handler=handler
-        self.secret=secret
-    def solved(self):
-        return os.access("/tmp/qaframework/%s"%self.secret,os.F_OK)
-
-class SimpleChallenge(Challenge):
-    def __init__(self,question,answer,secret):
-        self.question=question
-        self.answer=answer
-        self.secret=secret
-    def handler(self):
-        while True:
-            print(COLORS.BLUE%self.question)
-            useranswer=input().strip()
-            if useranswer==self.answer:
-                return
-            print(COLORS.YELLOW%"Sorry that's wrong, try again!")
 
 def main():
     if len(sys.argv)!=2 or sys.argv[1] not in CONFIG:
