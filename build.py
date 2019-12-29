@@ -17,6 +17,7 @@ import sys
 import yaml
 import shutil
 import datetime
+import argparse
 
 XINETD_CONF_BASE="""service {0}
 {{
@@ -63,11 +64,17 @@ def version_check():
 def main():
 
     version_check()
+
+    parser=argparse.ArgumentParser(description="Builds the required containers and challenges for ECS189M CTF.")
+    parser.add_argument("-d", "--destroy-old-build", help="Do no ask for confirmation when previous build exists, just delete it", action="store_true")
+    parser.add_argument("-c", "--challenge", help="Specify only one challenge to build.")
+    args=parser.parse_args()
+
     mellivora_sql=""
 
     os.chdir(os.path.dirname(__file__))
     if os.path.exists("build"):
-        if("--destroy-old-build" not in sys.argv):
+        if not args.destroy_old_build:
             print("WARNING! THE BUILD FOLDER EXISTS.")
             i=input("Are you sure you want to remove the previous build and start over? ")
             if(i.lower() not in ['y','yes']):
@@ -97,6 +104,8 @@ def main():
             continue
 
         for challenge in listdir:
+            if args.challenge and args.challenge!=challenge:
+                continue
             print("Processing %s/%s..."%(category,challenge))
             if challenge in challenges:
                 raise Exception("Challenge is a duplicate!")
