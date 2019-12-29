@@ -10,7 +10,8 @@ useradd -s /bin/bash -m -u 1337 -G admin user && \
 useradd -s /bin/false -d / -u 1001 -G admin      john && \
 useradd -s /bin/false -d / -u 1002               dave && \
 useradd -s /bin/false -d / -u 1003 -G user,admin rose && \
-useradd -s /bin/false -d / -u 1004 -G user       jade
+useradd -s /bin/false -d / -u 1004 -G user       jade && \
+chown -R root:root /home/user
 
 COPY dist/* /usr/local/bin/
 COPY README /home/user/README
