@@ -93,7 +93,7 @@ CONFIG={
 def main():
     if len(sys.argv)!=2 or sys.argv[1] not in CONFIG:
         print("To use this tool: Run `answer x` to answer question x.\nThere are {0} questions in total, from 1 to {0}.".format(len(CONFIG)))
-        exit(1)
+        os.exit(1)
     challenge=CONFIG[sys.argv[1]]
     if not challenge.solved():
         challenge.handler()
