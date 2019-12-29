@@ -20,6 +20,7 @@ COPY myfile.txt /home/user
 RUN chmod 111 /usr/local/bin/answer && \
 chown root:admin /home/user/myfile.txt && \
 chmod 754 /home/user/myfile.txt && \
+touch -d $(date -d "2009-04-13 + `shuf -i0-3800 -n1` days" +'%Y-%m-%d') /home/user/myfile.txt && \
 touch /home/user/chme && \
 chown user:admin /home/user/chme
 
