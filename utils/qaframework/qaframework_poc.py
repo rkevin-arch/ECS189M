@@ -70,7 +70,7 @@ def main():
         print("You did it! The flag is ECS{FAKEFLAG}.")
     else:
         print("You solved {0} out of {1} challenges! The challenges {2} remain.".format(
-                len(CONFIG)-len(unsolved),len(CONFIG),len(unsolved)))
+                len(CONFIG)-len(unsolved),len(CONFIG),", ".join(unsolved)))
 
 if __name__=="__main__":
     main()
