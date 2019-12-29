@@ -24,11 +24,11 @@ class COLORS:
 def chmodhandler():
     print(COLORS.BLUE%"Change the ownership and permissions of /home/user/chme, so that you have full read-write-execute permissions, jade and rose can read the file only, and john cannot read write or execute the file.")
     s=os.stat("/home/user/chme")
-    if s.st_gid=="1337" and stat.S_IMODE(s.st_mode)==0b111100000:
+    if s.st_gid==1337 and stat.S_IMODE(s.st_mode)==0b111100000:
         print(COLORS.GREEN%"You did it!")
         return
     print(COLORS.YELLOW%"The ownership and permissions aren't quite right yet. Run me again once you made all the changes correctly.")
-    exit(0)
+    sys.exit(1)
 
 FLAG="ECS{M45T3R1NG_TH3_8451C5_29D681ECC64D3BF68DCABFA2D24270DD}"
 HIDDENFLAG="ECS{D1D_Y0U_U53_PTR4C3_PL3453_L3T_M3_KN0W_0292EA3496F29E820FA611ED1D6E96E6}"
@@ -78,7 +78,7 @@ CONFIG={
 "8": SimpleChallenge("There's a user 'john' on the system. Can he write to /home/user/myfile.txt?",
                      "no", #create john, in admin group
                      "45fad0ab4fc449c8c70cf35bf5b55587"),
-"9": SimpleChallenge("Can the 'admin' user execute /home/user/myfile.txt",
+"9": SimpleChallenge("Can the 'admin' user execute /home/user/myfile.txt?",
                      "yes",
                      "5b9dafd71e1ecaeec2479f48ff779cd9"),
 "10":SimpleChallenge("Which user on the system, except for you, root, admin and john, can execute /home/user/myfile.txt?",

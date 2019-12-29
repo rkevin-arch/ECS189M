@@ -10,7 +10,7 @@ description: |
   6: What's the 3-digit octal permissions of the file /home/user/myfile.txt? (e.g 777)
   7: What is the user id of 'admin'?
   8: There's a user 'john' on the system. Can he write to /home/user/myfile.txt?
-  9: Can the 'admin' user execute /home/user/myfile.txt
+  9: Can the 'admin' user execute /home/user/myfile.txt?
   10: Which user on the system, except for you, root, admin and john, can execute /home/user/myfile.txt?
   11: /home/user/myfile.txt looks like a txt file, but it actually isn't. What kind of file is it?
   12: Change the ownership and permissions of /home/user/chme, so that you have full read-write-execute permissions, jade and rose can read the file only, and john cannot read write or execute the file.
