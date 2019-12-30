@@ -1,6 +1,6 @@
 title: Race
 description: >
-  A simple race condition.
+  A simple race condition. Click [here](https://en.wikipedia.org/wiki/TOCTOU) for a hint.
 
   SSH into `race@twinpeaks.cs.ucdavis.edu`.
 flag: ECS{RUN_5P0T_RUN_FF99EC3FD4AD4016DB15B237FDE575B9}
