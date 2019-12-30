@@ -8,16 +8,7 @@
 
 unsigned int securerandomnumber(){
     char randdata[sizeof(int)];
-    int fd=open("/dev/urandom", O_RDONLY);
-    if(fd<0){
-        puts("Something went wrong, try again? Sorry.");
-        exit(1);
-    }
-    if(read(fd,randdata,sizeof(int))<0){
-        puts("Something went wrong, try again? Sorry.");
-        exit(1);
-    }
-    close(fd);
+    getrandom(randdata,sizeof(int),0);
     return *(int*)randdata;
 }
 int main(){
@@ -29,7 +20,8 @@ int main(){
     puts("Welcome to our limited terminal!");
     puts("For help, enter 'help'.");
     while(1){
-        fgets(input, MAX_INPUT, stdin);
+        if(fgets(input, MAX_INPUT, stdin)==NULL) //EOF
+            return 0;
         if(strstr(input,"help")==input){
             puts("The following commands are available:");
             puts("help: Prints out this message.");
