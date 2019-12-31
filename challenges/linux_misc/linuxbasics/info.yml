@@ -17,6 +17,6 @@ description: |
 
   Once you have figured out the answer to a question, run `answer x` to answer question number x.
 flag: ECS{M45T3R1NG_TH3_8451C5_29D681ECC64D3BF68DCABFA2D24270DD}
-points: 150
+points: 200
 type: sshable
 prebuild: bash build.sh answer.py dist
