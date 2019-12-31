@@ -3,6 +3,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/random.h>
 
 #define MAX_INPUT 1024
 
