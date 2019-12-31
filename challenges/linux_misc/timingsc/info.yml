@@ -1,12 +1,14 @@
-title: TimingSC
-description: >
-  A side channel timing attack
-
+title: timingsc
+description: |
+  A side channel timing attack.
   Connect to `twinpeaks.cs.ucdavis.edu` port `30003`.
+  NOTE: I won't be talking about how to solve this in class. Click [here](https://en.wikipedia.org/wiki/Timing_attack) for a hint, or ask me in office hours.
 flag: ECS{T1CK_T0CK_86EB9A0242E94E66DB372F75E1BCF415}
-points: 100
+points: 200
 type: xinetd
 xinetd_config:
   base: python
   port: 30003
   executable: python3 /server.py
+downloadables:
+  - dist/server.py
