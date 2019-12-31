@@ -6,8 +6,8 @@ services:
     ports:
       - 30001-30090:30001-30090
     volumes:
-      - ./xinetd.d:/etc/xinetd.d:ro
-      - ./src:/challenges:ro
+      - ../../build/xinetd/xinetd.d:/etc/xinetd.d:ro
+      - ../../build/xinetd/src:/challenges:ro
     security_opt:
       - seccomp:seccomp.json
     #restart: always
