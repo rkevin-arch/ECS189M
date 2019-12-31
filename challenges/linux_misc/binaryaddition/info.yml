@@ -1,0 +1,11 @@
+title: Addition
+description: |
+  John's in trouble yet again! Help him do his homework!
+  Connect to `twinpeaks.cs.ucdavis.edu` port `30002`.
+flag: ECS{T4LKING_1N_B1N4RY_L1KE_4_PR0_6FE295FE8E77524832EBDFB1E7E3DCDA}
+points: 100
+type: xinetd
+xinetd_config:
+  base: python
+  port: 30002
+  executable: python3 /server.py
