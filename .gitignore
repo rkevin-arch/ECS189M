@@ -3,7 +3,8 @@ build/
 __pycache__/
 
 # ignore the dir "dist" in all challenges
-challenges/*/*/dist/
+challenges/*/*/dist/*
+!challenges/*/*/dist/.gitignore
 
 # files
 *.sw?
