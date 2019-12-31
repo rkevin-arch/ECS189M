@@ -9,6 +9,7 @@ RUN useradd -s /bin/bash -m -u 1337 user && \
 useradd -s /bin/false -d / -u 1338 admin
 
 COPY src/* /home/user/
+COPY dist/race /home/user
 
 RUN chown root:admin /home/user/race && \
 chown root:admin /home/user/flag && \

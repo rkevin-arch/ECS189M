@@ -8,6 +8,6 @@ points: 100
 type: xinetd
 prebuild: rm -rf dist; mkdir dist ; cp server.py ./dist/; cp secret.py ./dist/;
 xinetd_config:
-  base: binary
+  base: python
   port: 30003
   executable: python3 /server.py

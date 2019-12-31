@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3.7
 '''
 Script to parse challenges in the `challenges` directory and outputs configuration files.
 
@@ -14,6 +14,7 @@ The script makes a `build` directory, where it puts:
 
 import os
 import sys
+import stat
 import yaml
 import shutil
 import datetime
@@ -125,7 +126,8 @@ def main():
                     with open("build/xinetd/xinetd.d/%s"%challenge,"w") as wf:
                         wf.write(XINETD_CONF_BASE.format(challenge,y['xinetd_config']['executable'],y['xinetd_config']['port']))
                     shutil.copytree("xinetd_base/%s"%y['xinetd_config']['base'],"build/xinetd/src/%s"%challenge,symlinks=True)
-                    shutil.copytree("challenges/%s/%s/dist"%(category,challenge),"build/xinetd/src/%s"%challenge,dirs_exist_ok=True)
+                    if os.system("cp -r challenges/%s/%s/dist/* build/xinetd/src/%s"%(category,challenge,challenge)):
+                        raise Exception("Copy dist folder to final xinetd build failed!")
                     with open("build/xinetd/src/%s/flag"%challenge,"w") as wf:
                         wf.write(y['flag']+"\n")
                 elif y['type']=="sshable":
@@ -137,7 +139,11 @@ def main():
                         wf.write(SSH_SUID_CLIENT_BASE.format(challenge))
                     if os.system("gcc build/sshable/%s_client.c -o build/sshable/%s_client"%(challenge,challenge)):
                         raise Exception("Compiling the SUID client went horribly wrong!")
-                    #TODO: make a script that creates all the right users and copies the %s_clients to the right place and makes it suid?
+                    os.system("useradd -c 'ECS189M {0} challenge user' -m -s /home/{0}/{0}_client {0}".format(challenge))
+                    #ignore errors in the above command, error just means user already exists, no need to panic
+                    shutil.copy("build/sshable/%s_client"%challenge,"/home/%s/"%challenge)
+                    shutil.chown("/home/{0}/{0}_client".format(challenge),"root",challenge) #chown root:challenge
+                    os.chmod("/home/{0}/{0}_client".format(challenge),stat.S_ISUID|stat.S_IRWXU|stat.S_IXGRP) #chmod 4710
                 else:
                     raise Exception("Unrecognized challenge type %s!"%y['type'])
 

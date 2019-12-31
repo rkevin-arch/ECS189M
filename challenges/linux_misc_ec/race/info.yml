@@ -6,4 +6,4 @@ description: >
 flag: ECS{RUN_5P0T_RUN_FF99EC3FD4AD4016DB15B237FDE575B9}
 points: 100
 type: sshable
-prebuild: rm -f src/race; gcc src/race.c -o src/race
+prebuild: mkdir dist; gcc src/race.c -o dist/race
