@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python3.7
 '''
 Script to parse challenges in the `challenges` directory and outputs configuration files.
 
@@ -125,7 +125,8 @@ def main():
                     with open("build/xinetd/xinetd.d/%s"%challenge,"w") as wf:
                         wf.write(XINETD_CONF_BASE.format(challenge,y['xinetd_config']['executable'],y['xinetd_config']['port']))
                     shutil.copytree("xinetd_base/%s"%y['xinetd_config']['base'],"build/xinetd/src/%s"%challenge,symlinks=True)
-                    shutil.copytree("challenges/%s/%s/dist"%(category,challenge),"build/xinetd/src/%s"%challenge,dirs_exist_ok=True)
+                    if os.system("cp -r challenges/%s/%s/dist/* build/xinetd/src/%s"%(category,challenge,challenge)):
+                        raise Exception("Copy dist folder to final xinetd build failed!")
                     with open("build/xinetd/src/%s/flag"%challenge,"w") as wf:
                         wf.write(y['flag']+"\n")
                 elif y['type']=="sshable":
