@@ -1,0 +1,8 @@
+title: Race
+description: |
+  Find a way to escalate privileges from `user` to `admin`! 
+  SSH into `race@twinpeaks.cs.ucdavis.edu`. Your goal is to read `/home/admin/flag`.
+flag: ECS{5UD0_M0R3_L1K3_5UD0N3_685C320822C764B02E0E180256EF364A}
+points: 100
+type: sshable
+
