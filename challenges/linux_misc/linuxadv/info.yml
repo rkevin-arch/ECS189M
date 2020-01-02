@@ -1,0 +1,16 @@
+title: linuxadv
+description: |
+  Time for some more advanced topics! SSH into `linuxadv@twinpeaks.cs.ucdavis.edu`. Play around with the system and do the following tasks. Once you're ready, run `answer x` to try to do the xth task.
+
+  1: Try backgrounding this process and foregrounding it again.
+  2: What's my PID?
+  3: Send me a SIGUSR1 signal.
+  4: Redirect my standard input to be the contents of /home/user/in.txt
+  5: Redirect my standard error into /dev/null.
+  6: Cat out the contents of /home/user/in.txt, grep for the lines that contain the lowercase letter 'a', and pipe the result into me.
+  7: Run `. spawner` to solve this challenge. I've just spawned 5 background jobs. Find the correct one to foreground!
+
+flag: ECS{R3D_GR33N_8LU3_A8E848A2EF5876D0CEC2779A8EBC75A7}
+points: 200
+type: sshable
+prebuild: bash build.sh answer.py dist && gcc correct.c -o dist/correct && gcc incorrect.c -o dist/incorrect
