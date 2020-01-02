@@ -1,0 +1,8 @@
+title: privesc2
+description: |
+  Find a way to escalate privileges from `user` to `admin`! 
+  SSH into `privesc2@twinpeaks.cs.ucdavis.edu`. Your goal is to read `/home/admin/flag`.
+flag: ECS{TH1NK_TW1C3_83F0R3_Y0U_CR0N_33DB801E56AD5BF005219AB6D2420B3B}
+points: 100
+type: sshable
+prebuild: mkdir dist; gcc init.c -o dist/init
