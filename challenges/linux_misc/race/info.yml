@@ -1,4 +1,4 @@
-title: Race
+title: race
 description: |
   A simple race condition.
   SSH into `race@twinpeaks.cs.ucdavis.edu`. Your goal is to read the `flag` file in your home directory.

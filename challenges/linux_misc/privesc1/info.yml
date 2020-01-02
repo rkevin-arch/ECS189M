@@ -1,4 +1,4 @@
-title: Race
+title: privesc1
 description: |
   Find a way to escalate privileges from `user` to `admin`! 
   SSH into `race@twinpeaks.cs.ucdavis.edu`. Your goal is to read `/home/admin/flag`.
