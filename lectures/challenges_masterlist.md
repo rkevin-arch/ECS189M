@@ -10,6 +10,7 @@
 |Status|Explanation|
 |-|-|
 |Done|Full on 100% done|
+|Tested|Tested on hadron, needs final deployment on twinpeaks
 |Untested|Finished, needs testing|
 |Changes needed|Mostly done, just a few changes left (i.e. write info.yml)|
 |Waiting on downloadable|This challenge has a downloadable file, but I haven't implemented that feature in build.py yet|
@@ -31,17 +32,17 @@
 |Challenge|Points|Type|Status|
 |-|-|-|-|
 |introflag|50|misc|Untested|
-|linuxbasics|200|sshable|Untested|
+|linuxbasics|200|sshable|Tested|
 |linuxadvanced|200|sshable|
 |loganalysis|200|sshable|Needs porting over|
 |nmap|75|sshable||
 |nc|75|sshable||
-|addition|100|xinetd(30001)|Untested|
-|binaryaddition|100|xinetd(30002)|Untested|
-|privesc1|100|sshable||
-|privesc2|100|sshable||
-|privesc3|150|sshable||
-|race|200|sshable|Untested|
+|addition|100|xinetd(30001)|Tested|
+|binaryaddition|100|xinetd(30002)|Tested|
+|privesc1|100|sshable|Tested|
+|privesc2|100|sshable|Tested|
+|privesc3|150|sshable|Tested|
+|race|200|sshable|Tested|
 |strcmp|150|xinetd(30004)|Untested|
 |timingsc|200|xinetd(30003)|Untested, Waiting on downloadable|
 |TOTAL|1900||0/14 done|
