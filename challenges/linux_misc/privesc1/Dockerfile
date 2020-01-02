@@ -3,10 +3,10 @@ RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive \
     apt-get -y install --no-install-recommends \
-    tmux screen nano vim procps sudo
+    tmux screen nano vim procps sudo less
 
 RUN useradd -s /bin/bash -m -u 1337 user && \
-useradd -s /bin/false -m -u 1338 admin
+useradd -s /bin/bash -m -u 1338 admin
 
 COPY flag /home/admin
 RUN chown admin:admin /home/admin/flag && \
