@@ -11,7 +11,7 @@ useradd -s /bin/false -m -u 1338 admin
 COPY flag /home/admin
 RUN chown admin:admin /home/admin/flag && \
 chmod 440 /home/admin/flag && \
-echo "user ALL=(admin) ALL" >> /etc/sudoers
+echo "user ALL=(admin) NOPASSWD: ALL" >> /etc/sudoers
 
 USER user
 ENTRYPOINT ["/bin/bash"]
