@@ -1,0 +1,22 @@
+FROM debian:latest
+RUN \
+  apt-get update && \
+  DEBIAN_FRONTEND=noninteractive \
+    apt-get -y install --no-install-recommends \
+    tmux screen nano vim procps cron
+
+RUN useradd -s /bin/bash -m -u 1337 user && \
+useradd -s /bin/false -m -u 1338 admin
+
+COPY flag maintenance.sh /home/admin/
+RUN chown admin:admin /home/admin/flag /home/admin/maintenance.sh && \
+chmod 440 /home/admin/flag && chmod 755 /home/admin/maintenance.sh
+
+RUN echo "* * * * * admin /home/admin/maintenance.sh" >> /etc/crontab
+RUN mkdir /tmp/.admin.maintenance && chmod 777 /tmp/.admin.maintenance
+
+COPY dist/init /usr/local/bin/
+RUN chmod 755 /usr/local/bin/init
+
+USER root:1337
+ENTRYPOINT ["/usr/local/bin/init"]
