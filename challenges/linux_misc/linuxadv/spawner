@@ -1,0 +1,14 @@
+#!/bin/bash
+#I realize if you're reading this, you're exploring the system and is interested in how all this works.
+#Unfortunately due to technical difficulties, I had to leave this exposed, and you are seeing how the background challenge are spawned.
+#I do have some countermeasures to make sure you don't just run the right binary, though. If you can figure out how I did it,
+#I might give you some extra credit ;) Just come and find me in office hours. --Kevin
+
+correct=$(($RANDOM%5))
+for i in `seq 0 4`; do
+    if [ $i -eq $correct ]; then
+        /usr/local/bin/correct
+    else
+        /usr/local/bin/incorrect
+    fi
+done
