@@ -4,6 +4,7 @@ This is a messy list of what I changed on mellivora to make it suit my own purpo
 
 ### `Dockerfile`
 Add `libonig-dev` to `apt install` list, to fix a bug
+Add `RUN ln -snf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime && dpkg-reconfigure -f noninteractive tzdata` at the start, to set timezone
 
 ### `htdocs/actions/reset_password.php`
 Comment pretty much the entire thing out, and adding `message_generic("Failure", "Password reset is disabled. Contact Kevin if you cannot login to your account.");`. Don't want people abusing the password reset stuff, and we're doing it on a small enough scale to deal with password resets manually. 

@@ -13,6 +13,8 @@ RUN chown admin:admin /home/admin/flag && \
 chmod 440 /home/admin/flag && \
 echo "user ALL=(admin) NOPASSWD: ALL" >> /etc/sudoers
 
+RUN ln -snf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
+
 USER user
 ENTRYPOINT ["/bin/bash"]
 WORKDIR "/home/user/"

@@ -18,6 +18,9 @@ chown -R root:root /home/user
 RUN mkdir /tmp/qaframework && \
 chown root:user /tmp/qaframework && \
 chmod 730 /tmp/qaframework
+
+RUN ln -snf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
+
 USER user
 ENTRYPOINT ["/bin/bash"]
 WORKDIR "/home/user/"

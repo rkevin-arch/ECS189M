@@ -17,6 +17,8 @@ chmod 440 /home/admin/flag && \
 chmod 711 /usr/local/bin/nchandler && \
 chmod 700 /usr/local/bin/init
 
+RUN ln -snf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
+
 USER root:1337
 ENTRYPOINT ["/usr/local/bin/init"]
 WORKDIR "/home/user/"
