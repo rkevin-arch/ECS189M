@@ -1,0 +1,11 @@
+Play around with the system and answer the following questions:
+
+1: How many lines are in access.log?
+2: Using access.log, which IP tried to find information about Siemens?
+3: Using access.log, how many requests claim to be from a Windows 10 machine?
+4: Using access.log, how many unique IP made requests to the server?
+5: Using access.log, which IP made the most requests to the webserver?
+6: Using auth.log, which IP appeared the most amount of times in the file?
+7: Find the right "flag" in flags.txt. The flag should look like `ECS{START_TAIL}`, where `START` only contains uppercase letters, numbers and underscores. `TAIL` is 32 characters long and only contains numbers and the upper case letters A-F. There should be no characters before or after the flag.
+
+Once you have figured out the answer to a question, run `answer x` to answer question number x.
