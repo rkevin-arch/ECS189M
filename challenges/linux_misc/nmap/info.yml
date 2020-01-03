@@ -1,0 +1,10 @@
+title: nmap
+description: >
+  There's a port on `twinpeaks.cs.ucdavis.edu`, between `50000` and `60000`. Find it and examine the server version.
+flag: ECS{R3C0NN41554NC3_D7302141C3757FC23EA3FA68DD812E12}
+points: 75
+type: xinetd
+xinetd_config:
+  base: python
+  port: 57129
+  executable: python3 /server.py
