@@ -34,6 +34,7 @@ print('The format is "Question x : num + num", where num is a 4 byte little endi
 print("Your answer should be another 4 byte little endian integer, with no newlines at the end.")
 print("Ready? Go!")
 sys.stdout.flush()
+
 try:
     questions()
 
