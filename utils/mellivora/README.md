@@ -49,6 +49,8 @@ Removed `<option disabled selected>-- ',lang_get('please_select_country'),' --</
 ### `include/session.inc.php`
 Commented out `send_email(array($email), $email_subject, $email_body);`. No need to send emails.
 
+### `htdocs/challenges.php`
+Changed line 236 to be `',$challenge['description'],'`, just because I don't like bbcode. Don't have time to grab a markdown parser in PHP, so I'm doing it by hand and putting the HTML in the description. I know this means potential for XSS but I'm in full control of the description and no one else is.
 
 ## Additions
 
