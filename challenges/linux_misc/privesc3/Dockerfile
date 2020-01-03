@@ -20,6 +20,8 @@ chown wendi:wendi /home/wendi/sync_wrapper && \
 chmod 700 /home/wendi/sync_wrapper && \
 chmod 700 /usr/local/bin/init
 
+RUN ln -snf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
+
 USER root:1337
 ENTRYPOINT ["/usr/local/bin/init"]
 WORKDIR "/home/user/"

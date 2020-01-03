@@ -16,6 +16,8 @@ chown root:admin /home/user/flag && \
 chmod 2755 /home/user/race && \
 chmod 440 /home/user/flag
 
+RUN ln -snf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
+
 USER user
 ENTRYPOINT ["/bin/bash"]
 WORKDIR "/home/user/"

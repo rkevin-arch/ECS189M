@@ -12,3 +12,5 @@ RUN \
 ENTRYPOINT [ "xinetd", "-dontfork" ]
 RUN useradd -s /bin/bash -d / -u 1337 user && \
 useradd -s /bin/bash -d / -u 1338 admin
+
+RUN ln -snf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
