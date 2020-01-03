@@ -3,7 +3,7 @@
 |-|-|
 |misc|No special server-side behavior/processing needed|
 |xinetd(port)|The service runs on a port served by the xinetd container|
-|sshable|The service is a docker container intended to be SSH'd into. The SSH username is the same as the challenge.|
+|sshable(ssh_password)|The service is a docker container intended to be SSH'd into. The SSH username is the same as the challenge.|
 |web|The service is a docker container intended to be served via beamsplitter. The URL is {challengename}.webchal.twinpeaks.cs.ucdavis.edu, if everything goes well.|
 
 ## Status explanation
@@ -22,7 +22,7 @@
 ## Scoring breakdown
 |Category|Start time|End time|Points|Status|
 |-|-|-|-|-|
-|Linux and miscellaneous|Jan 6|Feb 2|1900|0/14 done|
+|Linux and miscellaneous|Jan 6|Feb 2|1900|14/14 done|
 |Webapp exploitation|Jan 25|Feb 16|1800|0/10 done|
 |Binary exploitation|Feb 8|Mar 8|2600|0/14 done|
 |Cryptography|Feb 24|Mar 15|1400|0/8 done|
@@ -31,21 +31,21 @@
 ## Linux and miscellaneous
 |Challenge|Points|Type|Status|
 |-|-|-|-|
-|introflag|50|misc|Untested|
-|linuxbasics|200|sshable|Tested|
-|linuxadvanced|200|sshable|
-|loganalysis|200|sshable|Needs porting over|
-|nmap|75|sshable||
-|nc|75|sshable||
-|addition|100|xinetd(30001)|Tested|
-|binaryaddition|100|xinetd(30002)|Tested|
-|privesc1|100|sshable|Tested|
-|privesc2|100|sshable|Tested|
-|privesc3|150|sshable|Tested|
-|race|200|sshable|Tested|
-|strcmp|150|xinetd(30004)|Untested|
-|timingsc|200|xinetd(30003)|Untested, Waiting on downloadable|
-|TOTAL|1900||0/14 done|
+|introflag|50|misc|Done|
+|linuxbasics|200|sshable(gusto_proofing_bully_equinox_deceiving)|Done|
+|linuxadv|200|sshable(freeness_flame_revision_stylist_truth)|Done|
+|loganalysis|200|sshable(amplifier_starting_unplowed_propose_aflame)|Done|
+|nmap|75|xinetd(57129)|Done|
+|nc|75|sshable(calamari_hefty_delegator_overrule_props)|Done|
+|addition|100|xinetd(30001)|Done|
+|binaryaddition|100|xinetd(30002)|Done|
+|privesc1|100|sshable(tucking_bacteria_litter_cheek_scrutiny)|Done|
+|privesc2|150|sshable(flier_blissful_gopher_scorn_modular)|Done|
+|privesc3|100|sshable(correct_wick_blunt_democracy_rare)|Done|
+|race|200|sshable(sterling_protector_overuse_spearmint_violet)|Done|
+|strcmp|150|xinetd(30004)|Done|
+|timingsc|200|xinetd(30003)|Done|
+|TOTAL|1900||Done|
 
 ## Webapp exploitation
 |Challenge|Points|Type|Status|
