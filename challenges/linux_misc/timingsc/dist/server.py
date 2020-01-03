@@ -18,7 +18,7 @@ while True:
         if len(inp)!=len(secret):
             len_mismatch=True
             break
-        time.sleep(0.001)
+        time.sleep(0.002)
     if len_mismatch:
         print("Password incorrect!")
         sys.stdout.flush()
@@ -29,7 +29,7 @@ while True:
             if inp[i]!=secret[i]:
                 character_invalid=True
                 break
-            time.sleep(0.001)
+            time.sleep(0.002)
         if character_invalid:
             print("Password incorrect!")
             sys.stdout.flush()
