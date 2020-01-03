@@ -4,7 +4,8 @@ services:
   xinetd:
     build: .
     ports:
-      - 30001-30090:30001-30090
+      - 30001-30020:30001-30020
+      - 57129:57129
     volumes:
       - ../../build/xinetd/xinetd.d:/etc/xinetd.d:ro
       - ../../build/xinetd/src:/challenges:ro
