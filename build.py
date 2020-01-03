@@ -144,6 +144,7 @@ def main():
                     shutil.copy("build/sshable/%s_client"%challenge,"/home/%s/"%challenge)
                     shutil.chown("/home/{0}/{0}_client".format(challenge),"root",challenge) #chown root:challenge
                     os.chmod("/home/{0}/{0}_client".format(challenge),stat.S_ISUID|stat.S_IRWXU|stat.S_IXGRP) #chmod 4710
+                    os.system("touch /home/{0}/.hushlogin"%challenge)
                 else:
                     raise Exception("Unrecognized challenge type %s!"%y['type'])
 
