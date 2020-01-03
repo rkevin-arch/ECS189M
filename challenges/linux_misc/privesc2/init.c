@@ -6,8 +6,8 @@ int main(int _dontcare, char** _dontcare2, char** orig_envp){
     if(p){//parent, replace with bash
         if(setresuid(1337,1337,1337))
             err(1,"Parent setresuid failed! Please contact Kevin immediately.");
-        char* argv[]={"/bin/bash",orig_envp};
-        execve(argv[0],argv,argv+1);
+        char* argv[]={"/bin/bash",NULL};
+        execve(argv[0],argv,orig_envp);
         err(1,"Parent execve failed! Please contact Kevin immediately.");
     }
     //child, replace with cron
