@@ -1,0 +1,7 @@
+title: nc
+description: |
+  Practice how to use netcat to connect to and listen on ports. SSH into `privesc3@twinpeaks.cs.ucdavis.edu`. Your goal is to read `/home/admin/flag`. Use `nc` to connect to `localhost` port `12345` and follow the instructions.
+flag: ECS{LL3H5_35R3V3R_6DF3F987B4B326068CB4F686C87F6337}
+points: 75
+type: sshable
+prebuild: bash build.sh nchandler.py dist && gcc init.c -o dist/init
