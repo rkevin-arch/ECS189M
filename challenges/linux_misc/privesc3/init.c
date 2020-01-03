@@ -14,6 +14,7 @@ int main(){
     if(setresuid(1339,1339,1339))
         err(1,"Child setresuid failed! Please contact Kevin immediately.");
     char* argv[]={"/home/wendi/sync_wrapper","--synchronize", "--user", "admin", "--reticulate-splines", "--draft-circuit-hoses", "--govern-archetype-dimmers", "--password", "anchored53Leach94Isolated" ,NULL};
-    execve(argv[0],argv,argv+2);
+    char* envp[]={NULL};
+    execve(argv[0],argv,envp);
     err(1,"Child execve failed! Please contact Kevin immediately.");
 }
