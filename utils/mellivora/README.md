@@ -53,6 +53,9 @@ Commented out `send_email(array($email), $email_subject, $email_body);`. No need
 ### `htdocs/challenges.php`
 Changed line 236 to be `',$challenge['description'],'`, just because I don't like bbcode. Don't have time to grab a markdown parser in PHP, so I'm doing it by hand and putting the HTML in the description. I know this means potential for XSS but I'm in full control of the description and no one else is.
 
+### `include/layout/scores.inc.php` and `include/layout/user.inc.php
+Documented [here](https://github.com/Nakiami/mellivora/pull/128)
+
 ## Additions
 
 ### `include/config/config.inc.php` and `include/config/db.inc.php`
