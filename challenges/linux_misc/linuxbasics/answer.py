@@ -87,7 +87,7 @@ CONFIG={
 "11":SimpleChallenge("/home/user/myfile.txt looks like a txt file, but it actually isn't. What kind of file is it?",
                      "jpeg",
                      "69afff61f7005f94203d7423ea4623c2"),
-"11":Challenge(chmodhandler, "3dbd152de50179208711f8e02966a0b4")
+"12":Challenge(chmodhandler, "3dbd152de50179208711f8e02966a0b4")
 }
 
 def main():
