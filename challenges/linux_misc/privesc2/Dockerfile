@@ -20,6 +20,7 @@ RUN chmod 755 /usr/local/bin/init
 
 RUN ln -snf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
 
+ENV HOME /home/user
 USER root:1337
 ENTRYPOINT ["/usr/local/bin/init"]
 WORKDIR "/home/user"
