@@ -3,7 +3,7 @@ RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive \
     apt-get -y install --no-install-recommends \
-    tmux screen nano vim less
+    tmux screen nano vim less gcc libc6-dev
 
 RUN useradd -s /bin/bash -m -u 1337 user && \
 useradd -s /bin/false -d / -u 1338 admin
