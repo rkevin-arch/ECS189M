@@ -1,9 +1,29 @@
+# 000-default.conf
 RewriteEngine on
-RewriteMap beamsplitter "prg:/var/www/client.py" www-data:beamsplitter
+RewriteCond %{SERVER_NAME} .*twinpeaks.cs.ucdavis.edu
+RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+
+# 000-default-le-ssl.conf
+ProxyPreserveHost On
+ProxyPass / http://127.0.0.1:8080/
+ProxyPassReverse / http://127.0.0.1:8080/
+
+RewriteEngine on
 RewriteRule ^/webchal/start/([a-z]*)$ /webchal/start.php?challenge=$1 [QSD]
-RewriteRule ^/webchal/([a-z]*)/(.*)$ ${beamsplitter:$1_%{HTTP_COOKIE}}/$2 [P]
 
 <Location /webchal>
 	ProxyPass !
 	Options -Indexes
 </Location>
+
+# 001-webchal-le-ssl.conf
+ProxyPreserveHost On
+
+RewriteEngine on
+RewriteMap beamsplitter "prg:/var/www/client.py" www-data:beamsplitter
+RewriteRule ^/(.*)$ ${beamsplitter:%{HTTP_HOST}_%{REMOTE_ADDR}_%{HTTP_COOKIE}}/$1 [P]
+
+ServerName 047b26d0-adb3-4d96-ae3f-99d629e3e5c7.webchal.twinpeaks.cs.ucdavis.edu
+ServerAlias *.webchal.twinpeaks.cs.ucdavis.edu
+ErrorDocument 500 "If you're seeing this, something has gone terribly wrong! Yell at Kevin and tell him to fix beamsplitter."
+ErrorDocument 503 "If you're seeing this, try refreshing the page after 5 seconds. If the challenge still doesn't work after 10 seconds, yell at Kevin until he fixes the issue."

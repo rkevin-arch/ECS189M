@@ -12,3 +12,6 @@ The server listens on the socket /var/run/beamsplitter.sock. When someone visits
 
 After that, whenever the webserver gets a request for /webchal/challenge/*, the webserver invokes the client and asks it for the real port to reverse proxy to. The client sends a request in the following form: "Rchallenge_cookies", R stands for request, challenge is the challenge name, and a list of all cookies. The server checks the cookie named beamsplitter_challenge, where challenge is the name for that particular challenge, and tries to match it with the list of docker containers created. If one of them match, the server sends back the right address to reverse proxy to, like "http://localhost:40001" if that instance runs on port 40001. On error it returns a URL to an error page.
 
+## Changes
+
+We need to change the API(? it's more like a protocol) for beamsplitter, since we're going for virtual hosts instead of /webchal/challenge/index.html. We need to ask beamsplitter to validate the virtual host, and also whitelist my home IP (rkevin.dev / 73.66.52.69) for the testing URLs. I'll do that later.
