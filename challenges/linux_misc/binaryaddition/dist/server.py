@@ -40,7 +40,7 @@ try:
 
     print("You did it! John would like to reward you with a shell.")
     print("Find the flag there!")
-    sys.stdout.buffer.flush()
+    sys.stdout.flush()
     call("/bin/bash")
 except TimeoutError:
     print("You took too much time! The homework was collected and John is now a very sad kid.")
