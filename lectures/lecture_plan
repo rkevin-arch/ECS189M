@@ -26,6 +26,7 @@ Advanced bash skills and log analysis (model from bashbasics, basic log analysis
   sed (?)
   awk (?)
   give a couple examples in lecture, using a separate log file
+  other cool stuff (!! ^R Alt+Num)
 TCP ports and talking to remote servers
   literally copy talking to remote servers workshop
 System enumeration and privilege escalation
@@ -109,4 +110,5 @@ DHKE and RSA:
   go through rsa example
   cert
   https
-
+  cryptographic hash functions
+  maybe elliptic curves?
