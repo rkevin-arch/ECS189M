@@ -75,10 +75,10 @@ CONFIG={
 "7": SimpleChallenge("What is the user id of 'admin'?",
                      "1338",
                      "5f175a61bf6b509a1e374d998f1ca368"),
-"8": SimpleChallenge("There's a user 'john' on the system. Can he write to /home/user/myfile.txt?",
+"8": SimpleChallenge("There's a user 'john' on the system. Can he write to /home/user/myfile.txt? (yes/no)",
                      "no", #create john, in admin group
                      "45fad0ab4fc449c8c70cf35bf5b55587"),
-"9": SimpleChallenge("Can the 'admin' user execute /home/user/myfile.txt?",
+"9": SimpleChallenge("Can the 'admin' user execute /home/user/myfile.txt? (yes/no)",
                      "yes",
                      "5b9dafd71e1ecaeec2479f48ff779cd9"),
 "10":SimpleChallenge("Which user on the system, except for you, root, admin and john, can execute /home/user/myfile.txt?",
