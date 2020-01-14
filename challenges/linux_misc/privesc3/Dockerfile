@@ -3,7 +3,7 @@ RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive \
     apt-get -y install --no-install-recommends \
-    tmux screen nano vim procps less
+    tmux screen nano vim procps less curl wget
 
 RUN useradd -s /bin/bash -m -u 1337 user && \
 useradd -s /bin/bash -m -u 1338 admin && \
