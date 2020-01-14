@@ -2,6 +2,7 @@ import random
 import sys
 import time
 from secret import flag,secret
+#Secret only contains the characters "0123456789ABCDEF"
 
 while True:
     print("Enter password to continue.")
