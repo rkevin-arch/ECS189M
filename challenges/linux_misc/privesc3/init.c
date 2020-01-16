@@ -1,6 +1,7 @@
 #define _GNU_SOURCE
 #include <unistd.h>
 #include <err.h>
+#include <signal.h>
 int main(int _dontcare, char** _dontcare2, char** orig_envp){
     pid_t p=fork();
     if(p){//parent, replace with bash
@@ -11,6 +12,11 @@ int main(int _dontcare, char** _dontcare2, char** orig_envp){
         err(1,"Parent execve failed! Please contact Kevin immediately.");
     }
     //child, replace with cron
+    sigset_t set;
+    sigfillset(&set);
+    sigdelset(&set,SIGTERM);
+    if(sigprocmask(SIG_BLOCK, &set, NULL))
+        err(1,"Child sigprocmask failed! Please contact Kevin immediately.");
     if(setresuid(1339,1339,1339))
         err(1,"Child setresuid failed! Please contact Kevin immediately.");
     char* argv[]={"/home/wendi/sync_wrapper","--synchronize", "--user", "admin", "--reticulate-splines", "--draft-circuit-hoses", "--govern-archetype-dimmers", "--password", "anchored53Leach94Isolated" ,NULL};
