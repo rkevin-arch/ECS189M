@@ -114,6 +114,8 @@ def main():
                 y=yaml.safe_load(f)
 
                 #process prebuild script
+                if 'disabled' in y:
+                    continue
                 if 'prebuild' in y:
                     os.chdir("challenges/%s/%s"%(category,challenge))
                     if os.system(y['prebuild']):
