@@ -18,6 +18,10 @@ RUN mkdir /tmp/.admin.maintenance && chmod 777 /tmp/.admin.maintenance
 COPY dist/init /usr/local/bin/
 RUN chmod 755 /usr/local/bin/init
 
+#RUN chown root:admin /var/run && chmod 775 /var/run
+RUN rm /etc/cron.daily/*
+
+
 RUN ln -snf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime && dpkg-reconfigure -f noninteractive tzdata
 
 ENV HOME /home/user
