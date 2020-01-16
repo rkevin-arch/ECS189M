@@ -11,3 +11,4 @@ xinetd_config:
   base: binary
   port: 30016
   executable: /bin/noaslr /tinyuaf
+disabled: yes

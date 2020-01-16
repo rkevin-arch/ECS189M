@@ -11,3 +11,4 @@ xinetd_config:
   base: binary
   port: 30013
   executable: /bin/noaslr /invtracker
+disabled: yes
