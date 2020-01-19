@@ -55,9 +55,9 @@
 |jsprog|125|web|Note: Write function to do addition and alert(answer)|
 |xss|250|web||
 |csrf|250|web||
-|sqli|125|web|Needs porting over|
+|sqli|100|web|Needs porting over|
 |searchbar|175|web|Needs porting over|
-|bsqli|250|web|Needs porting over|
+|bsqli|275|web|Needs porting over|
 |babylfi|125|web||
 |lfirce|300|web|Needs porting over|
 |TOTAL|1800||0/10 done|
