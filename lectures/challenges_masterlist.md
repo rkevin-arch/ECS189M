@@ -51,8 +51,8 @@
 |Challenge|Points|Type|Status|
 |-|-|-|-|
 |adminme|75|web|adm|
-|phpeval|100|web||
-|jsprog|150|web|Note: Write function to do addition and alert(answer)|
+|phpeval|125|web||
+|jsprog|125|web|Note: Write function to do addition and alert(answer)|
 |xss|250|web||
 |csrf|250|web||
 |sqli|125|web|Needs porting over|
