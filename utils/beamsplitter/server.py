@@ -8,9 +8,25 @@ import datetime
 from time import sleep
 from docker import from_env as docker_init
 
-validservices=["lfi","sqli","bsqli"]
+validservices=[
+    #"adminme",
+    #"phpeval",
+    #"jsprog",
+    #"xss",
+    #"csrf",
+    #"sqli",
+    #"searchbar",
+    #"bsqli",
+    #"babylfi",
+    #"lfirce",
+    #"finalwebapp"
+]
+whitelist=[
+    "73.66.52.69",
+]
+production=False
 services={}
-MAX_SERVICES=50
+MAX_SERVICES=100
 ERROR="http://localhost:8080/webchal/error.html?"
 EXPIRED="http://localhost:8080/webchal/expired.html?"
 NAUGHTY="http://localhost:8080/webchal/naughty.html?"
@@ -96,7 +112,6 @@ def routinecleanup():
         for s in alive:
             s.destroy()
 
-
 def serve():
     while True:
         conn, _=sock.accept()
@@ -104,12 +119,18 @@ def serve():
             #logging.debug("Connection received")
             data=conn.recv(1)
             if data==b"R":
-                data=conn.recv(1000).decode()
+                data=conn.recv(10000).decode()
                 #logging.debug("Got a request: %s"%data)
                 service=data.split('_')[0]
+                if not service.endswith(".webchal.twinpeaks.cs.ucdavis.edu"):
+                    conn.sendall(NAUGHTY.encode())
+                sercice=service[:-len(".webchal.twinpeaks.cs.ucdavis.edu")]
                 if service not in validservices:
                     conn.sendall(NAUGHTY.encode())
                     continue
+                ip=data.split('_')[1]
+                if not production and ip not in whitelist:
+                    conn.sendall(NAUGHTY.encode())
                 cookies=data[len(service)+1:].split("; ")
                 ins=None
                 for s in cookies:
