@@ -14,12 +14,12 @@ validservices=[
     #"jsprog",
     #"xss",
     #"csrf",
-    #"sqli",
+    "sqli",
     #"searchbar",
     #"bsqli",
     #"babylfi",
     #"lfirce",
-    #"finalwebapp"
+    #"finalwebapp",
 ]
 whitelist=[
     "73.66.52.69",
@@ -116,21 +116,25 @@ def serve():
     while True:
         conn, _=sock.accept()
         try:
-            #logging.debug("Connection received")
+            logging.debug("Connection received")
             data=conn.recv(1)
             if data==b"R":
                 data=conn.recv(10000).decode()
-                #logging.debug("Got a request: %s"%data)
-                service=data.split('_')[0]
+                logging.debug("Got a request: %s"%data)
+                service=data.split('_')[1]
                 if not service.endswith(".webchal.twinpeaks.cs.ucdavis.edu"):
-                    conn.sendall(NAUGHTY.encode())
-                sercice=service[:-len(".webchal.twinpeaks.cs.ucdavis.edu")]
-                if service not in validservices:
+                    logging.debug("Host field %s malformed! Rejecting"%service)
                     conn.sendall(NAUGHTY.encode())
                     continue
-                ip=data.split('_')[1]
+                service=service[:-len(".webchal.twinpeaks.cs.ucdavis.edu")]
+                if service not in validservices:
+                    logging.debug("%s not a valid service! Rejecting"%service)
+                    conn.sendall(NAUGHTY.encode())
+                    continue
+                ip=data.split('_')[0]
                 if not production and ip not in whitelist:
                     conn.sendall(NAUGHTY.encode())
+                    continue
                 cookies=data[len(service)+1:].split("; ")
                 ins=None
                 for s in cookies:
@@ -139,17 +143,24 @@ def serve():
                         if token in services:
                             ins=services[token]
                 if ins:
+                    logging.debug("Found corresponding service: %s"%ins)
                     conn.sendall(ins.getaddr().encode())
                 else:
-                    conn.sendall(ERROR.encode())
+                    logging.debug("Cookie not found in service!")
+                    conn.sendall(EXPIRED.encode())
             elif data==b"C":
                 data=conn.recv(1000).decode()
-                if data not in validservices:
+                ip,service=data.split("_")
+                if service not in validservices:
                     logging.warning("Asked to create nonexistent service %s!"%data)
                     conn.sendall(b"F")
                     continue
+                if not production and ip not in whitelist:
+                    logging.warning("IP %s tried to create service when that's not allowed!"%ip)
+                    conn.sendall(b"F")
+                    continue
                 logging.info("Asked to create instance of %s"%data)
-                conn.sendall(createInstance(data).encode())
+                conn.sendall(createInstance(service).encode())
             elif data==b"D":
                 #Debug mode
                 logging.info("Dumping debug info")
