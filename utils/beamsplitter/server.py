@@ -9,12 +9,12 @@ from time import sleep
 from docker import from_env as docker_init
 
 validservices=[
-    #"adminme",
+    "adminme",
     #"phpeval",
     #"jsprog",
     #"xss",
     #"csrf",
-    "sqli",
+    #"sqli",
     #"searchbar",
     #"bsqli",
     #"babylfi",
