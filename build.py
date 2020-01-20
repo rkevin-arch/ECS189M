@@ -152,7 +152,7 @@ def main():
                     shutil.chown("/home/{0}/{0}_client".format(challenge),"root",challenge) #chown root:challenge
                     os.chmod("/home/{0}/{0}_client".format(challenge),stat.S_ISUID|stat.S_IRWXU|stat.S_IXGRP) #chmod 4710
                     os.system("touch /home/%s/.hushlogin"%challenge)
-                elif y['type']=="webchal":
+                elif y['type']=="webapp":
                     os.chdir("challenges/%s/%s"%(category,challenge))
                     if os.system("docker build -t %s ."%challenge):
                         raise Exception("Building docker container failed!")
