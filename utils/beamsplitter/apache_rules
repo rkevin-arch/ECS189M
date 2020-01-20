@@ -36,4 +36,4 @@ ServerAlias babylfi.webchal.twinpeaks.cs.ucdavis.edu
 ServerAlias lfirce.webchal.twinpeaks.cs.ucdavis.edu
 ServerAlias finalwebapp.webchal.twinpeaks.cs.ucdavis.edu
 ErrorDocument 500 "If you're seeing this, something has gone terribly wrong! Yell at Kevin and tell him to fix beamsplitter."
-ErrorDocument 503 "If you're seeing this, try refreshing the page after 5 seconds. If the challenge still doesn't work after 10 seconds, yell at Kevin until he fixes the issue."
+ErrorDocument 502 "If you're seeing this, try refreshing the page after 5 seconds. If the challenge still doesn't work after 10 seconds, yell at Kevin until he fixes the issue."
