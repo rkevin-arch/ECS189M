@@ -68,24 +68,28 @@ def main():
 
     parser=argparse.ArgumentParser(description="Builds the required containers and challenges for ECS189M CTF.")
     parser.add_argument("-d", "--destroy-old-build", help="Do no ask for confirmation when previous build exists, just delete it", action="store_true")
+    parser.add_argument("-k", "--keep-old-build", help="[EXPERIMENTAL] Do not delete old build folder, just build on top of it", action="store_true")
     parser.add_argument("-c", "--challenge", help="Specify only one challenge to build.")
+    parser.add_argument("-t", "--category", help="Specify only one category to build.")
     args=parser.parse_args()
 
     mellivora_sql=""
 
     os.chdir(os.path.dirname(__file__))
     if os.path.exists("build"):
-        if not args.destroy_old_build:
+        if not args.destroy_old_build and not args.keep_old_build:
             print("WARNING! THE BUILD FOLDER EXISTS.")
             i=input("Are you sure you want to remove the previous build and start over? ")
             if(i.lower() not in ['y','yes']):
                 exit(0)
-        shutil.rmtree("build")
-    os.mkdir("build")
-    os.mkdir("build/xinetd")
-    os.mkdir("build/xinetd/src")
-    os.mkdir("build/xinetd/xinetd.d")
-    os.mkdir("build/sshable")
+        if not args.keep_old_build:
+            shutil.rmtree("build")
+    if not args.keep_old_build:
+        os.mkdir("build")
+        os.mkdir("build/xinetd")
+        os.mkdir("build/xinetd/src")
+        os.mkdir("build/xinetd/xinetd.d")
+        os.mkdir("build/sshable")
 
     with open("challenges/categories.yml") as f:
         y=yaml.safe_load(f)
@@ -96,7 +100,8 @@ def main():
     challenges={}
 
     for category in categories:
-
+        if args.category and args.category!=category:
+            continue
         # Report and Fail gracefully if category doesn't exist on disk
         try:
             listdir = os.listdir("challenges/%s" % category)
@@ -147,6 +152,11 @@ def main():
                     shutil.chown("/home/{0}/{0}_client".format(challenge),"root",challenge) #chown root:challenge
                     os.chmod("/home/{0}/{0}_client".format(challenge),stat.S_ISUID|stat.S_IRWXU|stat.S_IXGRP) #chmod 4710
                     os.system("touch /home/%s/.hushlogin"%challenge)
+                elif y['type']=="webchal":
+                    os.chdir("challenges/%s/%s"%(category,challenge))
+                    if os.system("docker build -t %s ."%challenge):
+                        raise Exception("Building docker container failed!")
+                    os.chdir("../../..")
                 else:
                     raise Exception("Unrecognized challenge type %s!"%y['type'])
 
@@ -154,9 +164,9 @@ def main():
                 challenges[challenge]=y
 
 
-    mellivora_sql+=challenges_to_sql(challenges,categories,category_mapping)
-    with open("build/mellivora.sql","w") as f:
-        f.write(mellivora_sql)
+    #mellivora_sql+=challenges_to_sql(challenges,categories,category_mapping)
+    #with open("build/mellivora.sql","w") as f:
+    #    f.write(mellivora_sql)
     print("Done!")
 
 def categories_to_sql(config):
