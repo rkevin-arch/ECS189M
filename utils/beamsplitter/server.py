@@ -135,7 +135,7 @@ def serve():
                 if not production and ip not in whitelist:
                     conn.sendall(NAUGHTY.encode())
                     continue
-                cookies=data[len(service)+1:].split("; ")
+                cookies=data[len(ip)+1+len(service)+len(".webchal.twinpeaks.cs.ucdavis.edu")+1:].split("; ")
                 ins=None
                 for s in cookies:
                     if s.startswith("beamsplitter_%s="%service):
