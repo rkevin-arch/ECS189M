@@ -10,6 +10,7 @@ ProxyPassReverse / http://127.0.0.1:8080/
 
 RewriteEngine on
 RewriteRule ^/webchal/start/([a-z]*)$ /webchal/start.php?challenge=$1 [QSD]
+RewriteRule ^/webchal/([a-z]*)$ /webchal/info.php?challenge=$1 [QSD]
 
 <Location /webchal>
 	ProxyPass !
@@ -18,7 +19,6 @@ RewriteRule ^/webchal/start/([a-z]*)$ /webchal/start.php?challenge=$1 [QSD]
 
 # 001-webchal-le-ssl.conf
 ProxyPreserveHost On
-SSLProxyEngine on
 
 RewriteEngine on
 RewriteMap beamsplitter "prg:/var/www/client.py" www-data:beamsplitter
