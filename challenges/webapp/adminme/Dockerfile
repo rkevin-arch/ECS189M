@@ -5,7 +5,7 @@ RUN \
     apt-get -y install --no-install-recommends \
     python3-bottle
 
-RUN useradd -s /bin/bash -m -u 1340 web && \
+RUN useradd -s /bin/bash -m -u 1340 web
 
 COPY app.py /home/web/
 
