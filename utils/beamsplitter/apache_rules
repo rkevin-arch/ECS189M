@@ -18,6 +18,7 @@ RewriteRule ^/webchal/start/([a-z]*)$ /webchal/start.php?challenge=$1 [QSD]
 
 # 001-webchal-le-ssl.conf
 ProxyPreserveHost On
+SSLProxyEngine on
 
 RewriteEngine on
 RewriteMap beamsplitter "prg:/var/www/client.py" www-data:beamsplitter
