@@ -68,7 +68,7 @@ class Service:
     def __init__(self,imgname,port):
         self.name=imgname
         self.port=port
-        self.container=docker.containers.run(imgname, remove=True, detach=True, ports={'80/tcp':('127.0.0.1',port)})
+        self.container=docker.containers.run(imgname, remove=True, detach=True, ports={'8080/tcp':('127.0.0.1',port)})
         self.creationtime=datetime.datetime.now()
         self.lastaccesstime=datetime.datetime.now()
         self.alive=True
