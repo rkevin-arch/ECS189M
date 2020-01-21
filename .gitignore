@@ -8,3 +8,6 @@ challenges/*/*/dist/*
 
 # files
 *.sw?
+
+#ignore database backups
+/dump/
