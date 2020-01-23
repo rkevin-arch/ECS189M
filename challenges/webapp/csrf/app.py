@@ -102,21 +102,6 @@ def logout():
                     {"errormsg": "Logged out."})
 
 
-'''async def admin_visit_link(data, cookies):
-    """ make user visit a link """
-
-    print(data, type(data))
-    hit = REGEX_LINKS.search(data)
-    if hit:
-        print(hit,hit.groupdict())
-        link = hit.group("link")
-        print("link: ", link)
-        print("cookies: ", cookies)
-        r = requests.get(link, cookies)
-        print(r)
-        return r
-    return
-'''
 #  ____                _
 # |  _ \  ___   _   _ | |_  ___  ___
 # | |_) |/ _ \ | | | || __|/ _ \/ __|
@@ -226,10 +211,6 @@ def create_posts():
     # check we're at limit of posts
     if len(POSTS) < POSTS_LIMIT:
         POSTS.append(newpost)
-        #admin_visit_link(newpost.text, {COOKIE_SESS: ADMIN_SESSID})
-        #asyncio.run(admin_visit_link(newpost.text, {COOKIE_SESS: ADMIN_SESSID}))
-        #loop = asyncio.get_event_loop()
-        #result = loop.run_until_complete(admin_visit_link(newpost.text, {COOKIE_SESS: ADMIN_SESSID}))
     else:
         errormsg = "Too many posts. Max 10."
 
