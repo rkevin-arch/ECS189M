@@ -13,7 +13,7 @@ if (system.args.length < 2){
 } 
 
 var page = webPage.create();
-var url = 'http://' + HOST + ":" + PORT;
+var url = 'http://' + HOST + ":" + PORT + "/posts";
 var cookie = system.args[1];
 
 console.log("parsed cookie: " + cookie);
