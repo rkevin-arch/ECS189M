@@ -19,8 +19,17 @@ var cookie = system.args[1];
 console.log("parsed cookie: " + cookie);
 
 phantom.addCookie({
-  name: "tp_sessid",
+  name: "webchal_csrf_forum_sessid",
   value: cookie,
+  domain: "localhost",
+  secure: false,
+  httponly: false,
+  path: "/"
+});
+
+phantom.addCookie({
+  name: "beamsplitter_csrf",
+  value: system.env["beamsplitter_cookie"],
   domain: "localhost",
   secure: false,
   httponly: false,
