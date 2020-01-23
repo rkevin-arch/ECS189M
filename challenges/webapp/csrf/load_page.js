@@ -3,6 +3,9 @@ var system = require('system');
 var webPage = require('webpage');
 var TIMER_EXIT = 5000;
 
+var HOST = "localhost";
+var PORT = "8080";
+
 // Command line arguments
 if (system.args.length < 2){
   console.log('Usage: ' + system.args[0] +  ' <Cookie>');
@@ -10,7 +13,7 @@ if (system.args.length < 2){
 } 
 
 var page = webPage.create();
-var url = 'http://localhost:8080';
+var url = 'http://' + HOST + ":" + PORT;
 var cookie = system.args[1];
 
 console.log("parsed cookie: " + cookie);

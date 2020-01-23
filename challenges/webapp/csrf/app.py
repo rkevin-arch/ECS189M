@@ -3,6 +3,8 @@ import os
 import asyncio
 import binascii
 
+import subprocess
+
 from collections import namedtuple
 from bottle import get, post, request, response
 from bottle import run, static_file, redirect, template
@@ -23,6 +25,8 @@ COOKIE_SESS = "tp_sessid"
 DEFAULT_PASSWORD = "slartibartfast"
 REGEX_LINKS = re.compile(r'<a href.*(?P<link>http.[^\">]*)', re.DOTALL|re.M|re.I)
 POSTS_LIMIT = 10
+PHANTOMJS = "/usr/bin/phantomjs"
+JS_FILE = "/home/web/load_page.js"
 
 # Cookies for active users. schema { sess_id : username }
 # By default admin is logged in.
@@ -211,6 +215,9 @@ def create_posts():
     # check we're at limit of posts
     if len(POSTS) < POSTS_LIMIT:
         POSTS.append(newpost)
+        subprocess.Popen([PHANTOMJS, JS_FILE, ADMIN_SESSID], stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL
+            )
     else:
         errormsg = "Too many posts. Max 10."
 
