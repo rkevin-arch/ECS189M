@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Login</title>
+    <title>ECS189M Web Challenge: csrf</title>
     <link rel="stylesheet" href="/static/css/normalize.css">
     <link rel="stylesheet" href="/static/css/skeleton.css">
     <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
@@ -9,7 +9,7 @@
   <body class="container">
     <div id="loginbox" class="border">
       <div class="row">
-        <h2>Twinpeaks Forum</h2>
+        <h2>Some Generic Forum</h2>
       </div>
       <hr/>
       <div id="content" class="row">
