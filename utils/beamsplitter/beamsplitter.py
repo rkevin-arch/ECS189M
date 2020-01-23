@@ -66,10 +66,10 @@ def processA():
 '''
 
 class Service:
-    def __init__(self,imgname,port):
+    def __init__(self,imgname,port,cookie):
         self.name=imgname
         self.port=port
-        self.container=docker.containers.run(imgname, remove=True, detach=True, ports={'8080/tcp':('127.0.0.1',port)})
+        self.container=docker.containers.run(imgname, remove=True, detach=True, ports={'8080/tcp':('127.0.0.1',port)}, environment={"beamsplitter_cookie": cookie)
         self.creationtime=datetime.datetime.now()
         self.lastaccesstime=datetime.datetime.now()
         self.alive=True
@@ -93,11 +93,11 @@ def createInstance(name):
         logging.critical("Way too many instances?????")
         logging.critical(services)
         return ""
-    s=Service(name,nextport)
-    nextport+=1
     cookie=gencookie()
     while cookie in services:
         cookie=gencookie()
+    s=Service(name,nextport,cookie)
+    nextport+=1
     services[cookie]=s
     sleep(5)
     return "S%s"%cookie
