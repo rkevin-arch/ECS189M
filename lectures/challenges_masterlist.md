@@ -52,7 +52,7 @@
 |-|-|-|-|
 |adminme|75|web|adm|
 |phpeval|125|web||
-|jsprog|125|web|Note: Write function to do addition and alert(answer)|
+|jsprog|125|web|Note: Write function to do addition and alert(answer), server sends piece of javascript, need to reverse engineer it and GET /api/howtogetflag to figure out they need to write max(list)-min(list), then they post the answer to /api/answer to get the flag|
 |xss|250|web||
 |csrf|250|web||
 |sqli|100|web|Needs porting over|

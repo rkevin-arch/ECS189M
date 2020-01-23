@@ -2,13 +2,12 @@ import re
 import os
 import asyncio
 import binascii
-import requests
 
 from collections import namedtuple
 from bottle import get, post, request, response
 from bottle import run, static_file, redirect, template
 
-from secrets import flag
+flag="123"
 
 #   ____                __  _
 #  / ___| ___   _ __   / _|(_)  __ _  ___
@@ -103,7 +102,7 @@ def logout():
                     {"errormsg": "Logged out."})
 
 
-async def admin_visit_link(data, cookies):
+'''async def admin_visit_link(data, cookies):
     """ make user visit a link """
 
     print(data, type(data))
@@ -117,7 +116,7 @@ async def admin_visit_link(data, cookies):
         print(r)
         return r
     return
-
+'''
 #  ____                _
 # |  _ \  ___   _   _ | |_  ___  ___
 # | |_) |/ _ \ | | | || __|/ _ \/ __|
@@ -259,4 +258,4 @@ if __name__ == "__main__":
         newpost = Post("ljsdf", "slkdjflaksjdflajdsf")
         POSTS.append(newpost)
 
-    run(host='localhost', port=8080, debug=True)
+    run(host='0.0.0.0', port=8080)
