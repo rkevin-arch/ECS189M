@@ -1,6 +1,5 @@
 import re
 import os
-import asyncio
 import binascii
 
 import subprocess

@@ -1,6 +1,12 @@
 body {
   margin-top: 5rem !important;
 }
+
+div.row > h2 {
+  text-shadow: 4px 4px 10px #999;
+  text-align: center;
+}
+
 hr.linebreak{
   margin-bottom: 5rem;
   width: 50%;
