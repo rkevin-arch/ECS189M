@@ -1,14 +1,14 @@
 import re
 import os
 import binascii
-
 import subprocess
+import secrets
 
 from collections import namedtuple
 from bottle import get, post, request, response
 from bottle import run, static_file, redirect, template
 
-flag="123"
+flag="ECS{1M4G1N3_TH15_8UT_D3L3T1NG_4LL_U53R5_B702F71E4C2139B5F1E9F3A32B8BACA3}"
 
 #   ____                __  _
 #  / ___| ___   _ __   / _|(_)  __ _  ___
@@ -18,14 +18,13 @@ flag="123"
 #                              |___/
 
 ADMIN_USERNAME = "admin"
-ADMIN_PASSWORD = None
-ADMIN_SESSID = None
-COOKIE_SESS = "tp_sessid"
-DEFAULT_PASSWORD = "slartibartfast"
-REGEX_LINKS = re.compile(r'<a href.*(?P<link>http.[^\">]*)', re.DOTALL|re.M|re.I)
-POSTS_LIMIT = 10
+ADMIN_PASSWORD = secrets.token_hex()
+ADMIN_SESSID = secrets.token_hex()
+COOKIE_SESS = "webchal_csrf_forum_sessid"
+DEFAULT_PASSWORD = "password"
 PHANTOMJS = "/usr/bin/phantomjs"
 JS_FILE = "/home/web/load_page.js"
+ENABLE_PHANTOMJS = True # should always be true unless testing webapp
 
 # Cookies for active users. schema { sess_id : username }
 # By default admin is logged in.
@@ -33,8 +32,6 @@ JS_FILE = "/home/web/load_page.js"
 ACTIVE_SESSIONS = {}
 AUTHDB = {
     ADMIN_USERNAME: ADMIN_PASSWORD,
-    'user': 'slartibartfast',
-    'oolon colluphid': 'bob'
 }
 POSTS = []
 
@@ -65,12 +62,7 @@ def is_authed(sess_id):
         return True
     return False
 
-
-def generate_cookie(num_bytes=16):
-    """ generate a random string of @num_bytes chars """
-    return binascii.hexlify(os.urandom(num_bytes)).decode('utf-8')
-
-
+@get('/reset')
 def reset():
     """ reset the given user's password back to default """
 
@@ -83,12 +75,12 @@ def reset():
         errormsg = "You can only reset your own password"
     else:
         AUTHDB[username] = DEFAULT_PASSWORD
-        errormsg = "Password reset"
+        errormsg = "Password reset! Your password has been changed to 'password'."
 
-    return template('templates/login.tpl',
-                    {"errormsg": errormsg})
+    return template('templates/message.tpl',
+                    {"msg": errormsg})
 
-
+@get('/logout')
 def logout():
     """ Logout. clear cookie and active sessions """
 
@@ -101,8 +93,8 @@ def logout():
         ACTIVE_SESSIONS.pop(sess)
     except KeyError as e:
         print(e, "Sessions %s doesn't exist" % sess)
-    return template('templates/login.tpl',
-                    {"errormsg": "Logged out."})
+    return template('templates/message.tpl',
+                    {"msg": "You have logged out."})
 
 
 #  ____                _
@@ -128,23 +120,32 @@ def index():
     # Check if the user session is active, if not send to login page
     sess_id = request.get_cookie(COOKIE_SESS)
     if not is_authed(sess_id):
-        return template('templates/login.tpl', {"errormsg": ""})
-
-    # Check if we're logging out
-    logout_param = request.query.get('logout', None)
-    if logout_param:
-        return logout()
-
-    # Check if we're resetting password
-    reset_param = request.query.get('reset', None)
-    if reset_param:
-        return reset()
+        return template('templates/login.tpl', {})
 
     # Show posts
-    redirect('/posts')
+    redirect('/main')
 
+@post('/register')
+def register():
 
-@post('/')
+    # Check if the user session is active, if not send to login page
+    sess_id = request.get_cookie(COOKIE_SESS)
+    if is_authed(sess_id):
+        redirect('/')
+
+    username = request.forms.get('username')
+    password = request.forms.get('password')
+
+    if not username or not password:
+        return template('templates/message.tpl', {'msg': 'Username or password cannot be blank!'})
+
+    if AUTHDB.get(username, None) is not None:
+        return template('templates/message.tpl', {'msg': 'That user already exists!'})
+
+    AUTHDB.update({username:password})
+    return template('templates/message.tpl', {'msg': 'You have successfully registered! Please log in.'})
+
+@post('/login')
 def login():
     """ handle post data from login form """
 
@@ -156,29 +157,24 @@ def login():
 
     if check_user_pass(username, password):
         # set cookie
-        sess = generate_cookie()
+        sess = secrets.token_hex()
         response.set_cookie(COOKIE_SESS, sess)
         ACTIVE_SESSIONS.update({sess: username})
 
         # Welcome and show posts
-        redirect('/posts')
+        redirect('/main')
     else:
         # failed auth.
-        return template('templates/login.tpl',
-                        {"errormsg": "Incorrect Login credentials."})
+        return template('templates/message.tpl',
+                        {"msg": "Incorrect Login credentials."})
 
-    raise Exception("Shouldn't get here. So let's freakout.")
-
-
-@get('/posts')
-def show_posts():
-    """ lists posts """
-
+@get('/main')
+def mainpage():
     # Check if the user session is active, if not send to login page
     sess_id = request.get_cookie(COOKIE_SESS)
     if not is_authed(sess_id):
-        return template('templates/login.tpl',
-                        {"errormsg": "Please login first."})
+        return template('templates/message.tpl',
+                        {"msg": "Please login first."})
 
     errormsg = ""
     username = ACTIVE_SESSIONS[sess_id]
@@ -188,22 +184,44 @@ def show_posts():
     if username == ADMIN_USERNAME:
         errormsg = "You found the: flag %s" % flag
 
-    print(errormsg)
+    return template('templates/main.tpl',
+                    {"errormsg": errormsg, "username": username})
+
+
+@get('/posts')
+def show_posts():
+    """ lists posts """
+
+    # Check if the user session is active, if not send to login page
+    sess_id = request.get_cookie(COOKIE_SESS)
+    if not is_authed(sess_id):
+        return template('templates/message.tpl',
+                        {"msg": "Please login first."})
+
+    errormsg = ""
+    username = ACTIVE_SESSIONS[sess_id]
+    print(sess_id, username)
+    print(ACTIVE_SESSIONS)
+
+    if username == ADMIN_USERNAME:
+        errormsg = "You found the: flag %s" % flag
+
+    #print(errormsg)
     return template('templates/posts.tpl',
-                    {"username": username,
+                    {
                         "posts": POSTS,
                         "errormsg": errormsg})
 
 
-@post('/posts')
-def create_posts():
+@post('/post')
+def create_post():
     """ create new post """
 
     # Check if the user session is active, if not send to login page
     sess_id = request.get_cookie(COOKIE_SESS)
     if not is_authed(sess_id):
-        return template('templates/login.tpl',
-                        {"errormsg": "Please login first."})
+        return template('templates/message.tpl',
+                        {"msg": "Please login first."})
 
     # get form data
     errormsg = ""
@@ -211,26 +229,15 @@ def create_posts():
     posttext = request.forms.get('posttext')
     newpost = Post(username, posttext)
 
-    # check we're at limit of posts
-    if len(POSTS) < POSTS_LIMIT:
-        POSTS.append(newpost)
+    POSTS.append(newpost)
+    if ENABLE_PHANTOMJS:
         subprocess.Popen([PHANTOMJS, JS_FILE, ADMIN_SESSID], stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL
             )
-    else:
-        errormsg = "Too many posts. Max 10."
 
-    return template('templates/posts.tpl',
-                    {"username": username,
-                        "posts": POSTS,
-                        "errormsg": errormsg})
-
+    return redirect('/posts')
 
 if __name__ == "__main__":
-
-    # init admin password and cookie
-    ADMIN_PASSWORD = generate_cookie()
-    ADMIN_SESSID = generate_cookie()
 
     # update sessions and db with creds
     ACTIVE_SESSIONS.update({
@@ -239,10 +246,14 @@ if __name__ == "__main__":
         ADMIN_USERNAME: ADMIN_PASSWORD,
     })
 
-    print("ADMIN_COOKIE: ", ADMIN_SESSID)
+    # print("ADMIN_COOKIE: ", ADMIN_SESSID)
+
     # prime some posts
-    for i in range(3):
-        newpost = Post("ljsdf", "slkdjflaksjdflajdsf")
-        POSTS.append(newpost)
+
+    POSTS.append(Post("admin","Muahahahaha! I have a flag on this forum that only I can see!"))
+    POSTS.append(Post("rkevin","Jerk."))
+    POSTS.append(Post("ectoChemist","hey there! do you mind sharing the flag with me? pleeeease? :B"))
+    POSTS.append(Post("admin","Nope! I'm just gonna watch all of your posts and how badly you want the flag but can't get it! Muahahahaha!"))
+    POSTS.append(Post("Thab West","You meanieface! That's not nice."))
 
     run(host='0.0.0.0', port=8080)
