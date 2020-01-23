@@ -36,6 +36,24 @@ phantom.addCookie({
   path: "/"
 });
 
+phantom.addCookie({
+  name: "webchal_csrf_forum_sessid",
+  value: cookie,
+  domain: "csrf.webchal.twinpeaks.cs.ucdavis.edu",
+  secure: false,
+  httponly: false,
+  path: "/"
+});
+
+phantom.addCookie({
+  name: "beamsplitter_csrf",
+  value: system.env["beamsplitter_cookie"],
+  domain: "csrf.webchal.twinpeaks.cs.ucdavis.edu",
+  secure: false,
+  httponly: false,
+  path: "/"
+});
+
 // Setup web page to handle alert
 //page.onAlert = function(msg) {
 //  flag = 0;
