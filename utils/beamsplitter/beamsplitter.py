@@ -69,7 +69,7 @@ class Service:
     def __init__(self,imgname,port,cookie):
         self.name=imgname
         self.port=port
-        self.container=docker.containers.run(imgname, remove=True, detach=True, ports={'8080/tcp':('127.0.0.1',port)}, environment={"beamsplitter_cookie": cookie)
+        self.container=docker.containers.run(imgname, remove=True, detach=True, ports={'8080/tcp':('127.0.0.1',port)}, environment={"beamsplitter_cookie": cookie})
         self.creationtime=datetime.datetime.now()
         self.lastaccesstime=datetime.datetime.now()
         self.alive=True
