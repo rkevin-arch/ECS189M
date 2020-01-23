@@ -13,7 +13,7 @@ validservices=[
     #"phpeval",
     #"jsprog",
     #"xss",
-    #"csrf",
+    "csrf",
     #"sqli",
     #"searchbar",
     #"bsqli",
