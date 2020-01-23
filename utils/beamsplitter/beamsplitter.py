@@ -24,6 +24,7 @@ validservices=[
 whitelist=[
     "73.66.52.69",
     "168.150.23.59",
+    "168.150.118.34"
 ]
 production=False
 services={}
