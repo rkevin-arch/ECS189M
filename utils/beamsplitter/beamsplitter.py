@@ -10,7 +10,7 @@ from docker import from_env as docker_init
 
 validservices=[
     "adminme",
-    #"phpeval",
+    "phpeval",
     #"jsprog",
     #"xss",
     "csrf",

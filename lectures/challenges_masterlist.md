@@ -51,7 +51,7 @@
 |Challenge|Points|Type|Status|
 |-|-|-|-|
 |adminme|75|web|Tested on twinpeaks|
-|phpeval|150|web||
+|phpeval|150|web|Tested|
 |jsprog|200|web|Note: Write function to do addition and alert(answer), server sends piece of javascript, need to reverse engineer it and GET /api/howtogetflag to figure out they need to write max(list)-min(list), then they post the answer to /api/answer to get the flag|
 |xss|200|web||
 |csrf|200|web|Tested on twinpeaks|
