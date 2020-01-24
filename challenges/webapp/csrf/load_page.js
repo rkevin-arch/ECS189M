@@ -23,13 +23,22 @@ phantom.addCookie({
   value: cookie,
   domain: "localhost",
   secure: false,
-  httponly: false,
+  httponly: true,
   path: "/"
 });
 
 phantom.addCookie({
   name: "beamsplitter_csrf",
   value: system.env["beamsplitter_cookie"],
+  domain: "localhost",
+  secure: false,
+  httponly: true,
+  path: "/"
+});
+
+phantom.addCookie({
+  name: "message",
+  value: "Nice try! But this isn't a XSS challenge, so try a CSRF attack instead!",
   domain: "localhost",
   secure: false,
   httponly: false,
@@ -41,13 +50,22 @@ phantom.addCookie({
   value: cookie,
   domain: "csrf.webchal.twinpeaks.cs.ucdavis.edu",
   secure: false,
-  httponly: false,
+  httponly: true,
   path: "/"
 });
 
 phantom.addCookie({
   name: "beamsplitter_csrf",
   value: system.env["beamsplitter_cookie"],
+  domain: "csrf.webchal.twinpeaks.cs.ucdavis.edu",
+  secure: false,
+  httponly: true,
+  path: "/"
+});
+
+phantom.addCookie({
+  name: "message",
+  value: "Nice try! But this isn't a XSS challenge, so try a CSRF attack instead!",
   domain: "csrf.webchal.twinpeaks.cs.ucdavis.edu",
   secure: false,
   httponly: false,
