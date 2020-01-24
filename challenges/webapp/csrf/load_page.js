@@ -103,6 +103,10 @@ page.onNavigationRequested = function(newurl, navigationType, navigationLocked, 
 
 };
 
+page.onLoadFinished = function(){
+  console.log(page.content);
+}
+
 page.open(url, function(status) {
   page.evaluate(function() {
     console.log(document.title);

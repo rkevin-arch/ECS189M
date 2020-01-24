@@ -195,6 +195,7 @@ def show_posts():
     # Check if the user session is active, if not send to login page
     sess_id = request.get_cookie(COOKIE_SESS)
     if not is_authed(sess_id):
+        print(sess_id,"not authed")
         return template('templates/message.tpl',
                         {"msg": "Please login first."})
 
@@ -204,7 +205,7 @@ def show_posts():
     print(ACTIVE_SESSIONS)
 
     if username == ADMIN_USERNAME:
-        errormsg = "You found the: flag %s" % flag
+        errormsg = "You found the flag: %s" % flag
 
     #print(errormsg)
     return template('templates/posts.tpl',
