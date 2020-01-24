@@ -22,6 +22,7 @@ validservices=[
     #"finalwebapp",
 ]
 whitelist=[
+    "172.17.0.2", #for xss/csrf, only works for one container
     "73.66.52.69",
     "168.150.23.59",
     "168.150.118.34"
