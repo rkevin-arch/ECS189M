@@ -39,7 +39,7 @@ def gencookie():
 
 def init():
     global sock, docker
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level=(logging.INFO if production else logging.DEBUG))
     sockaddr="/var/run/beamsplitter.sock"
     if os.path.exists(sockaddr):
         try:
@@ -71,7 +71,7 @@ class Service:
     def __init__(self,imgname,port,cookie):
         self.name=imgname
         self.port=port
-        self.container=docker.containers.run(imgname, remove=True, detach=True, ports={'8080/tcp':('127.0.0.1',port)}, environment={"beamsplitter_cookie": cookie})
+        self.container=docker.containers.run(imgname, remove=True, detach=True, tty=not production, ports={'8080/tcp':('127.0.0.1',port)}, environment={"beamsplitter_cookie": cookie})
         self.creationtime=datetime.datetime.now()
         self.lastaccesstime=datetime.datetime.now()
         self.alive=True
@@ -84,7 +84,7 @@ class Service:
         self.lastaccesstime=datetime.datetime.now()
         return "http://localhost:%d"%self.port
     def __repr__(self):
-        return "%s service %s running on port %d, created %s, last accessed %s"%("Alive" if self.alive else "Dead", self.name, self.port, self.creationtime, self.lastaccesstime)
+        return "[] %s service %s running on port %d, created %s, last accessed %s"%(self.container.short_id, "Alive" if self.alive else "Dead", self.name, self.port, self.creationtime, self.lastaccesstime)
 
 def createInstance(name):
     global nextport
@@ -126,12 +126,12 @@ def serve():
                 logging.debug("Got a request: %s"%data)
                 service=data.split('_')[1]
                 if not service.endswith(".webchal.twinpeaks.cs.ucdavis.edu"):
-                    logging.debug("Host field %s malformed! Rejecting"%service)
+                    logging.warning("Host field %s malformed! Rejecting"%service)
                     conn.sendall(NAUGHTY.encode())
                     continue
                 service=service[:-len(".webchal.twinpeaks.cs.ucdavis.edu")]
                 if service not in validservices:
-                    logging.debug("%s not a valid service! Rejecting"%service)
+                    logging.warning("%s not a valid service! Rejecting"%service)
                     conn.sendall(NAUGHTY.encode())
                     continue
                 ip=data.split('_')[0]
