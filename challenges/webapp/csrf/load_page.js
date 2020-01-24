@@ -38,7 +38,7 @@ phantom.addCookie({
 
 phantom.addCookie({
   name: "message",
-  value: "Nice try! But this isn't a XSS challenge, so try a CSRF attack instead!",
+  value: "Nice_try!_But_this_isn't_a_XSS_challenge,_so_try_a_CSRF_attack_instead!",
   domain: "localhost",
   secure: false,
   httponly: false,
@@ -65,7 +65,7 @@ phantom.addCookie({
 
 phantom.addCookie({
   name: "message",
-  value: "Nice try! But this isn't a XSS challenge, so try a CSRF attack instead!",
+  value: "Nice_try!_But_this_isn't_a_XSS_challenge,_so_try_a_CSRF_attack_instead!",
   domain: "csrf.webchal.twinpeaks.cs.ucdavis.edu",
   secure: false,
   httponly: false,
