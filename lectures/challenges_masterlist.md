@@ -50,17 +50,17 @@
 ## Webapp exploitation
 |Challenge|Points|Type|Status|
 |-|-|-|-|
-|adminme|75|web|Tested|
+|adminme|75|web|Tested on twinpeaks|
 |phpeval|150|web||
 |jsprog|200|web|Note: Write function to do addition and alert(answer), server sends piece of javascript, need to reverse engineer it and GET /api/howtogetflag to figure out they need to write max(list)-min(list), then they post the answer to /api/answer to get the flag|
 |xss|200|web||
-|csrf|200|web|Tested|
-|sqli|100|web|Needs porting over|
-|searchbar|225|web|Needs porting over|
-|bsqli|250|web|Needs porting over|
+|csrf|200|web|Tested on twinpeaks|
+|sqli|100|web|Tested|
+|searchbar|225|web|Tested|
+|bsqli|250|web|Tested|
 |babylfi|100|web|Needs porting over|
 |lfirce|300|web|Needs porting over|
-|TOTAL|1800||0/10 done|
+|TOTAL|1800||5/10 done|
 
 ## Binary exploitation
 |Challenge|Points|Type|Status|
