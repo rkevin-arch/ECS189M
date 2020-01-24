@@ -14,15 +14,24 @@ validservices=[
     #"jsprog",
     #"xss",
     "csrf",
-    #"sqli",
-    #"searchbar",
-    #"bsqli",
+    "sqli",
+    "searchbar",
+    "bsqli",
     #"babylfi",
     #"lfirce",
     #"finalwebapp",
 ]
 whitelist=[
-    "172.17.0.2", #for xss/csrf, only works for one container
+    "172.17.0.2",
+    "172.17.0.3",
+    "172.17.0.4",
+    "172.17.0.5",
+    "172.17.0.6",
+    "172.17.0.7",
+    "172.17.0.8",
+    "172.17.0.9",
+    "172.17.0.10",
+    "172.17.0.11",
     "73.66.52.69",
     "168.150.23.59",
     "168.150.118.34"
