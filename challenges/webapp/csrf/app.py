@@ -182,7 +182,7 @@ def mainpage():
     print(ACTIVE_SESSIONS)
 
     if username == ADMIN_USERNAME:
-        errormsg = "You found the: flag %s" % flag
+        errormsg = "You found the flag: %s" % flag
 
     return template('templates/main.tpl',
                     {"errormsg": errormsg, "username": username})

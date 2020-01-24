@@ -1,7 +1,7 @@
 % rebase('templates/base.tpl')
 <div class="row">
 % if len(errormsg) > 0:
-<div class="row errorbox">{{errormsg}}</div>
+<div class="row errorbox" style="overflow-wrap: break-word;">{{errormsg}}</div>
 % end
     <h5 class="eight columns"> Welcome back, <strong>{{username}}</strong>! </h5>
     <div class="u-pull-right">
