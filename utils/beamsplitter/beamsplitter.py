@@ -84,7 +84,7 @@ class Service:
         self.lastaccesstime=datetime.datetime.now()
         return "http://localhost:%d"%self.port
     def __repr__(self):
-        return "[] %s service %s running on port %d, created %s, last accessed %s"%(self.container.short_id, "Alive" if self.alive else "Dead", self.name, self.port, self.creationtime, self.lastaccesstime)
+        return "[%s] %s service %s running on port %d, created %s, last accessed %s"%(self.container.short_id, "Alive" if self.alive else "Dead", self.name, self.port, self.creationtime, self.lastaccesstime)
 
 def createInstance(name):
     global nextport
