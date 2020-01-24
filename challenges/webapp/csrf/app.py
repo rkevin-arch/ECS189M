@@ -86,7 +86,7 @@ def logout():
 
     # get cookie and clear it
     sess = request.get_cookie(COOKIE_SESS)
-    response.set_cookie(COOKIE_SESS, "")
+    response.set_cookie(COOKIE_SESS, "", httponly=True)
 
     # ignore if it doesn't exist.
     try:
@@ -150,7 +150,7 @@ def login():
     """ handle post data from login form """
 
     # delete cookie if it exists
-    response.set_cookie(COOKIE_SESS, "")
+    response.set_cookie(COOKIE_SESS, "", httponly=True)
 
     username = request.forms.get('username')
     password = request.forms.get('password')
@@ -158,7 +158,7 @@ def login():
     if check_user_pass(username, password):
         # set cookie
         sess = secrets.token_hex()
-        response.set_cookie(COOKIE_SESS, sess)
+        response.set_cookie(COOKIE_SESS, sess, httponly=True)
         ACTIVE_SESSIONS.update({sess: username})
 
         # Welcome and show posts
