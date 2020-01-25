@@ -36,7 +36,7 @@ if(isset($_REQUEST["username"])){
         </style>
     </head>
     <body class="container">
-        <div class="six columns offset-by-three border boxshadow">
+        <div class="twelve columns border boxshadow">
             <div class="row">
                 <h3>My login page</h3>
             </div>

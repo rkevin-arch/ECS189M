@@ -17,7 +17,7 @@ TEMPLATE="""<!DOCTYPE html>
         </style>
     </head>
     <body class="container">
-        <div class="six columns offset-by-three border boxshadow">
+        <div class="twelve columns border boxshadow">
         <div class="row">
             <h3>Flag dispenser</h3>
         </div>

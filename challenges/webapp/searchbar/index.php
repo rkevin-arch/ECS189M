@@ -18,7 +18,7 @@ include 'db.php';
         </style>
     </head>
     <body class="container">
-        <div class="columns border boxshadow">
+        <div class="twelve columns border boxshadow">
             <div class="row">
                 <h3>Inventory system</h3>
                 <h5>Please use the search bar to search for items in our inventory!</h5>
