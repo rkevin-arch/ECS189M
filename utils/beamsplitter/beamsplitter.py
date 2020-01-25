@@ -11,7 +11,7 @@ from docker import from_env as docker_init
 validservices=[
     "adminme",
     "phpeval",
-    #"jsprog",
+    "jsprog",
     #"xss",
     "csrf",
     "sqli",
