@@ -33,6 +33,10 @@ if(isset($_REQUEST["username"])){
               border: 1px solid #E1E1E1;
               border-radius: 4px;
             }
+            .console {
+              font-family: monospace;
+              font-size: 1.2em;
+            }
         </style>
     </head>
     <body class="container">
@@ -41,8 +45,8 @@ if(isset($_REQUEST["username"])){
                 <h3>My login page</h3>
             </div>
             <form>
-                <input type="text" placeholder="username" name="username"><br>
-                <input type="password" placeholder="password" name="password"><br>
+                <div class="row"><input type="text" placeholder="username" name="username" class="five columns console"></div>
+                <div class="row"><input type="password" placeholder="password" name="password" class="five columns console"></div>
                 <button type="submit">Login</button><br>
             </form>
             <div class="row"><?php echo $msg; ?></div>
