@@ -1,7 +1,7 @@
 // Load libs
 var system = require('system');
 var webPage = require('webpage');
-var TIMER_EXIT = 2000;
+var TIMER_EXIT = 10000;
 
 // Command line arguments
 if (system.args.length < 2){
