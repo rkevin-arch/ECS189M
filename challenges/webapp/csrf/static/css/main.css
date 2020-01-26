@@ -28,4 +28,8 @@ hr.linebreak{
   border: 1px solid #666;
   border-radius: 4px;
 }
+.console {
+  font-family: monospace;
+  font-size: 1.2em;
+}
 
