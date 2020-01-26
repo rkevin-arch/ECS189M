@@ -14,6 +14,10 @@ TEMPLATE="""<!DOCTYPE html>
               border: 1px solid #E1E1E1;
               border-radius: 4px;
             }
+            .flag{
+              font-family: monospace;
+              font-weight: bold;
+            }
         </style>
     </head>
     <body class="container">
@@ -28,7 +32,7 @@ TEMPLATE="""<!DOCTYPE html>
 </html>
 """
 NOFLAG=TEMPLATE%"Unfortunately, you must be an admin to get the flag. Login is currently closed."
-FLAG=TEMPLATE%"Welcome back, admin! Here's your flag: ECS{15_4DM1N_TRU3_9C8861B05695569D3F67382254CD170B}"
+FLAG=TEMPLATE%'Welcome back, admin! Here\'s your flag: <span class="flag"> ECS{15_4DM1N_TRU3_9C8861B05695569D3F67382254CD170B}</span>'
 
 @route('/')
 def index():
