@@ -14,7 +14,7 @@
 </table>
 </div>
 <div id="newpost">
-    <form method="POST" action="/post" class="border boxshadow">
+    <form method="POST" action="/" class="border boxshadow">
         <input type="text" placeholder="Your name" name="name"><br>
         <textarea class="u-full-width" placeholder="Enter a comment here..." id="posttext" name="posttext" maxlength=200 style="min-height: 200px;"></textarea>
         <input class="button-primary" type="submit" value="Comment!" >
