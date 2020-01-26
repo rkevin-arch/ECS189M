@@ -42,40 +42,14 @@ phantom.addCookie({
   path: "/"
 });
 
-// Setup web page to handle alert
-//page.onAlert = function(msg) {
-//  flag = 0;
-  //console.log("from alert: " + msg)
-//}
-
-//var userCode = 'alert(32)';
-//var userCode = system.args[1];
-//page.evaluateJavaScript('function() {' + userCode + '}')
-//page.open(url, function(status) {
-//  if (status !== 'success') {
-//    console.log('FAIL to load the address');
-//  } else {
-//    t = Date.now() - t;
-//    console.log('Loading ' + system.args[1]);
-//    console.log('Loading time ' + t + ' msec');
-//  }
-//  phantom.exit();
-//});
-
-
-page.onNavigationRequested = function(newurl, navigationType, navigationLocked, isMainFrame) {
-    //page.onNavigationRequested = null;
-
-    console.log('Navigation requested: ' + navigationType + '; ' + newurl);
-    console.log('Navigation locked: ' + navigationLocked);
-    console.log('nav type: ' + navigationType);
-    console.log('ismain: ' + isMainFrame);
-
-};
-
-page.onLoadFinished = function(){
-  console.log(page.content);
-}
+phantom.addCookie({
+  name: "m3m3",
+  value: "aHR0cHM6Ly9pLnJlZGQuaXQvbGtpdXRhNjBuaW8zMS5qcGcK",
+  domain: "csrf.webchal.twinpeaks.cs.ucdavis.edu",
+  secure: false,
+  httponly: false,
+  path: "/"
+});
 
 page.open(url, function(status) {
   page.evaluate(function() {
