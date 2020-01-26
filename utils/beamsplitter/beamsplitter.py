@@ -33,7 +33,7 @@ whitelist=[
     "172.17.0.10",
     "172.17.0.11",
     "73.66.52.69",
-    "45.26.117.218"
+    "71.197.105.3"
 ]
 production=False
 services={}
@@ -79,7 +79,7 @@ class Service:
     def __init__(self,imgname,port,cookie):
         self.name=imgname
         self.port=port
-        self.container=docker.containers.run(imgname, remove=True, detach=True, tty=not production, ports={'8080/tcp':('127.0.0.1',port)}, environment={"beamsplitter_cookie": cookie})
+        self.container=docker.containers.run(imgname, remove=True, detach=True, tty=not production, mem_limit="64m", memswap_limit="128m", nano_cpus=25*(10**7), ports={'8080/tcp':('127.0.0.1',port)}, environment={"beamsplitter_cookie": cookie})
         self.creationtime=datetime.datetime.now()
         self.lastaccesstime=datetime.datetime.now()
         self.alive=True
