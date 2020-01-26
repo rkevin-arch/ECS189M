@@ -28,7 +28,7 @@ int main(){
         puts("Your flag is: ECS{D00R_W1D3_0P3N_70B35DC02FD4F609EF7B76AC3875C5CE}");
     else{
         puts("Your input was incorrect!");
-        puts(input);
+        //puts(input);
     }
     return 0;
 }
