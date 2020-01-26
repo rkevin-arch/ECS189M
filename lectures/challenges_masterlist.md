@@ -23,7 +23,7 @@
 |Category|Start time|End time|Points|Status|
 |-|-|-|-|-|
 |Linux and miscellaneous|Jan 6|Feb 2|1900|14/14 done|
-|Webapp exploitation|Jan 26|Feb 17|1700|7/10 done|
+|Webapp exploitation|Jan 26|Feb 17|1700|10/10 done|
 |Binary exploitation|Feb 8|Mar 8|2650|0/14 done|
 |Cryptography|Feb 24|Mar 15|1450|0/8 done|
 |Final challenges|Mar 9|Mar 19|2500|0/4 done|
@@ -50,17 +50,17 @@
 ## Webapp exploitation
 |Challenge|Points|Type|Status|
 |-|-|-|-|
-|adminme|75|web|Tested on twinpeaks|
-|phpeval|100|web|Tested|
-|jsprog|125|web|Tested|
-|xss|200|web||
-|csrf|200|web|Tested on twinpeaks|
-|sqli|125|web|Tested|
-|searchbar|225|web|Tested|
-|bsqli|250|web|Tested|
-|babylfi|100|web|Needs porting over|
-|lfirce|300|web|Needs porting over|
-|TOTAL|1700||7/10 done|
+|adminme|75|web|Done|
+|phpeval|100|web|Done|
+|jsprog|125|web|Done|
+|xss|200|web|Done|
+|csrf|200|web|Done|
+|sqli|125|web|Done|
+|searchbar|225|web|Done|
+|bsqli|250|web|Done|
+|babylfi|100|web|Done|
+|lfirce|300|web|Done|
+|TOTAL|1700||10/10 done|
 
 ## Binary exploitation
 |Challenge|Points|Type|Status|
