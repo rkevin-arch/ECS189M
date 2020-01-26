@@ -1,0 +1,31 @@
+body {
+  margin-top: 5rem !important;
+}
+
+div.row > h2 {
+  text-shadow: 4px 4px 10px #999;
+  text-align: center;
+}
+
+hr.linebreak{
+  margin-bottom: 5rem;
+  width: 50%;
+}
+.border {
+  padding: 2.5rem 3rem;
+  border: 1px solid #E1E1E1;
+  border-radius: 4px;
+}
+.boxshadow {
+  box-shadow: 5px 5px 15px #999;
+}
+.errorbox {
+  background-color: #faa;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #666;
+  border-radius: 4px;
+}
+
