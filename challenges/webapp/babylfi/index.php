@@ -12,6 +12,10 @@
               border: 1px solid #E1E1E1;
               border-radius: 4px;
             }
+            .flag{
+              font-family: monospace;
+              font-weight: bold;
+            }
         </style>
     </head>
     <body class="container">
@@ -20,7 +24,7 @@
                 <h3>Shakespearean Sonnets</h3>
             </div>
             <div class="row">
-                <p>Feel free to enter a number between 1 and 154 to view a Shakespear sonnet.</p>
+                <p>Feel free to enter a number between 1 and 154 to view a Shakespeare sonnet.</p>
             </div>
             <form>
                 <input type="text" placeholder="file" name="file"><br>
