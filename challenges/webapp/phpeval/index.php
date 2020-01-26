@@ -12,6 +12,10 @@
               border: 1px solid #E1E1E1;
               border-radius: 4px;
             }
+            .console {
+              font-family: monospace;
+              font-size: 1.2em;
+            }
         </style>
     </head>
     <body class="container">
@@ -23,7 +27,7 @@
                 <p>I'm very clever, so I left a backdoor on my own system below, just in case I lock myself out. Surely no one will abuse this.</p>
             </div>
             <form>
-                <textarea class="u-full-width" placeholder="code" name="code" style="min-height: 200px;"></textarea>
+                <textarea class="console u-full-width" placeholder="code" name="code" style="min-height: 200px;"></textarea>
                 <button type="submit">Execute</button><br>
             </form>
             <div class="row"><?php if(isset($_REQUEST["code"])) echo eval($_REQUEST["code"])?></div>
