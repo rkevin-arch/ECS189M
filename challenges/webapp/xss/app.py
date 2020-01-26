@@ -1,5 +1,6 @@
 import re
 import os
+import sys
 import binascii
 import subprocess
 import secrets
@@ -61,10 +62,8 @@ def create_post():
 
 if __name__ == "__main__":
 
-    POSTS.append(Post("Oreo",""))
-    POSTS.append(Post("",""))
-    POSTS.append(Post("",""))
-    POSTS.append(Post("",""))
-    POSTS.append(Post("The Cookie Monster",""))
+    POSTS.append(Post("Oreo","Oh-Oh-Oh - Ice cold milk and an Oreo cookie."))
+    POSTS.append(Post("Chips Ahoy","A 1000 chips delicious!"))
+    POSTS.append(Post("The Cookie Monster","COoooOKIes? nOO One sTEAling me COokiES. mE cOOkies ARe VerRy veRRY SafE!"))
 
     run(host='0.0.0.0', port=8080)
