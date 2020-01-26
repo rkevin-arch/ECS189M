@@ -15,6 +15,10 @@ include 'db.php';
               border: 1px solid #E1E1E1;
               border-radius: 4px;
             }
+            .console {
+              font-family: monospace;
+              font-size: 1.2em;
+            }
         </style>
     </head>
     <body class="container">
@@ -24,7 +28,7 @@ include 'db.php';
                 <h5>Please use the search bar to search for items in our inventory!</h5>
             </div>
             <form>
-                <input type="text" placeholder="Item to search for" name="query">
+                <input type="text" placeholder="Item to search for" name="query" class="nine columns console">
                 <button type="submit">Search</button>
             </form>
             <?php
@@ -35,7 +39,7 @@ include 'db.php';
                 }
                 $result = mysqli_query($mysql_conn, $query);
                 if(!$result){
-                    echo "<pre>".mysqli_error($mysql_conn).'</pre>';
+                    echo '<div class="console">'.mysqli_error($mysql_conn).'</div>';
                 } else {
                     echo "<table><tr><th>Item</th><th>Count</th></tr>\n";
                     while( $row = mysqli_fetch_assoc( $result ) ) {
