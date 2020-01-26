@@ -9,7 +9,7 @@ from bottle import get, post, request, response
 from bottle import run, static_file, redirect, template
 
 TIMEOUT = "/usr/bin/timeout"
-TIMEOUT_TIME = 2
+TIMEOUT_TIME = "2"
 PHANTOMJS = "/usr/bin/phantomjs"
 JS_FILE = "/home/web/load_page.js"
 ENABLE_PHANTOMJS = True # should always be true unless testing webapp
