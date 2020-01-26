@@ -6,8 +6,6 @@ var TIMER_EXIT = 5000;
 var page = webPage.create();
 var url = 'https://xss.webchal.twinpeaks.cs.ucdavis.edu';
 
-console.log("parsed cookie: " + cookie);
-
 phantom.addCookie({
   name: "ECS{N0M_N0M_N0M_C5B1ABC976B9851714588981280B9F66}",
   value: cookie,
