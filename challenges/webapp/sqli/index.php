@@ -1,7 +1,7 @@
 <?php
 include 'db.php';
 if(isset($_REQUEST["username"])){
-    if(stripos($_REQUEST["username"],"or")===false && stripos($_REQUEST["username"],"or")===false){
+    if(stripos($_REQUEST["username"],"or")===false && stripos($_REQUEST["password"],"or")===false){
         $query = "SELECT * FROM users WHERE username='".$_REQUEST["username"]."' AND password='".$_REQUEST["password"]."'";
         $result = mysqli_query($mysql_conn, $query);
         if(!$result){
