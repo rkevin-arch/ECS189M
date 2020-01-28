@@ -5,8 +5,8 @@
 #include <err.h>
 #include <errno.h>
 int main(){
-    puts("Hey there!");
-    puts("Give me the input 'Open Sesame' and I'll give you the flag!");
+    puts("Hey there! I'm a helpful program!");
+    puts("Give me the input 'Open Sesame' to my standard input and I'll give you the flag!");
     int flags=fcntl(0,F_GETFL);
     if(flags<0)
         err(1,"Get stdin flags failed! This should never happen. Contact Kevin.");

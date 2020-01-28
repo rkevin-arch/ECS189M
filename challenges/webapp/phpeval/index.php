@@ -25,6 +25,7 @@
             </div>
             <div class="row">
                 <p>I'm very clever, so I left a backdoor on my own system below, just in case I lock myself out. Surely no one will abuse this.</p>
+                <p>I've also hid the flag somewhere on the filesystem.</p>
             </div>
             <form>
                 <textarea class="console u-full-width" placeholder="code" name="code" style="min-height: 200px;"></textarea>
