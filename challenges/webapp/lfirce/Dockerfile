@@ -1,7 +1,7 @@
 FROM php:7.3.0RC4-apache-stretch
 
 COPY index.php /var/www/html/
-RUN usermod -c ECS{P33K4800_B2618A84076474EA954D45580305D15D} www-data
+#RUN usermod -c ECS{P33K4800_B2618A84076474EA954D45580305D15D} www-data
 COPY dist/getflag /
 RUN chmod 111 /getflag
 
