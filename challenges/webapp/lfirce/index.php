@@ -12,6 +12,9 @@
               border: 1px solid #E1E1E1;
               border-radius: 4px;
             }
+            .output {
+              white-space: pre-wrap;
+            }
         </style>
     </head>
     <body class="container">
@@ -26,7 +29,7 @@
                 <input type="text" placeholder="file" name="file"><br>
                 <button type="submit">Read</button><br>
             </form>
-            <div class="row"><?php if(isset($_REQUEST["file"])) include("/var/www/sonnets/".$_REQUEST["file"]);?></div>
+            <pre class="row output"><?php if(isset($_REQUEST["file"])) include("/var/www/sonnets/".$_REQUEST["file"]);?></div>
         </div>
     </body>
 </html>

@@ -16,6 +16,9 @@
               font-family: monospace;
               font-weight: bold;
             }
+            .output {
+              white-space: pre-wrap;
+            }
         </style>
     </head>
     <body class="container">
@@ -30,7 +33,7 @@
                 <input type="text" placeholder="file" name="file"><br>
                 <button type="submit">Read</button><br>
             </form>
-            <div class="row"><?php if(isset($_REQUEST["file"])) echo file_get_contents("/var/www/sonnets/".$_REQUEST["file"]);?></div>
+            <pre class="row output"><?php if(isset($_REQUEST["file"])) echo file_get_contents("/var/www/sonnets/".$_REQUEST["file"]);?></div>
         </div>
     </body>
 </html>
