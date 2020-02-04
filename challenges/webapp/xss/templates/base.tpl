@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>ECS189M Web Challenge: csrf</title>
+    <title>ECS189M Web Challenge: xss</title>
     <link rel="stylesheet" href="/static/css/normalize.css">
     <link rel="stylesheet" href="/static/css/skeleton.css">
     <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
