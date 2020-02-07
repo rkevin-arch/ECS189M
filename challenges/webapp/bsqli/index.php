@@ -29,6 +29,9 @@ if(isset($_REQUEST["username"])){
               border: 1px solid #E1E1E1;
               border-radius: 4px;
             }
+            input {
+                width: 100%;
+            }
         </style>
     </head>
     <body class="container">
