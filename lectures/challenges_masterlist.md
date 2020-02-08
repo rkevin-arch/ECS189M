@@ -65,20 +65,20 @@
 ## Binary exploitation
 |Challenge|Points|Type|Status|
 |-|-|-|-|
-|strings|75|misc||
+|stringy|75|misc|Needs testing|
 |runme|100|misc||
-|ltrace|100|misc||
+|trace|100|misc||
 |xmem|125|misc||
-|reveng|250|misc|Needs porting over|
-|babybufov|250|xinetd(30005)|Needs porting over (4_x86_bufov_noargs)|
-|toddlerbufov|250|xinetd(30006)|Needs porting over (6_x86_bufov_args_harder)|
-|babyrop|300|xinetd(30007)|Needs porting over (2_x64_bufov_args)|
-|ropmelikeyoumeanit|350|xinetd(30008)|Needs porting over (5_x64_ret2libc_harder_static)
-|shellcode|150|xinetd(30009)||
-|guessme|100|xinetd(30010)|Changes needed|
-|writeme|150|xinetd(30011)|Changes needed|
-|tinyuaf|100|xinetd(30012)|Changes needed|
-|invtracker|350|xinetd(30013)|Changes needed|
+|reveng|250|misc|Needs testing|
+|babybufov|250|xinetd(30005)|Needs testing|
+|toddlerbufov|250|xinetd(30006)|Needs testing|
+|babyrop|300|xinetd(30007)|Needs testing|
+|ropmelikeyoumeanit|350|xinetd(30008)|Needs testing|
+|shellcode|150|xinetd(30009)|Needs testing|
+|readme|100|xinetd(30010)|Needs testing|
+|writeme|150|xinetd(30011)|Needs testing|
+|tinyuaf|100|xinetd(30012)|Needs testing|
+|invtracker|350|xinetd(30013)|Needs testing|
 |TOTAL|2650||0/14 done|
 
 ## Cryptography
