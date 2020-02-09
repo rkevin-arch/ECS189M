@@ -1,0 +1,8 @@
+flag: ECS{PR1NTF_15_5C4R13R_TH4N_1T_533M5_652CB1EBBB215E3881D5115AE8939225}
+points: 100
+type: xinetd
+prebuild: mkdir dist 2>/dev/null; cp guessme dist/guessme
+xinetd_config:
+  base: binary
+  port: 30010
+  executable: /guessme

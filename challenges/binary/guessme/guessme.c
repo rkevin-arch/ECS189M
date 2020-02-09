@@ -1,14 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include <string.h>
+#include <sys/random.h>
+
+//gcc -fno-pie -no-pie -m32 guessme.c -Wno-format-security -o guessme
 
 #define MAX_INPUT 1024
-int is_admin=0;
 
+unsigned int securerandomnumber(){
+    char randdata[sizeof(unsigned int)];
+    getrandom(randdata,sizeof(unsigned int),0);
+    return *(unsigned int*)randdata;
+}
 int main(){
+    unsigned int inputsecret;
+    unsigned int secret=securerandomnumber();
+    char input[MAX_INPUT];
     setbuf(stdin,NULL);
     setbuf(stdout,NULL);
-    char input[MAX_INPUT];
     puts("Welcome to our limited terminal!");
     puts("For help, enter 'help'.");
     while(1){
@@ -22,14 +33,15 @@ int main(){
         } else if(strstr(input,"echo ")==input){
             printf(&(input[5])); //the 5 is to remove the "echo" in the front
         } else if(strstr(input,"shell")==input){
-            if(is_admin==0){
-                puts("You are not an admin!");
-                printf("The is_admin variable at %p must be nonzero.\n", &is_admin);
-            } else {
-                puts("Welcome back, admin!");
-                system("/bin/bash");
+            puts("To verify your identity, tell me the secret:");
+            scanf("%u",&inputsecret);
+            if(inputsecret!=secret){
+                puts("Access denied! Get outta here!");
                 exit(0);
             }
+            puts("Welcome back, admin!");
+            system("/bin/bash");
+            exit(0);
         }
     }
 }

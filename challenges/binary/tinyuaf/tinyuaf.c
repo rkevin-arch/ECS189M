@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//gcc -fno-pie -no-pie tinyuaf.c -o tinyuaf
+
 int isWinner = 0;
 struct Lame {
     int x;

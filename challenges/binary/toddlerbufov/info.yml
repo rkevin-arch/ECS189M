@@ -1,0 +1,7 @@
+type: xinetd
+xinetd_config:
+  base: binary
+  port: 30006
+  executable: /bin/noaslr ./toddlerbufov
+flag: ECS{4RRRRRRRRG5_721544EE15523DA046E0872384D51416}
+prebuild: mkdir dist 2>/dev/null; cp toddlerbufov dist

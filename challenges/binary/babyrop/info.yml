@@ -1,0 +1,7 @@
+type: xinetd
+xinetd_config:
+  base: binary
+  port: 30007
+  executable: /bin/noaslr ./babyrop
+flag: ECS{Y0U_5P1N_M3_4R0UND_A18E4C85FA30B0676BBCFAA815CC1CCD}
+prebuild: mkdir dist 2>/dev/null; cp babyrop dist

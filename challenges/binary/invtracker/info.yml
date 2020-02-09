@@ -1,14 +1,7 @@
-title: Inventory Tracker
-description: >
-  Hack the inventory.
-
-  Connect to `twinpeaks.cs.ucdavis.edu` port `30013`.
 flag: ECS{H34P_TR4CK3R_83AB347A6945840804D7235A8BF919B9}
-points: 100
 type: xinetd
-prebuild: rm -rf dist; mkdir dist && gcc -fno-pie -no-pie -m32 invtracker.c -o dist/invtracker
+prebuild: mkdir dist 2>/dev/null; cp invtracker dist/invtracker
 xinetd_config:
   base: binary
   port: 30013
-  executable: /bin/noaslr /invtracker
-disabled: yes
+  executable: /invtracker

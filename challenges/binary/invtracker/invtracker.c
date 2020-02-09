@@ -1,8 +1,9 @@
-//Compile as 32bit binary to make your lives easier, aka "gcc invtracker.c -m32 -o invtracker"
-//you might need to 'apt install gcc-multilib' to compile 32 bit binaries
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+//gcc -fno-pie -no-pie -m32 invtracker.c -o invtracker
+
 char mode[128];
 
 struct Entry{

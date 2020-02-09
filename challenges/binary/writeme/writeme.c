@@ -1,23 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
 #include <string.h>
-#include <sys/random.h>
+
+//gcc -fno-pie -no-pie -m32 writeme.c -Wno-format-security -o writeme
 
 #define MAX_INPUT 1024
+int is_admin=0;
 
-unsigned int securerandomnumber(){
-    char randdata[sizeof(int)];
-    getrandom(randdata,sizeof(int),0);
-    return *(int*)randdata;
-}
 int main(){
-    unsigned int inputint;
-    char input[MAX_INPUT];
-    unsigned int secret=securerandomnumber();
     setbuf(stdin,NULL);
     setbuf(stdout,NULL);
+    char input[MAX_INPUT];
     puts("Welcome to our limited terminal!");
     puts("For help, enter 'help'.");
     while(1){
@@ -31,15 +24,14 @@ int main(){
         } else if(strstr(input,"echo ")==input){
             printf(&(input[5])); //the 5 is to remove the "echo" in the front
         } else if(strstr(input,"shell")==input){
-            puts("To verify your identity, tell me the secret:");
-            scanf("%u",&inputint);
-            if(inputint!=secret){
-                puts("Access denied! Get outta here!");
+            if(is_admin==0){
+                puts("You are not an admin!");
+                printf("The is_admin variable at %p must be nonzero.\n", &is_admin);
+            } else {
+                puts("Welcome back, admin!");
+                system("/bin/bash");
                 exit(0);
             }
-            puts("Welcome back, admin!");
-            system("/bin/bash");
-            exit(0);
         }
     }
 }

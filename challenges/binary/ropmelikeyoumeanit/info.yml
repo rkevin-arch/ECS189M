@@ -1,0 +1,7 @@
+type: xinetd
+xinetd_config:
+  base: binary
+  port: 30008
+  executable: /bin/noaslr ./ropmelikeyoumeanit
+flag: ECS{Y0U_4R3_4_R0PP1NG_M45T3R_41C3D4446A05824798F249FF1D6F3BBF}
+prebuild: mkdir dist 2>/dev/null; cp ropmelikeyoumeanit dist

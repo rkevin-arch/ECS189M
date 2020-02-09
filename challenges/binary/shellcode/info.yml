@@ -1,0 +1,7 @@
+type: xinetd
+xinetd_config:
+  base: binary
+  port: 30009
+  executable: /shellcode
+flag: ECS{5345H3LL5_8Y_4_5345H0R3_A8C3601ADEF885959A6A64CE6E360B60}
+prebuild: mkdir dist 2>/dev/null; cp shellcode dist

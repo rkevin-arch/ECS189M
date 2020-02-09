@@ -75,7 +75,7 @@
 |babyrop|300|xinetd(30007)|Needs porting over (2_x64_bufov_args)|
 |ropmelikeyoumeanit|350|xinetd(30008)|Needs porting over (5_x64_ret2libc_harder_static)
 |shellcode|150|xinetd(30009)||
-|readme|100|xinetd(30010)|Changes needed|
+|guessme|100|xinetd(30010)|Changes needed|
 |writeme|150|xinetd(30011)|Changes needed|
 |tinyuaf|100|xinetd(30012)|Changes needed|
 |invtracker|350|xinetd(30013)|Changes needed|

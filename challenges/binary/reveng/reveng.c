@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include <string.h>
+
+//gcc reveng.c -o reveng
+
 //ECS{R00T_C4U53_EA397D13A6CFBF355207E69631C51D6E}
 int validate(char* flag){
     int stored[]={69, 67, 83, 123, 74, 40, 40, 76, 71, 91, 44, 77, 45, 43, 71, 93, 89, 43, 33, 47, 92, 41, 43, 89, 46, 91, 94, 90, 94, 43, 45, 45, 42, 40, 47, 93, 46, 33, 46, 43, 41, 91, 45, 41, 92, 46, 93, 125};
@@ -11,9 +14,9 @@ int validate(char* flag){
     while(1){
         if(len<=i) break;
         key+=stored[i];
-        key%=256;
         i+=1;
     }
+    key&=0xFF;
     i=0;
     do {
         if (48<=i){

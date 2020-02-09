@@ -1,0 +1,7 @@
+flag: ECS{PR1NTF_C4N_4L50_5C4NF_6F63D4E0CD7295618A7AE9710695F255}
+type: xinetd
+prebuild: mkdir dist 2>/dev/null; cp writeme dist/
+xinetd_config:
+  base: binary
+  port: 30011
+  executable: /writeme
