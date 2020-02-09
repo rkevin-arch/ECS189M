@@ -24,7 +24,7 @@
 |-|-|-|-|-|
 |Linux and miscellaneous|Jan 6|Feb 2|1900|14/14 done|
 |Webapp exploitation|Jan 26|Feb 17|1700|10/10 done|
-|Binary exploitation|Feb 8|Mar 8|2650|0/14 done|
+|Binary exploitation|Feb 9|Mar 9|2650|11/14 done|
 |Cryptography|Feb 24|Mar 15|1450|0/8 done|
 |Final challenges|Mar 9|Mar 19|2500|0/4 done|
 |TOTAL|10200|||0/50 done|
@@ -65,21 +65,21 @@
 ## Binary exploitation
 |Challenge|Points|Type|Status|
 |-|-|-|-|
-|stringy|75|misc|Tested|
+|stringy|75|misc|Done|
 |runme|100|misc||
 |trace|100|misc||
 |xmem|125|misc||
-|reveng|250|misc|Tested|
-|babybufov|250|xinetd(30005)|Tested|
-|toddlerbufov|250|xinetd(30006)|Tested|
-|babyrop|300|xinetd(30007)|Tested|
-|ropmelikeyoumeanit|350|xinetd(30008)|Tested|
-|shellcode|150|xinetd(30009)|Tested|
-|guess|100|xinetd(30010)|Tested|
-|writeme|150|xinetd(30011)|Tested|
-|tinyuaf|100|xinetd(30012)|Tested|
-|invtracker|350|xinetd(30013)|Tested|
-|TOTAL|2650||0/14 done|
+|reveng|250|misc|Done|
+|babybufov|250|xinetd(30005)|Done|
+|toddlerbufov|250|xinetd(30006)|Done|
+|babyrop|300|xinetd(30007)|Done|
+|ropmelikeyoumeanit|350|xinetd(30008)|Done|
+|shellcode|150|xinetd(30009)|Done|
+|guess|100|xinetd(30010)|Done|
+|writeme|150|xinetd(30011)|Done|
+|tinyuaf|100|xinetd(30012)|Done|
+|invtracker|350|xinetd(30013)|Done|
+|TOTAL|2650||11/14 done|
 
 ## Cryptography
 |Challenge|Points|Type|Status|
