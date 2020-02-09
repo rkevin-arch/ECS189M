@@ -65,20 +65,20 @@
 ## Binary exploitation
 |Challenge|Points|Type|Status|
 |-|-|-|-|
-|stringy|75|misc|Needs testing|
+|stringy|75|misc|Tested|
 |runme|100|misc||
 |trace|100|misc||
 |xmem|125|misc||
-|reveng|250|misc|Needs testing|
-|babybufov|250|xinetd(30005)|Needs testing|
-|toddlerbufov|250|xinetd(30006)|Needs testing|
-|babyrop|300|xinetd(30007)|Needs testing|
-|ropmelikeyoumeanit|350|xinetd(30008)|Needs testing|
-|shellcode|150|xinetd(30009)|Needs testing|
-|readme|100|xinetd(30010)|Needs testing|
-|writeme|150|xinetd(30011)|Needs testing|
-|tinyuaf|100|xinetd(30012)|Needs testing|
-|invtracker|350|xinetd(30013)|Needs testing|
+|reveng|250|misc|Tested|
+|babybufov|250|xinetd(30005)|Tested|
+|toddlerbufov|250|xinetd(30006)|Tested|
+|babyrop|300|xinetd(30007)|Tested|
+|ropmelikeyoumeanit|350|xinetd(30008)|Tested|
+|shellcode|150|xinetd(30009)|Tested|
+|guess|100|xinetd(30010)|Tested|
+|writeme|150|xinetd(30011)|Tested|
+|tinyuaf|100|xinetd(30012)|Tested|
+|invtracker|350|xinetd(30013)|Tested|
 |TOTAL|2650||0/14 done|
 
 ## Cryptography
