@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-//gcc stringy.c -o stringy
+//gcc -fno-pie -no-pie stringy.c -o stringy
 
 int main(){
     char flag[200];

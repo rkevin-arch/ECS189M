@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-//gcc reveng.c -o reveng
+//gcc -fno-pie -no-pie reveng.c -o reveng
 
 //ECS{R00T_C4U53_EA397D13A6CFBF355207E69631C51D6E}
 int validate(char* flag){
