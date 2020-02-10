@@ -79,12 +79,15 @@ class Service:
     def __init__(self,imgname,port,cookie):
         self.name=imgname
         self.port=port
-        self.container=docker.containers.run(imgname, remove=True, detach=True, tty=True, mem_limit="64m", memswap_limit="128m", nano_cpus=25*(10**7), ports={'8080/tcp':('127.0.0.1',port)}, environment={"beamsplitter_cookie": cookie})
+        self.container=docker.containers.run(imgname, remove=True, detach=True, tty=True, mem_limit="128m", memswap_limit="128m", nano_cpus=25*(10**7), ports={'8080/tcp':('127.0.0.1',port)}, environment={"beamsplitter_cookie": cookie})
         self.creationtime=datetime.datetime.now()
         self.lastaccesstime=datetime.datetime.now()
         self.alive=True
     def destroy(self):
-        self.container.kill()
+        try:
+            self.container.kill()
+        except Exception as e:
+            logging.error("Container %s kill failed! Marking dead anyway to not break things, but manual intervention might be necessary"%self.container.short_id)
         self.alive=False
     def getaddr(self):
         if not self.alive:
