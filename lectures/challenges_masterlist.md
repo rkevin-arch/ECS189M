@@ -84,15 +84,15 @@
 ## Cryptography
 |Challenge|Points|Type|Status|
 |-|-|-|-|
-|caesar|50|misc||
-|substitution|200|misc||
-|vigenere|250|misc||
-|aesdec|100|misc||
-|dhke|150|xinetd(30014)||
-|rsadec|150|misc||
-|rsarev|200|misc||
-|cbc2|350|xinetd(30016)||
-|TOTAL|1450||0/8 done|
+|caesar|75|misc|Done|
+|substitution|275|misc|Done|
+|vigenere|250|misc|Done|
+|dhke|200|xinetd(30014)|Working on|
+|rsadec|125|misc|Done|
+|rsarev|200|misc|Done|
+|signing|175|misc|Done|
+|tokenize|150|xinetd(30015)|Tested|
+|TOTAL|1450||7/8 done|
 
 ## Final challenges
 |Challenge|Points|Type|Status|
