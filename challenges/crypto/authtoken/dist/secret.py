@@ -1,0 +1,3 @@
+import secrets
+FLAG="ECS{R4ND0M_CRN_0B998F4513BE152B98C8CCE0BC7829F7}"
+KEY=secrets.token_bytes(32)
