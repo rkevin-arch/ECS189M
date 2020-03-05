@@ -163,6 +163,12 @@ def main():
                 y['category']=category
                 challenges[challenge]=y
 
+                if 'postbuild' in y:
+                    os.chdir("challenges/%s/%s"%(category,challenge))
+                    if os.system(y['postbuild']):
+                        raise Exception("Postbuild script failed!")
+                    os.chdir("../../..")
+
 
     #mellivora_sql+=challenges_to_sql(challenges,categories,category_mapping)
     #with open("build/mellivora.sql","w") as f:

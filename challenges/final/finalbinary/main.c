@@ -4,7 +4,19 @@
 #include <dirent.h>
 #include <errno.h>
 #include <fcntl.h>
-char* FIRST_FLAG="placeholder_first_flag";
+#include <stdlib.h>
+
+//gcc -fno-pie -no-pie -fno-stack-protector -m32 main.c -o main
+
+char* PART_1="If you're seeing this string, you are 1/3 of the way from solving the challenge! Detail how you got here in your writeup and you will have at least 175 points from this challenge.";
+
+void debug_shell(unsigned int secret){
+    if(secret!=3735928559){
+        puts("No!");
+        exit(0);
+    }
+    system("/bin/bash"); //for debug purposes
+}
 
 void print_menu(){
     puts("=================================");
@@ -46,7 +58,11 @@ void print_changelog(){
     close(fd);
     return;
 }
+
 int main(){
+    setbuf(stdin, NULL);
+    setbuf(stdout, NULL);
+    //debug_shell(3735928559);
     print_menu();
     puts("Which option do you want to choose?");
     while(1){
@@ -68,4 +84,5 @@ int main(){
         }
         puts("Which option do you want to choose?");
     }
+    puts(PART_1);
 }
