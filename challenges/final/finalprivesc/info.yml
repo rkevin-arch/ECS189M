@@ -1,0 +1,2 @@
+type: sshable
+prebuild: mkdir dist; gcc init.c -o dist/init
