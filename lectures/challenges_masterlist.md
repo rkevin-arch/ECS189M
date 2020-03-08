@@ -24,10 +24,10 @@
 |-|-|-|-|-|
 |Linux and miscellaneous|Jan 6|Feb 2|1900|14/14 done|
 |Webapp exploitation|Jan 26|Feb 17|1700|10/10 done|
-|Binary exploitation|Feb 9|Mar 9|2650|11/14 done|
-|Cryptography|Feb 24|Mar 15|1450|0/8 done|
-|Final challenges|Mar 9|Mar 19|2500|0/4 done|
-|TOTAL|10200|||0/50 done|
+|Binary exploitation|Feb 9|Mar 9|2650|14/14 done|
+|Cryptography|Feb 24|Mar 15|1450|8/8 done|
+|Final challenges|Mar 9|Mar 19|2300+500|3/5 done|
+|TOTAL|10500|||49/51 done|
 ## Linux and miscellaneous
 |Challenge|Points|Type|Status|
 |-|-|-|-|
@@ -66,9 +66,9 @@
 |Challenge|Points|Type|Status|
 |-|-|-|-|
 |stringy|75|misc|Done|
-|runme|100|misc||
-|trace|100|misc||
-|xmem|125|misc||
+|runme|100|misc|Done|
+|trace|100|misc|Done|
+|xmem|125|misc|Done|
 |reveng|250|misc|Done|
 |babybufov|250|xinetd(30005)|Done|
 |toddlerbufov|250|xinetd(30006)|Done|
@@ -79,7 +79,7 @@
 |writeme|150|xinetd(30011)|Done|
 |tinyuaf|100|xinetd(30012)|Done|
 |invtracker|350|xinetd(30013)|Done|
-|TOTAL|2650||11/14 done|
+|TOTAL|2650||14/14 done|
 
 ## Cryptography
 |Challenge|Points|Type|Status|
@@ -87,21 +87,20 @@
 |caesar|75|misc|Done|
 |substitution|275|misc|Done|
 |vigenere|250|misc|Done|
-|dhke|200|xinetd(30014)|Working on|
+|dhke|200|xinetd(30014)|Done|
 |rsadec|125|misc|Done|
 |rsarev|200|misc|Done|
 |signing|175|misc|Done|
-|tokenize|150|xinetd(30015)|Tested|
-|TOTAL|1450||7/8 done|
+|tokenize|150|xinetd(30015)|Done|
+|TOTAL|1450||8/8 done|
 
 ## Final challenges
 |Challenge|Points|Type|Status|
 |-|-|-|-|
-|finalprivesc|500|sshable|No idea|
-|finalwebapp|500|web|No idea|
-|finalbinary|500|xinetd(30017)|No idea|
-|finalcrypto|500|xinetd(30018)|No idea|
-|writeup|500+partial credit|misc|Changes needed|
-|TOTAL|2500||0/4 done|
-
-
+|finalprivesc|550|sshable|Done|
+|finalwebapp|550|web|Working on|
+|finalbinary|550|xinetd(30016)|Done|
+|finalcrypto|550|xinetd(30017)|Done|
+|thankyou|100|misc|Working on feedback form|
+|writeup|500+partial credit|misc|Working on rubric|
+|TOTAL|2300||3/5 done|
