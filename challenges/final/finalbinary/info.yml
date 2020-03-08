@@ -1,7 +1,7 @@
 type: xinetd
 xinetd_config:
   base: binary
-  port: 30017
+  port: 30016
   executable: /main
 flag: ECS{R0D5_FR0M_G0D_5D83F300C88C987E09F971718BF7AE72}
 prebuild: mkdir dist 2>/dev/null; cp -r main main.c disable_missile part_2_message changelog dist
