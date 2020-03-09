@@ -34,7 +34,7 @@ whitelist=[
     "172.17.0.11",
     "73.66.52.69",
 ]
-production=False
+production=True
 services={}
 MAX_SERVICES=100
 ERROR="http://localhost:8080/webchal/error.html?"
