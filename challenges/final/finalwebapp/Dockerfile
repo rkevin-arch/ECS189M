@@ -5,8 +5,7 @@ RUN \
     apt-get -y install --no-install-recommends \
     python3-bottle curl bzip2 fontconfig ca-certificates \
     mariadb-server python3-pip && \
-  pip3 install setuptools && \
-  pip3 install mariadb
+  pip3 install mysql-connector-python
 
 RUN curl -Ls https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 | \
 tar -jx phantomjs-2.1.1-linux-x86_64/bin/phantomjs -O > /usr/bin/phantomjs && chmod +x /usr/bin/phantomjs
