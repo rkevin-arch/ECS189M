@@ -3,6 +3,7 @@ import os
 import binascii
 import subprocess
 import secrets
+import bottle
 import mysql.connector
 
 from collections import namedtuple
@@ -49,6 +50,16 @@ def getdb():
 @get(r"/static/css/<filepath:re:.*\.css>")
 def css(filepath):
     return static_file(filepath, root="static/css")
+
+@get(r"/static/js/<filepath:re:.*\.js>")
+def css(filepath):
+    return static_file(filepath, root="static/js")
+
+@get(r"/static/css/<filepath:re:.*\.woff>")
+def css(filepath):
+    return static_file(filepath, root="static/css")
+
+
 
 
 #  __  __        _    _                 _
@@ -125,7 +136,7 @@ def login():
     redirect('/')
 
 if __name__ == "__main__":
-
+    bottle.debug(True)
     ACTIVE_SESSIONS.update({OPERATOR_SESSID: "operator"})
 
-    run(host='0.0.0.0', port=8080)
+    run(host='0.0.0.0', port=8080, reloader=True)

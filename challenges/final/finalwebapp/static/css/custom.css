@@ -1,0 +1,25 @@
+body{
+    background-color: #000;
+    color: #fff;
+    font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.mainstuff{
+}
+
+.noborder{
+    padding: 2.5rem 3rem;
+}
+
+.footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+}
+
+
+.button, .button-primary {
+    background-color: #013a08;
+}
