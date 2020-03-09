@@ -1,8 +1,8 @@
 body{
     background-color: #000;
-    color: #fff;
+    color: #27a91f;
     /*font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif; */
-    font-family: monospace;
+    font-family: "monospace";
 }
 
 .mainstuff{
@@ -53,4 +53,18 @@ tbody {
 #plans #text {
     font-size: 1.4em;
     padding-bottom: 2rem;
+}
+
+@font-face {
+    font-family: "escapeartistcond";
+    src: url("EscapeArtistCondensed.woff") format('woff');
+}
+
+input[type="text"], input[type="password"], textarea {
+    background-color: #333;
+    color: #7efb76 !important;
+}
+
+.boxshadow {
+    box-shadow: 5px 10px #888888;
 }
