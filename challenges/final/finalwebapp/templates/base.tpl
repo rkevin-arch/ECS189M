@@ -28,9 +28,6 @@
                     {{!base}}
                 </div>
             </div>
-            <div class="footer">
-                © RedShift 1554-2020
-            </div>
         </div>
     </body>
 </html>

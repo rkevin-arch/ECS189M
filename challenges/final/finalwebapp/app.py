@@ -69,17 +69,17 @@ def index():
     sess_id = request.get_cookie(COOKIE_SESS)
     msg = ''
 
-    if sess_id not in ACTIVE_SESSIONS:
-        return template('templates/notloggedin.tpl', {'msg': msg})
-    if ACTIVE_SESSIONS[sess_id] != "operator":
-        return template('templates/submit_plans.tpl', {'msg': msg})
+    #if sess_id not in ACTIVE_SESSIONS:
+    #    return template('templates/notloggedin.tpl', {'msg': msg})
+    #if ACTIVE_SESSIONS[sess_id] != "operator":
+    #    return template('templates/submit_plans.tpl', {'msg': msg})
 
     db=getdb()
     db.execute("SELECT * FROM plans_awaiting_approval;")
     plans=db.fetchall()
     db.close()
     plans=[{'title': title, 'description': description, 'id': id} for title, description, id in plans]
-    return template('templates/approve_plans.tpl', {'msg': msg, 'plans': plans})
+    return template('templates/approve_plan.tpl', {'msg': msg, 'plans': plans})
 
 @post('/submitplan')
 def submit_plan():
@@ -107,7 +107,7 @@ def submit_plan():
     finally:
         db.close()
 
-@post('/approveplan')
+@post('/approve_plan')
 def approve_plan():
     """ Approve plan """
     pass

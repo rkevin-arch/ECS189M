@@ -43,3 +43,14 @@ input#title{
     width: 100%;
 }
 
+tr {
+    width: 100%;
+}
+tbody {
+    width: 100%;
+}
+
+#plans #text {
+    font-size: 1.4em;
+    padding-bottom: 2rem;
+}
