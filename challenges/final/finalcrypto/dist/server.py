@@ -33,19 +33,21 @@ def decrypt(msg):
             print("Make sure you're sending a big integer that's your message in ASCII, XORed by the shared secret.")
             sys.exit()
     plain=msg^key
-    plain=plain.to_bytes(plain.bit_length()//8+1,"big").strip(b"\0")
+    plain=plain.to_bytes((plain.bit_length()-1)//8+1,"big")
     return plain
 
 def dhke_print(msg):
     print(encrypt(msg))
     sys.stdout.flush()
 
-def dhke_scanint():
+def dhke_scanint(answer):
     msg=decrypt(input())
+    if int.from_bytes(msg, 'big')==answer:
+        return answer
     try:
         return int(msg)
     except:
-        print("Your message is not a valid number after decoding with Diffie-Hellman!")
+        print("Your message is not a valid number after decoding with Diffie-Hellman!", int.from_bytes(msg, 'big'), answer, msg)
         print("Make sure your answer is in ASCII, then encoded into a big number and XORed with the shared secret.")
         sys.exit()
 
@@ -92,7 +94,7 @@ def questions():
         a=random.randint(1,999999999)
         b=random.randint(1,999999999)
         dhke_print("Question %d: %d + %d. Your answer?"%(i,a,b))
-        c=dhke_scanint()
+        c=dhke_scanint(a+b)
         if(c!=a+b):
             dhke_print("Wrong! Go back to grade school and learn your addition!")
             sys.exit()
