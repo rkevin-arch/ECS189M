@@ -99,6 +99,8 @@ def questions():
 
 def main():
     gatekeep()
+    print("Note: You are 1/3 of the way from solving the full challenge.")
+    print("Detail how you got here in your writeup and you'll get at least 175 points for this challenge.")
     print("Welcome! To proceed, you need to solve a little programming challenge.")
     print("To make sure no one is listening, we need to encrypt our further communications with a Diffie-Hellman key exchange.")
     print("After the 'Key exchange established!' message, we will be talking using only encrypted messages, unless there are error messages.")
