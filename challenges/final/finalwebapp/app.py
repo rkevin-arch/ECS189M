@@ -109,6 +109,7 @@ def submit_plan():
 @post('/approveplan')
 def approve_plan():
     """ Approve plan """
+    sess_id = request.get_cookie(COOKIE_SESS)
     if sess_id not in ACTIVE_SESSIONS:
         return template('templates/notloggedin.tpl', {'msg':""})
     if ACTIVE_SESSIONS[sess_id] != "operator":
@@ -118,11 +119,11 @@ def approve_plan():
     try:
         db.execute("SELECT * FROM plans_awaiting_approval WHERE id = %s",(id,))
         if db.rowcount != 1:
-            return template('templates/approve_plan.tpl', {'msg': 'A plan with that ID is not found!', plans: getplans()})
+            return template('templates/approve_plan.tpl', {'msg': 'A plan with that ID is not found!', 'plans': getplans()})
         plan = db.fetchone()
         db.execute("DELETE FROM plans_awaiting_approval WHERE id = %s",(id,))
         db.execute("INSERT INTO top_secret_plans (title, description, id) VALUES (%s,%s,%s)",plan)
-        return template('templates/approve_plan.tpl', {'msg': 'The plan has been successfully approved and moved into a top-secret database table.', plans: getplans()})
+        return template('templates/approve_plan.tpl', {'msg': 'The plan has been successfully approved and moved into a top-secret database table.', 'plans': getplans()})
     finally:
         db.close()
 
