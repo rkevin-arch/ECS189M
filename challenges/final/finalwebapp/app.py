@@ -35,7 +35,7 @@ ACTIVE_SESSIONS = {}
 
 def getdb():
     global conn
-    return conn.cursor()
+    return conn.cursor(buffered=True)
 
 #  ____                _
 # |  _ \  ___   _   _ | |_  ___  ___
@@ -67,35 +67,45 @@ def css(filepath):
 @get('/')
 def index():
     sess_id = request.get_cookie(COOKIE_SESS)
+    msg = ''
+
     if sess_id not in ACTIVE_SESSIONS:
-        return template('templates/notloggedin.tpl', {})
+        return template('templates/notloggedin.tpl', {'msg': msg})
     if ACTIVE_SESSIONS[sess_id] != "operator":
-        return template('templates/submit_plans.tpl', {})
+        return template('templates/submit_plans.tpl', {'msg': msg})
+
     db=getdb()
-    return template('templates/approve_plans.tpl', {})
+    return template('templates/approve_plans.tpl', {'msg': msg})
 
 @post('/submitplan')
 def submit_plan():
+    """ Submit plan for secret plan """
+
+    sess_id = request.get_cookie(COOKIE_SESS)
+
     if sess_id not in ACTIVE_SESSIONS:
-        return template('templates/notloggedin.tpl', {})
+        return template('templates/notloggedin.tpl', {'msg':""})
     if ACTIVE_SESSIONS[sess_id] == "operator":
         return template('templates/approve_plans.tpl', {'msg': "The operator may not submit plans."})
     title = request.forms.get('title')
     description = request.forms.get('description')
     db=getdb()
     try:
-        db.execute("SELECT * FROM plans_awaiting_approval, approved_plans WHERE title = %s",title)
+        db.execute("SELECT * FROM plans_awaiting_approval, approved_plans WHERE title = %s", (title))
         if db.rowcount != 0:
             return template('templates/submit_plans.tpl', {'msg':
                             'A plan with that name already exists in the database.'})
-        db.execute("INSERT INTO plans_awaiting_approval (title, description) VALUES (%s,%s)", title, description)
+        db.execute("INSERT INTO plans_awaiting_approval (title, description) VALUES (%s,%s)", (title, description))
         return template('templates/submit_plans.tpl', {'msg':
                         'Plan submitted, awaiting operator approval.'})
+    except mysql.connector.errors.ProgrammingError as e:
+        return template('templates/submit_plans.tpl', {'msg': str(e)})
     finally:
         db.close()
 
 @post('/approveplan')
 def approve_plan():
+    """ Approve plan """
     pass
 
 @post('/login')
@@ -103,28 +113,32 @@ def login():
     """ handle post data from login form """
 
     # delete cookie if it exists
-    response.set_cookie(COOKIE_SESS, "", httponly=True)
+    #response.set_cookie(COOKIE_SESS, "", httponly=True)
 
     username = request.forms.get('username')
     password = request.forms.get('password')
+
+    msg = ''
 
     db = getdb()
     try:
         db.execute("SELECT * FROM users WHERE username = '%s' AND password = '%s'"%(username,password))
 
         if db.rowcount == 0:
-            return template('templates/notloggedin.tpl',
-                            {'msg': 'No username/password combo matched in the database.'})
+            msg = 'No username/password combo matched in the database.'
         if db.rowcount >= 2:
-            return template('templates/notloggedin.tpl',
-                            {'msg': 'Database returned more than one row. Login failed.'})
+            msg = 'Database returned more than one row. Login failed.'
 
-        user = cursor.fetchone()[0]
+        user = db.fetchone()[0]
         if user == 'operator':
-            return template('templates/notloggedin.tpl',
-                            {'msg': 'The operator is already logged in, you may only login as a non-operator.'})
+            msg = 'The operator is already logged in, you may only login as a non-operator.'
+
+    except mysql.connector.errors.ProgrammingError as e:
+        msg = str(e)
     finally:
         db.close()
+    if msg:
+        return template('templates/notloggedin.tpl', {'msg': msg})
 
     sess = secrets.token_hex()
     response.set_cookie(COOKIE_SESS, sess)
