@@ -33,7 +33,7 @@ def getdb(prepared=False):
     global conn
     return conn.cursor(buffered=True)
 
-def getplans(filter):
+def getplans(filter=''):
     db=getdb()
     db.execute("SELECT * FROM plans_awaiting_approval WHERE title LIKE '%"+filter+"%';")
     plans=db.fetchall()
