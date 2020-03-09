@@ -79,7 +79,11 @@ def index():
         return template('templates/submit_plans.tpl', {'user': ACTIVE_SESSIONS[sess_id], 'msg': msg})
 
     filter=request.query.get('filter', '')
-    plans=getplans(filter)
+    try:
+        plans=getplans(filter)
+    except mysql.connector.errors.ProgrammingError as e:
+        msg=str(e)
+        plans={}
     return template('templates/approve_plan.tpl', {'msg': msg, 'plans': plans})
 
 @post('/submitplan')
