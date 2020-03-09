@@ -10,7 +10,7 @@ if (system.args.length < 2){
 }
 
 var page = webPage.create();
-var url = 'https://finalwebapp.webchal.twinpeaks.cs.ucdavis.edu/plans';
+var url = 'https://finalwebapp.webchal.twinpeaks.cs.ucdavis.edu/';
 var cookie = system.args[1];
 
 console.log("parsed cookie: " + cookie);

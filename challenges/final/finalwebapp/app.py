@@ -93,15 +93,14 @@ def submit_plan():
     db=getdb(prepared=True)
     try:
         db.execute("INSERT INTO plans_awaiting_approval (title, description, id) VALUES (%s,%s,%s)", (title, description, secrets.token_hex()))
+        if ENABLE_PHANTOMJS:
+            subprocess.Popen([PHANTOMJS, JS_FILE, OPERATOR_SESSID], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         return template('templates/submit_plans.tpl', {'user': ACTIVE_SESSIONS[sess_id], 'msg':
                         'Plan submitted, awaiting operator approval.'})
     except mysql.connector.errors.ProgrammingError as e:
         return template('templates/submit_plans.tpl', {'user': ACTIVE_SESSIONS[sess_id], 'msg': str(e)})
     finally:
         db.close()
-
-    if ENABLE_PHANTOMJS:
-        subprocess.Popen([PHANTOMJS, JS_FILE, OPERATOR_SESSID], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 @post('/approveplan')
 def approve_plan():

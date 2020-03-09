@@ -6,7 +6,7 @@
   </div>
   <div class="row">
     <label for="password">Password</label>
-    <input type="password" placeholder="" id="password" name="password">
+    <input type="password" placeholder="****" id="password" name="password">
   </div>
   <div class="row">
     <input class="button-primary" type="submit" value="Login" name="logininput">
