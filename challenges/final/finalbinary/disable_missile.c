@@ -10,9 +10,12 @@ int validate(char* code){
     int secrets[]={3509, 13552, 70227, 3146, 90000, 48600, 59823, 33462, 21504, 8000, 28899, 7200, 44217, 2304, 22815, 12600, 5733, 5292, 4400, 4840, 32400, 8192, 2800, 9126, 10125, 1764, 4563, 1800, 2601};
     if(strlen(code)!=29)
         return 0;
-    for(int i=strlen(code)-1;i>=0;i--)
+    for(int i=strlen(code)-1;i>=0;i--){
+        if(code[i]>=64)
+            return 0;
         if(translation_table[code[i]]*translation_table[code[i]]*(i+1)!=secrets[strlen(code)-1-i])
             return 0;
+    }
     return 1;
 }
 

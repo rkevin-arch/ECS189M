@@ -81,7 +81,7 @@ def index():
     filter=request.query.get('filter', '')
     try:
         plans=getplans(filter)
-    except mysql.connector.errors.ProgrammingError as e:
+    except mysql.connector.Error as e:
         msg=str(e)
         plans={}
     return template('templates/approve_plan.tpl', {'msg': msg, 'plans': plans})
@@ -105,7 +105,7 @@ def submit_plan():
             subprocess.Popen([PHANTOMJS, JS_FILE, OPERATOR_SESSID], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         return template('templates/submit_plans.tpl', {'user': ACTIVE_SESSIONS[sess_id], 'msg':
                         'Plan submitted, awaiting operator approval.'})
-    except mysql.connector.errors.ProgrammingError as e:
+    except mysql.connector.Error as e:
         return template('templates/submit_plans.tpl', {'user': ACTIVE_SESSIONS[sess_id], 'msg': str(e)})
     finally:
         db.close()
@@ -156,7 +156,7 @@ def login():
             if user == 'operator':
                 msg = 'The operator is already logged in, you may only login as a non-operator.'
 
-    except mysql.connector.errors.ProgrammingError as e:
+    except mysql.connector.Error as e:
         msg = str(e)
     finally:
         db.close()
