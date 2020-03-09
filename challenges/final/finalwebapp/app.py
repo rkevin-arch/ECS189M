@@ -15,7 +15,7 @@ OPERATOR_SESSID = secrets.token_hex()
 COOKIE_SESS = "webchal_final_sessid"
 PHANTOMJS = "/usr/bin/phantomjs"
 JS_FILE = "/home/web/load_page.js"
-ENABLE_PHANTOMJS = False # should always be true unless testing webapp
+ENABLE_PHANTOMJS = True # should always be true unless testing webapp
 
 # Cookies for active users. schema { sess_id : username }
 # By default admin is logged in.
@@ -65,10 +65,10 @@ def index():
     sess_id = request.get_cookie(COOKIE_SESS)
     msg = ''
 
-    #if sess_id not in ACTIVE_SESSIONS:
-    #    return template('templates/notloggedin.tpl', {'msg': msg})
-    #if ACTIVE_SESSIONS[sess_id] != "operator":
-    #    return template('templates/submit_plans.tpl', {'user': ACTIVE_SESSIONS[sess_id], 'msg': msg})
+    if sess_id not in ACTIVE_SESSIONS:
+        return template('templates/notloggedin.tpl', {'msg': msg})
+    if ACTIVE_SESSIONS[sess_id] != "operator":
+        return template('templates/submit_plans.tpl', {'user': ACTIVE_SESSIONS[sess_id], 'msg': msg})
 
     filter=request.query.get('filter', '')
     db=getdb()
@@ -87,7 +87,7 @@ def submit_plan():
     if sess_id not in ACTIVE_SESSIONS:
         return template('templates/notloggedin.tpl', {'msg':""})
     if ACTIVE_SESSIONS[sess_id] == "operator":
-        return template('templates/approve_plans.tpl', {'msg': "The operator may not submit plans."})
+        return template('templates/approve_plan.tpl', {'msg': "The operator may not submit plans."})
     title = request.forms.get('title', '')
     description = request.forms.get('plan', '')
     db=getdb(prepared=True)
@@ -106,7 +106,22 @@ def submit_plan():
 @post('/approveplan')
 def approve_plan():
     """ Approve plan """
-    pass
+    if sess_id not in ACTIVE_SESSIONS:
+        return template('templates/notloggedin.tpl', {'msg':""})
+    if ACTIVE_SESSIONS[sess_id] != "operator":
+        return template('templates/submit_plans.tpl', {'msg': "Non-operators may not approve plans."})
+    id=request.forms.get('id','')
+    db=getdb(prepared=True)
+    try:
+        db.execute("SELECT * FROM plans_awaiting_approval WHERE id = %s",(id,))
+        if db.rowcount != 1:
+            return template('templates/approve_plan.tpl', {'msg': 'A plan with that ID is not found!'})
+        plan = db.fetchone()
+        db.execute("DELETE FROM plans_awaiting_approval WHERE id = %s",(id,))
+        db.execute("INSERT INTO top_secret_plans (title, description, id) VALUES (%s,%s,%s)",plan)
+        return template('templates/approve_plan.tpl', {'msg': 'The plan has been successfully approved and moved into a top-secret database table.'})
+    finally:
+        db.close()
 
 @post('/login')
 def login():
@@ -149,10 +164,10 @@ if __name__ == "__main__":
     global conn
     conn=mysql.connector.connect(user="db_user", password="1b93b39ccc87a8495ded6410752acc6c", unix_socket="/var/run/mysqld/mysqld.sock", database='redshift_plan_tracker')
 
-    bottle.debug(True)
+    #bottle.debug(True)
     ACTIVE_SESSIONS.update({OPERATOR_SESSID: "operator"})
 
-    print(OPERATOR_SESSID)
+    #print(OPERATOR_SESSID)
 
-    run(host='0.0.0.0', port=8080, reloader=False)
+    run(host='0.0.0.0', port=8080)
 

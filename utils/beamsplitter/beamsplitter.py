@@ -9,17 +9,17 @@ from time import sleep
 from docker import from_env as docker_init
 
 validservices=[
-    "adminme",
-    "phpeval",
-    "jsprog",
-    "xss",
-    "csrf",
-    "sqli",
-    "searchbar",
-    "bsqli",
-    "babylfi",
-    "lfirce",
-    #"finalwebapp",
+    #"adminme",
+    #"phpeval",
+    #"jsprog",
+    #"xss",
+    #"csrf",
+    #"sqli",
+    #"searchbar",
+    #"bsqli",
+    #"babylfi",
+    #"lfirce",
+    "finalwebapp",
 ]
 whitelist=[
     "172.17.0.2",
@@ -33,9 +33,8 @@ whitelist=[
     "172.17.0.10",
     "172.17.0.11",
     "73.66.52.69",
-    "71.197.105.3"
 ]
-production=True
+production=False
 services={}
 MAX_SERVICES=100
 ERROR="http://localhost:8080/webchal/error.html?"

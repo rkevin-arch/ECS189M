@@ -15,7 +15,7 @@
              <h6><strong>{{!plan['title']}}</strong></h6>
              <div id="text">{{!plan['description']}}</div>
 
-             <form method="POST" action="/approve_plan" id="approve">
+             <form method="POST" action="/approveplan" id="approve">
               <input type="hidden" id="id" name="id" value={{plan['id']}}/>
               <input class="button-primary" type="submit" value="Approve Plan"/>
              </form>

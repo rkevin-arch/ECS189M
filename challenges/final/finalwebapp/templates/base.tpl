@@ -21,7 +21,7 @@
     <body class="container">
         <div class="twelve columns noborder">
             <div class="row">
-                <h4>Redshift internal plans tracker</h4>
+                <h4 align="center">Redshift internal plans tracker</h4>
             </div>
             <div class="row mainstuff">
                 <div id="particles-js">
