@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>ECS189M Web Challenge: Final WebApp</title>
+        <title>ECS189M Web Challenge: finalwebapp</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Raleway:400,300,600">
         <link rel="stylesheet" type="text/css" href="./static/css/OpenSans.woff">
@@ -21,7 +21,7 @@
     <body class="container">
         <div class="twelve columns noborder">
             <div class="row">
-                <h3>Final WebApp programming challenge</h3>
+                <h4>Redshift internal plans tracker</h4>
             </div>
             <div class="row mainstuff">
                 <div id="particles-js">

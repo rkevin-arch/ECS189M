@@ -11,10 +11,6 @@ from collections import namedtuple
 from bottle import get, post, request, response, abort
 from bottle import run, static_file, redirect, template
 
-flag="ECS{placeholder}"
-pt1_msg="Note: You're 1/3 of the way from solving this challenge. Detail how you got here in your writeup and you will have at least 175 points from this challenge."
-pt2_msg="Note: You're 2/3 of the way from solving this challenge! Detail how you got here in your writeup and you will have at least 350 points from this challenge."
-
 OPERATOR_SESSID = secrets.token_hex()
 COOKIE_SESS = "webchal_final_sessid"
 PHANTOMJS = "/usr/bin/phantomjs"
@@ -33,7 +29,7 @@ ACTIVE_SESSIONS = {}
 #  \___/  \__||_||_||___/
 #
 
-def getdb():
+def getdb(prepared=False):
     global conn
     return conn.cursor(buffered=True)
 
@@ -72,10 +68,11 @@ def index():
     #if sess_id not in ACTIVE_SESSIONS:
     #    return template('templates/notloggedin.tpl', {'msg': msg})
     #if ACTIVE_SESSIONS[sess_id] != "operator":
-    #    return template('templates/submit_plans.tpl', {'msg': msg})
+    #    return template('templates/submit_plans.tpl', {'user': ACTIVE_SESSIONS[sess_id], 'msg': msg})
 
+    filter=request.query.get('filter', '')
     db=getdb()
-    db.execute("SELECT * FROM plans_awaiting_approval;")
+    db.execute("SELECT * FROM plans_awaiting_approval WHERE title LIKE '%"+filter+"%';")
     plans=db.fetchall()
     db.close()
     plans=[{'title': title, 'description': description, 'id': id} for title, description, id in plans]
@@ -91,23 +88,22 @@ def submit_plan():
         return template('templates/notloggedin.tpl', {'msg':""})
     if ACTIVE_SESSIONS[sess_id] == "operator":
         return template('templates/approve_plans.tpl', {'msg': "The operator may not submit plans."})
-    title = request.forms.get('title')
-    description = request.forms.get('description')
-    db=getdb()
+    title = request.forms.get('title', '')
+    description = request.forms.get('plan', '')
+    db=getdb(prepared=True)
     try:
-        db.execute("SELECT * FROM plans_awaiting_approval, approved_plans WHERE title = %s", (title))
-        if db.rowcount != 0:
-            return template('templates/submit_plans.tpl', {'msg':
-                            'A plan with that name already exists in the database.'})
-        db.execute("INSERT INTO plans_awaiting_approval (title, description) VALUES (%s,%s)", (title, description))
-        return template('templates/submit_plans.tpl', {'msg':
+        db.execute("INSERT INTO plans_awaiting_approval (title, description, id) VALUES (%s,%s,%s)", (title, description, secrets.token_hex()))
+        return template('templates/submit_plans.tpl', {'user': ACTIVE_SESSIONS[sess_id], 'msg':
                         'Plan submitted, awaiting operator approval.'})
     except mysql.connector.errors.ProgrammingError as e:
-        return template('templates/submit_plans.tpl', {'msg': str(e)})
+        return template('templates/submit_plans.tpl', {'user': ACTIVE_SESSIONS[sess_id], 'msg': str(e)})
     finally:
         db.close()
 
-@post('/approve_plan')
+    if ENABLE_PHANTOMJS:
+        subprocess.Popen([PHANTOMJS, JS_FILE, OPERATOR_SESSID], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+
+@post('/approveplan')
 def approve_plan():
     """ Approve plan """
     pass
@@ -130,12 +126,12 @@ def login():
 
         if db.rowcount == 0:
             msg = 'No username/password combo matched in the database.'
-        if db.rowcount >= 2:
+        elif db.rowcount >= 2:
             msg = 'Database returned more than one row. Login failed.'
-
-        user = db.fetchone()[0]
-        if user == 'operator':
-            msg = 'The operator is already logged in, you may only login as a non-operator.'
+        else:
+            user = db.fetchone()[0]
+            if user == 'operator':
+                msg = 'The operator is already logged in, you may only login as a non-operator.'
 
     except mysql.connector.errors.ProgrammingError as e:
         msg = str(e)
@@ -155,6 +151,8 @@ if __name__ == "__main__":
 
     bottle.debug(True)
     ACTIVE_SESSIONS.update({OPERATOR_SESSID: "operator"})
+
+    print(OPERATOR_SESSID)
 
     run(host='0.0.0.0', port=8080, reloader=False)
 

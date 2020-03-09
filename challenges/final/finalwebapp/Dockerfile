@@ -32,7 +32,6 @@ CREATE TABLE top_secret_plans (\
 );\
 INSERT INTO users (username, password) VALUES\
 ('operator','9b1ae9f537049de6b73655d5b2da36cd'),\
-('asriel_dreemurr','be7ef042f4e811e370c48b7c447ae479'),\
 ('carlton_houpt','d00d7a5a043f23b6e77d6be2f8bb5a25'),\
 ('dave_strider','c1d85b1162c660b1c38bd539d010ebbd'),\
 ('donte_dona','633fde0bf732ea689aa4c278bbcd2ffc'),\

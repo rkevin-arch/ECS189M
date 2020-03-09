@@ -1,5 +1,7 @@
 % rebase('templates/base.tpl')
 <form method="POST" action="/submitplan" class="nine columns offset-by-one border boxshadow">
+  <div style="font-size: 1.2em">Note: You're 1/3 of the way from solving this challenge. Detail how you got here in your writeup and you will have at least 175 points from this challenge.</div><br>
+  <div style="font-size: 1.2em">Welcome! You are now logged in as {{user}}. You may submit any evil plans you might have for Redshift, and the operator will read through them and decide if we go through with the plan or not. Please enter your ideas below for review:</div><br><br>
   <div class="row">
     <label for="title">Title</label>
     <input type="text" placeholder="Title" id="title" name="title"/>
