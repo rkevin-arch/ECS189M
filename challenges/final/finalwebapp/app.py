@@ -4,7 +4,9 @@ import binascii
 import subprocess
 import secrets
 import bottle
-import mysql.connector
+#import mysql.connector
+import mariadb
+import time
 
 from collections import namedtuple
 from bottle import get, post, request, response, abort
@@ -33,12 +35,7 @@ ACTIVE_SESSIONS = {}
 #
 
 def getdb():
-    global cursor
-    if conn is None:
-        try:
-            conn=mysql.connector.connect(user="root", password='1b93b39ccc87a8495ded6410752acc6c', database='redshift_plan_tracker')
-        except: # the mysql documentation sucks, idk what error it'd throw when the db is not ready
-            abort(500, "The database isn't ready yet. Please wait around 5 seconds and refresh the page. If this issue persists after 30 seconds, yell at Kevin until he fixes the issue.")
+    global conn
     return conn.cursor()
 
 #  ____                _
@@ -136,7 +133,12 @@ def login():
     redirect('/')
 
 if __name__ == "__main__":
+    global conn
+    #conn=mysql.connector.connect(user="root", password="1b93b39ccc87a8495ded6410752acc6c", database='redshift_plan_tracker')
+    conn=mariadb.connect(user="root", password="1b93b39ccc87a8495ded6410752acc6c", database='redshift_plan_tracker')
+
     bottle.debug(True)
     ACTIVE_SESSIONS.update({OPERATOR_SESSID: "operator"})
 
-    run(host='0.0.0.0', port=8080, reloader=True)
+    run(host='0.0.0.0', port=8080, reloader=False)
+
