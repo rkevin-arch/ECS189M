@@ -31,7 +31,12 @@ ACTIVE_SESSIONS = {}
 
 def getdb(prepared=False):
     global conn
-    return conn.cursor(buffered=True)
+    try:
+        return conn.cursor(buffered=True)
+    except mysql.connector.errors.OperationalError as e:
+        #the weird MySQL Connection not available message after a malformed query
+        conn.reconnect()
+        return conn.cursor(buffered=True)
 
 def getplans(filter=''):
     db=getdb()
