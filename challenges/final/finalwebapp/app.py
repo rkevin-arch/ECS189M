@@ -4,8 +4,7 @@ import binascii
 import subprocess
 import secrets
 import bottle
-#import mysql.connector
-import mariadb
+import mysql.connector
 import time
 
 from collections import namedtuple
@@ -135,7 +134,6 @@ def login():
 if __name__ == "__main__":
     global conn
     #conn=mysql.connector.connect(user="root", password="1b93b39ccc87a8495ded6410752acc6c", database='redshift_plan_tracker')
-    conn=mariadb.connect(user="root", password="1b93b39ccc87a8495ded6410752acc6c", database='redshift_plan_tracker')
 
     bottle.debug(True)
     ACTIVE_SESSIONS.update({OPERATOR_SESSID: "operator"})
