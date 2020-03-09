@@ -3,7 +3,7 @@
 <div style="font-size: 1.2em">Welcome back, operator! Here is the list of plans awaiting your approval. You can also filter plans by keywords. Once you approve a plan, it will go into a separate table in the database.</div><br><br>
 <form>
     <input type="text" placeholder="Filter string" name="filter" class="nine columns console">
-    <button type="submit">Filter</button>
+    <button class="button-primary" type="submit">Filter</button>
 </form>
 <hr>
 <div id="plans">
