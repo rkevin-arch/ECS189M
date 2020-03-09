@@ -22,11 +22,13 @@ CREATE TABLE users (\
 );\
 CREATE TABLE plans_awaiting_approval (\
     title TEXT NOT NULL,\
-    description TEXT NOT NULL\
+    description TEXT NOT NULL,\
+    id TEXT NOT NULL\
 );\
 CREATE TABLE top_secret_plans (\
     title TEXT NOT NULL,\
-    description TEXT NOT NULL\
+    description TEXT NOT NULL,\
+    id TEXT NOT NULL\
 );\
 INSERT INTO users (username, password) VALUES\
 ('operator','9b1ae9f537049de6b73655d5b2da36cd'),\
@@ -59,11 +61,26 @@ INSERT INTO users (username, password) VALUES\
 ('sebastian_laviolette','a6148e80c441ef26dd876eb92fab0928'),\
 ('tamera_winchester','0f5c3d10d6d91d929b5ca36211ec2705'),\
 ('velma_farquharson','a6828830e020da9db3a5eee568dcc5cd');\
-INSERT INTO plans_awaiting_approval(title, description) VALUES\
-('testtitle', 'testdesc'),\
-('testtitle2', 'testdesc2');\
-INSERT INTO top_secret_plans(title, description) VALUES\
-('bleh', 'ECS{fakeflag}');\
+INSERT INTO plans_awaiting_approval(title, description, id) VALUES\
+('Buy every property in the world above its 39th floor',\
+'We can melt the polar ice caps using the Hubble Space Telescope, and the survivors will be forced to live in our property from now on till the end of time!',\
+'dfba87e7e2db8ecf564ac6b54625b53c7390dcfcacf956881ec5f9dd036cd94c'),\
+('Create a Frindolian Misoleevian Theta-Combobulator that uses sigma-infused ᾳ-cartridges',\
+'As title. I can explain more if you have concerns about the higher homomorphism of Moussorgski particles affecting the Turgenev-Preobrazhensky zero-point adjustment module, but it should work.',\
+'9b0db7b91d20a086fcf862a5bbd4b818a0186404249da6f9b819a501804f66ab'),\
+('Recruit someone to become become famous children\\'s TV performers',\
+'Afterwards, we can cryogenically freeze them for 40 years. When they’re thawed out, their fans will have grown up into the new world leaders, and they will be worshiped. This plan is airtight!',\
+'2ad0a59ee8573d109d8d2c47b559ac95777ac0ee489aac9cb049bb2d8756498c'),\
+('Realign Cartesian Mandrels',\
+'This should boost our syllogism twine strength by 300% and nearly double the throughput of our Dejigamaflipper.',\
+'789e7931b65a17f956e9dd5910a247dc19c1a31c70ff798fe9bc4fb7e62c3b0d');\
+INSERT INTO top_secret_plans(title, description, id) VALUES\
+('Waste everyone''s time',\
+'We can pose as John, claim his homework is due, and ask everyone to do his homework for him! This will gain everyone''s pity and waste everyone''s time, especially those who remember the horrors of homework. Everyone will be so busy no one will see us coming!',\
+'16d45adc67af743cbf4ddcb1df7cc558d78105840271f63f4db5c5fa368ef17d'),\
+('Threaten to bomb major cities',\
+'Through my contacts, I have sourced an intercontinental ballistic missile. We can hold a US city for ransom, and if they don''t give us money... Poof! The missile should be ready to launch at 10:00PM on Mar 20th. The launch codes for the missile is ECS{L4T3_T0_TH3_P4RTY_4C50E5F2291EF75D31BFE234253BE43E}.',\
+'ef5bcc8e62ccfae1eb06bba3b50eaad369ee3283aba911792169e21d555551cc');\
 UPDATE mysql.user SET Password=PASSWORD('5473c338cab16ab860c51a83d9e34c43') WHERE User='root';\
 DELETE FROM mysql.user WHERE User='';\
 DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');\

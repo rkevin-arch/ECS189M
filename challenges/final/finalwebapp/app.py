@@ -75,7 +75,11 @@ def index():
         return template('templates/submit_plans.tpl', {'msg': msg})
 
     db=getdb()
-    return template('templates/approve_plans.tpl', {'msg': msg})
+    db.execute("SELECT * FROM plans_awaiting_approval;")
+    plans=db.fetchall()
+    db.close()
+    plans=[{'title': title, 'description': description, 'id': id} for title, description, id in plans]
+    return template('templates/approve_plans.tpl', {'msg': msg, 'plans': plans})
 
 @post('/submitplan')
 def submit_plan():
