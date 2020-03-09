@@ -39,6 +39,7 @@ def getplans(filter=''):
     plans=db.fetchall()
     db.close()
     plans=[{'title': title, 'description': description, 'id': id} for title, description, id in plans]
+    return plans
 
 #  ____                _
 # |  _ \  ___   _   _ | |_  ___  ___
