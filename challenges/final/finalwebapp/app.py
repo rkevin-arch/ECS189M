@@ -133,7 +133,7 @@ def login():
 
 if __name__ == "__main__":
     global conn
-    #conn=mysql.connector.connect(user="root", password="1b93b39ccc87a8495ded6410752acc6c", database='redshift_plan_tracker')
+    conn=mysql.connector.connect(user="db_user", password="1b93b39ccc87a8495ded6410752acc6c", unix_socket="/var/run/mysqld/mysqld.sock", database='redshift_plan_tracker')
 
     bottle.debug(True)
     ACTIVE_SESSIONS.update({OPERATOR_SESSID: "operator"})

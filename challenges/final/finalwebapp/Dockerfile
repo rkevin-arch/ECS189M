@@ -64,11 +64,13 @@ INSERT INTO plans_awaiting_approval(title, description) VALUES\
 ('testtitle2', 'testdesc2');\
 INSERT INTO top_secret_plans(title, description) VALUES\
 ('bleh', 'ECS{fakeflag}');\
-UPDATE mysql.user SET Password=PASSWORD('1b93b39ccc87a8495ded6410752acc6c') WHERE User='root';\
+UPDATE mysql.user SET Password=PASSWORD('5473c338cab16ab860c51a83d9e34c43') WHERE User='root';\
 DELETE FROM mysql.user WHERE User='';\
 DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');\
 DROP DATABASE IF EXISTS test;\
 DELETE FROM mysql.db WHERE Db='test' OR Db='test\\\\_%';\
+CREATE USER db_user@'%' IDENTIFIED BY '1b93b39ccc87a8495ded6410752acc6c';\
+GRANT ALL PRIVILEGES ON redshift_plan_tracker.* TO db_user@'%';\
 FLUSH PRIVILEGES;" |mysql && \
 sleep 1 && service mysql stop
 
