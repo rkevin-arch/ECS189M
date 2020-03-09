@@ -47,7 +47,7 @@ def dhke_scanint(answer):
     try:
         return int(msg)
     except:
-        print("Your message is not a valid number after decoding with Diffie-Hellman!", int.from_bytes(msg, 'big'), answer, msg)
+        print("Your message is not a valid number after decoding with Diffie-Hellman!")
         print("Make sure your answer is in ASCII, then encoded into a big number and XORed with the shared secret.")
         sys.exit()
 
