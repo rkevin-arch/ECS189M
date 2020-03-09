@@ -1,7 +1,8 @@
 body{
     background-color: #000;
     color: #fff;
-    font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+    /*font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif; */
+    font-family: monospace;
 }
 
 .mainstuff{
@@ -19,7 +20,26 @@ body{
   height: 60px;
 }
 
-
-.button, .button-primary {
-    background-color: #013a08;
+.button-primary {
+    background-color: #27a91f !important;
 }
+
+.errorbox {
+  background-color: #f33;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #666;
+  border-radius: 4px;
+  color: #111;
+}
+
+input, textarea {
+    color: #000 !important;
+}
+
+input#title{
+    width: 100%;
+}
+

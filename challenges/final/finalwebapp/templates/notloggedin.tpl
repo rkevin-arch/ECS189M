@@ -10,10 +10,10 @@
   </div>
   <div class="row">
     <input class="button-primary" type="submit" value="Login" name="logininput">
-    <input class="button-secondary" type="submit" formaction="/register" value="Register" name="signupinput">
   </div>
-  <div> Note: default password after a password reset is "password"</div>
+
+    <div class="row">
+    % if len(msg) > 0:
+        <div class="row errorbox" style="overflow-wrap: break-word;">{{msg}}</div>
+    % end
 </form>
-
-
-
