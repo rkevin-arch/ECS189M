@@ -33,6 +33,13 @@ def getdb(prepared=False):
     global conn
     return conn.cursor(buffered=True)
 
+def getplans(filter):
+    db=getdb()
+    db.execute("SELECT * FROM plans_awaiting_approval WHERE title LIKE '%"+filter+"%';")
+    plans=db.fetchall()
+    db.close()
+    plans=[{'title': title, 'description': description, 'id': id} for title, description, id in plans]
+
 #  ____                _
 # |  _ \  ___   _   _ | |_  ___  ___
 # | |_) |/ _ \ | | | || __|/ _ \/ __|
@@ -71,11 +78,7 @@ def index():
         return template('templates/submit_plans.tpl', {'user': ACTIVE_SESSIONS[sess_id], 'msg': msg})
 
     filter=request.query.get('filter', '')
-    db=getdb()
-    db.execute("SELECT * FROM plans_awaiting_approval WHERE title LIKE '%"+filter+"%';")
-    plans=db.fetchall()
-    db.close()
-    plans=[{'title': title, 'description': description, 'id': id} for title, description, id in plans]
+    plans=getplans(filter)
     return template('templates/approve_plan.tpl', {'msg': msg, 'plans': plans})
 
 @post('/submitplan')
@@ -87,7 +90,7 @@ def submit_plan():
     if sess_id not in ACTIVE_SESSIONS:
         return template('templates/notloggedin.tpl', {'msg':""})
     if ACTIVE_SESSIONS[sess_id] == "operator":
-        return template('templates/approve_plan.tpl', {'msg': "The operator may not submit plans."})
+        return template('templates/approve_plan.tpl', {'msg': "The operator may not submit plans.", 'plans': getplans()})
     title = request.forms.get('title', '')
     description = request.forms.get('plan', '')
     db=getdb(prepared=True)
@@ -114,11 +117,11 @@ def approve_plan():
     try:
         db.execute("SELECT * FROM plans_awaiting_approval WHERE id = %s",(id,))
         if db.rowcount != 1:
-            return template('templates/approve_plan.tpl', {'msg': 'A plan with that ID is not found!'})
+            return template('templates/approve_plan.tpl', {'msg': 'A plan with that ID is not found!', plans: getplans()})
         plan = db.fetchone()
         db.execute("DELETE FROM plans_awaiting_approval WHERE id = %s",(id,))
         db.execute("INSERT INTO top_secret_plans (title, description, id) VALUES (%s,%s,%s)",plan)
-        return template('templates/approve_plan.tpl', {'msg': 'The plan has been successfully approved and moved into a top-secret database table.'})
+        return template('templates/approve_plan.tpl', {'msg': 'The plan has been successfully approved and moved into a top-secret database table.', plans: getplans()})
     finally:
         db.close()
 
