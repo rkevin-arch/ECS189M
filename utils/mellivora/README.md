@@ -1,4 +1,4 @@
-This is a messy list of what I changed on mellivora to make it suit my own purposes.
+This is a messy list of what I changed on mellivora to make it suit my own purposes. All of these changes are based on commit `d67fc12ef5f3a297b60f7b42af3291ec546cfc20`.
 
 ## Changes
 
@@ -53,8 +53,14 @@ Commented out `send_email(array($email), $email_subject, $email_body);`. No need
 ### `htdocs/challenges.php`
 Changed line 236 to be `',$challenge['description'],'`, just because I don't like bbcode. Don't have time to grab a markdown parser in PHP, so I'm doing it by hand and putting the HTML in the description. I know this means potential for XSS but I'm in full control of the description and no one else is.
 
+Also, changed line 17 to display `<h4>Your submission is awaiting manual marking. Please email Kevin your solution for that challenge.</h4>` for manual marking of ropchain challenges.
+
+Also also, changed the foreach loop around line 83 to fix an issue where it says the category will be available in a negative amount of time if the category is already due.
+
 ### `include/layout/scores.inc.php` and `include/layout/user.inc.php
 Documented [here](https://github.com/Nakiami/mellivora/pull/128)
+
+### `htdocs/admin/index.php`, `htdocs/challenges.php`
 
 ## Additions
 
