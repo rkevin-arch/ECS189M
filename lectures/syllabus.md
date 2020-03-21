@@ -12,8 +12,11 @@ We will be covering four subjects in cybersecurity: the Linux operating system, 
 
 ## Instructor info
 Instructor: @rkevin-arch
+
 Co-instructor / TA / Friend: @aenygma
+
 Instructor of record / Advisor: Prof. Matt Bishop
+
 Office Hours:
 - Mondays 7PM-8PM in Cruess 107
 - Tuesday 3PM-5PM in Kemper 53
@@ -105,10 +108,10 @@ M 1/20|HOLIDAY, NO CLASS|-||
 W 1/22|Linux system enumeration and privilege escalation|[slides](https://drive.google.com/open?id=1OMB08gdXmcqJfHXruFzPAcfuiZmeSKom0WKl-QGcNWs)|privesc1, privesc2, privesc3|
 M 1/27|HTTP packets, headers, cookies, Javascript, PHP|[slides](https://drive.google.com/open?id=1HU1YeI1yG7HX__oHh_p0bV5_FsNIXWNMYMv4QWlDdto)|adminme, phpeval, jsprog|
 W 1/29|Local File Inclusion and Log Poisoning|[slides](https://drive.google.com/open?id=1zHkZL1MkPBcjnlRz8vV3Gr3-w3B21ScdUmT1yb7kbYc)|babylfi, lfirce|
-M 2/3|Cross Site Scripting and Cross Site Request Forgery|[slides](https://drive.google.com/open?id=1RWVEP9s3z8WQtHQ_gFBP02JATMzDk4M3GypVxztvDmc) (no sound)|xss, csrf|
-W 2/5|SQL injection|[slides](https://drive.google.com/open?id=1XtkmZYxEc_rpm2Iyhp3ORIodN-NVZ1I74z9_vKTPHBQ) (reuploaded w/ sound)|sqli, searchbar, bsqli|
-M 2/10|x86 and x86_64 Assembly refresher|[slides](https://drive.google.com/open?id=1SiYFYhXvQbZXesYpPT7q89xkkdvFndSROcS-6L7Ffr8) (reuploaded w/ sound)||
-W 2/12|Using GDB to examine programs|[slides](https://drive.google.com/open?id=1LDld49fp6yp5qV5CCgVC258MroIyseVkoYcQBpiFpFU)  (reuploaded w/ sound)|stringy, runme, trace, xmem, reveng|
+M 2/3|Cross Site Scripting and Cross Site Request Forgery|[slides](https://drive.google.com/open?id=1RWVEP9s3z8WQtHQ_gFBP02JATMzDk4M3GypVxztvDmc)|xss, csrf|
+W 2/5|SQL injection|[slides](https://drive.google.com/open?id=1XtkmZYxEc_rpm2Iyhp3ORIodN-NVZ1I74z9_vKTPHBQ)|sqli, searchbar, bsqli|
+M 2/10|x86 and x86_64 Assembly refresher|[slides](https://drive.google.com/open?id=1SiYFYhXvQbZXesYpPT7q89xkkdvFndSROcS-6L7Ffr8)||
+W 2/12|Using GDB to examine programs|[slides](https://drive.google.com/open?id=1LDld49fp6yp5qV5CCgVC258MroIyseVkoYcQBpiFpFU) |stringy, runme, trace, xmem, reveng|
 M 2/17|HOLIDAY, NO CLASS|-||
 W 2/19|Calling conventions and stack buffer overflows|[slides](https://drive.google.com/open?id=1bDUIh-OXVa_meFnk33ZzjxsnvEHMNOhASwULAyecn-k), [binaries](/calling_conventions.zip)|babybufov, toddlerbufov|
 M 2/24|No lecture|-||
