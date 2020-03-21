@@ -63,6 +63,10 @@ A Vagrant testing machine, built by @aenygma, not me.
 
 The Docker container from which all xinetd challenges (i.e. the ones where you `nc` into a port) are served from, including the compose file.
 
+### flaggen.sh
+
+A simple shell script for generating flags. Use like `./flaggen.sh some random flag` and it will give a l33t flag with some unbruteforcable random characters at the end, like `ECS{50M3_R4ND0M_FL4G_15C94B0FEB3288048506E33C664A07DF}`.
+
 # Creating your own challenges
 
 To create a challenge, you need to create the following directory structure:
