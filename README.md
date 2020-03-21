@@ -2,6 +2,8 @@
 
 This is the repo for all the ECS189M challenges and how to set everything up. Useful if you came from the class and would like to know how stuff works under the hood, or if you're planning on creating a CTF, in which case this infrastructure might be useful to you.
 
+For the list of challenges, you can look [here](lectures/challenges.md).
+
 # Table of Contents
 1. [Directory structure](#directory-structure)
 2. [Creating your own challenges](#creating-your-own-challenges)
