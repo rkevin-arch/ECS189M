@@ -9,16 +9,16 @@ from time import sleep
 from docker import from_env as docker_init
 
 validservices=[
-    #"adminme",
-    #"phpeval",
-    #"jsprog",
-    #"xss",
-    #"csrf",
-    #"sqli",
-    #"searchbar",
-    #"bsqli",
-    #"babylfi",
-    #"lfirce",
+    "adminme",
+    "phpeval",
+    "jsprog",
+    "xss",
+    "csrf",
+    "sqli",
+    "searchbar",
+    "bsqli",
+    "babylfi",
+    "lfirce",
     "finalwebapp",
 ]
 whitelist=[
