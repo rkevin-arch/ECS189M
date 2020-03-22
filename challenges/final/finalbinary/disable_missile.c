@@ -24,7 +24,7 @@ void print_flag(){
     char flag[100];
     if(!f){
         puts("I would have given you the flag, but I can't open the file.");
-        puts("Try entering the same code on twinpeaks to get your flag.");
+        puts("Try entering the same code on photon to get your flag.");
         return;
     }
     fgets(flag,100,f);

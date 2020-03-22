@@ -119,7 +119,7 @@ def main():
     try:
         questions()
         dhke_print("Good job! Visit the following URL for the flag.")
-        dhke_print("https://twinpeaks.cs.ucdavis.edu/uproar_untrue_calculus_swirl")
+        dhke_print("https://photon.rkevin.dev/uproar_untrue_calculus_swirl")
     except TimeoutError:
         dhke_print("You took too much time!")
 

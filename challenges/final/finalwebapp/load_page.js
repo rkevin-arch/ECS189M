@@ -10,7 +10,7 @@ if (system.args.length < 2){
 }
 
 var page = webPage.create();
-var url = 'https://finalwebapp.webchal.twinpeaks.cs.ucdavis.edu/';
+var url = 'https://finalwebapp.webchal.photon.rkevin.dev/';
 var cookie = system.args[1];
 
 console.log("parsed cookie: " + cookie);
@@ -18,7 +18,7 @@ console.log("parsed cookie: " + cookie);
 phantom.addCookie({
   name: "webchal_final_sessid",
   value: cookie,
-  domain: "finalwebapp.webchal.twinpeaks.cs.ucdavis.edu",
+  domain: "finalwebapp.webchal.photon.rkevin.dev",
   secure: false,
   httponly: false,
   path: "/"
@@ -27,7 +27,7 @@ phantom.addCookie({
 phantom.addCookie({
   name: "beamsplitter_finalwebapp",
   value: system.env["beamsplitter_cookie"],
-  domain: "finalwebapp.webchal.twinpeaks.cs.ucdavis.edu",
+  domain: "finalwebapp.webchal.photon.rkevin.dev",
   secure: false,
   httponly: true,
   path: "/"

@@ -10,7 +10,7 @@ if (system.args.length < 2){
 } 
 
 var page = webPage.create();
-var url = 'https://csrf.webchal.twinpeaks.cs.ucdavis.edu/posts';
+var url = 'https://csrf.webchal.photon.rkevin.dev/posts';
 var cookie = system.args[1];
 
 console.log("parsed cookie: " + cookie);
@@ -18,7 +18,7 @@ console.log("parsed cookie: " + cookie);
 phantom.addCookie({
   name: "webchal_csrf_forum_sessid",
   value: cookie,
-  domain: "csrf.webchal.twinpeaks.cs.ucdavis.edu",
+  domain: "csrf.webchal.photon.rkevin.dev",
   secure: false,
   httponly: true,
   path: "/"
@@ -27,7 +27,7 @@ phantom.addCookie({
 phantom.addCookie({
   name: "beamsplitter_csrf",
   value: system.env["beamsplitter_cookie"],
-  domain: "csrf.webchal.twinpeaks.cs.ucdavis.edu",
+  domain: "csrf.webchal.photon.rkevin.dev",
   secure: false,
   httponly: true,
   path: "/"
@@ -36,7 +36,7 @@ phantom.addCookie({
 phantom.addCookie({
   name: "message",
   value: "Nice_try!_But_this_isn't_a_XSS_challenge_so_try_a_CSRF_attack_instead!",
-  domain: "csrf.webchal.twinpeaks.cs.ucdavis.edu",
+  domain: "csrf.webchal.photon.rkevin.dev",
   secure: false,
   httponly: false,
   path: "/"
@@ -45,7 +45,7 @@ phantom.addCookie({
 phantom.addCookie({
   name: "m3m3",
   value: "aHR0cHM6Ly9pLnJlZGQuaXQvbGtpdXRhNjBuaW8zMS5qcGcK",
-  domain: "csrf.webchal.twinpeaks.cs.ucdavis.edu",
+  domain: "csrf.webchal.photon.rkevin.dev",
   secure: false,
   httponly: false,
   path: "/"

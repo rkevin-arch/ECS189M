@@ -78,7 +78,7 @@ INSERT INTO top_secret_plans(title, description, id) VALUES\
 'We can pose as John, claim his homework is due, and ask everyone to do his homework for him! This will gain everyone''s pity and waste everyone''s time, especially those who remember the horrors of homework. Everyone will be so busy no one will see us coming!',\
 '16d45adc67af743cbf4ddcb1df7cc558d78105840271f63f4db5c5fa368ef17d'),\
 ('Threaten to bomb major cities',\
-'Through my contacts, I have sourced an intercontinental ballistic missile. We can hold a US city for ransom, and if they don''t give us money... Poof! The missile should be ready to launch at 10:00PM on Mar 20th. The missile interface can be viewed by connecting to twinpeaks.cs.ucdavis.edu port 30016, and the launch codes for the missile is ECS{L4T3_T0_TH3_P4RTY_4C50E5F2291EF75D31BFE234253BE43E}.',\
+'Through my contacts, I have sourced an intercontinental ballistic missile. We can hold a US city for ransom, and if they don''t give us money... Poof! The missile should be ready to launch at 10:00PM on Mar 20th. The missile interface can be viewed by connecting to photon.rkevin.dev port 30016, and the launch codes for the missile is ECS{L4T3_T0_TH3_P4RTY_4C50E5F2291EF75D31BFE234253BE43E}.',\
 'ef5bcc8e62ccfae1eb06bba3b50eaad369ee3283aba911792169e21d555551cc');\
 UPDATE mysql.user SET Password=PASSWORD('5473c338cab16ab860c51a83d9e34c43') WHERE User='root';\
 DELETE FROM mysql.user WHERE User='';\
