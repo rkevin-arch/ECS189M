@@ -1,4 +1,4 @@
-FROM php:7.3.0RC4-apache-stretch
+FROM php:7-apache
 
 COPY index.php /var/www/html/
 COPY dist/execute_me_to_get_the_flag /

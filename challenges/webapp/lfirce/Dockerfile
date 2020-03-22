@@ -1,4 +1,4 @@
-FROM php:7.3.0RC4-apache-stretch
+FROM php:7-apache
 
 COPY index.php /var/www/html/
 #RUN usermod -c ECS{P33K4800_B2618A84076474EA954D45580305D15D} www-data
