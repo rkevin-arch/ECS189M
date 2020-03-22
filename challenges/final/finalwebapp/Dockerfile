@@ -7,6 +7,8 @@ RUN \
     mariadb-server python3-pip && \
   pip3 install mysql-connector-python
 
+RUN sed -i "s/env.get('HTTP_X_FORWARDED_HOST') or //" /usr/lib/python3/dist-packages/bottle.py
+
 RUN curl -Ls https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2 | \
 tar -jx phantomjs-2.1.1-linux-x86_64/bin/phantomjs -O > /usr/bin/phantomjs && chmod +x /usr/bin/phantomjs
 

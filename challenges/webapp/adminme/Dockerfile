@@ -5,6 +5,8 @@ RUN \
     apt-get -y install --no-install-recommends \
     python3-bottle
 
+RUN sed -i "s/env.get('HTTP_X_FORWARDED_HOST') or //" /usr/lib/python3/dist-packages/bottle.py
+
 RUN useradd -s /bin/bash -m -u 1340 web
 
 COPY app.py /home/web/
