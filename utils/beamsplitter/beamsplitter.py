@@ -5,6 +5,7 @@ import struct
 import logging
 import secrets
 import datetime
+import grp
 from time import sleep
 from docker import from_env as docker_init
 
@@ -57,7 +58,7 @@ def init():
     sock=socket.socket(socket.AF_UNIX,socket.SOCK_STREAM)
     sock.bind(sockaddr)
     os.chmod(sockaddr, stat.S_IRWXU|stat.S_IRWXG) #0770
-    os.chown(sockaddr,0,1011) #owned by root:beamsplitter,
+    os.chown(sockaddr,0,grp.getgrnam("beamsplitter").gr_gid) #owned by root:beamsplitter,
     #so people in the beamsplitter group can connect
     sock.listen(1)
     docker=docker_init()
