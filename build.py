@@ -45,7 +45,7 @@ int main(){{
     alarm(21600); //6 hours
     puts("Setting up challenge environment for {0}, please wait...");
     fflush(stdout);
-    char *argv[]={{"docker", "run", "--hostname", "{0}", "--memory=64m", "--memory-swap=128m", "--cpus=.25", "--rm", "-it", "{0}", NULL}};
+    char *argv[]={{"docker", "run", "--hostname", "{0}", "--memory=128m", "--memory-swap=128m", "--cpus=.25", "--rm", "-it", "{0}", NULL}};
     execve("/usr/bin/docker", argv, NULL);
     puts("Something has gone wrong, please contact rk!");
     fflush(stdout);
