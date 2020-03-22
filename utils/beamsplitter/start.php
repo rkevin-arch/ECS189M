@@ -1,4 +1,6 @@
 <?php
+    $domain="photon.rkevin.dev";
+
     preg_match('/[a-z]+/', $_GET['challenge'],$safevar);
     if($safevar[0]!=$_GET['challenge']){
         die("You're probably doing something naughty, please stop that. If not, please contact Kevin and tell me what you did.");
@@ -18,7 +20,7 @@
         die("You're probably doing something naughty, please stop that. If not, please contact Kevin and tell me what you did.");
     }
     $cookie=substr($resp,1);
-    setcookie("beamsplitter_".$challenge, $cookie, time()+3600*48, '/', 'twinpeaks.cs.ucdavis.edu', false, true) or die("Error setting cookie??? This should never happen. Contact Kevin.");
-    header("Location: https://".$challenge.".webchal.twinpeaks.cs.ucdavis.edu/");
+    setcookie("beamsplitter_".$challenge, $cookie, time()+3600*48, '/', $domain, false, true) or die("Error setting cookie??? This should never happen. Contact Kevin.");
+    header("Location: https://".$challenge.".webchal.".$domain."/");
     exit();
 ?>

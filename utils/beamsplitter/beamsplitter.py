@@ -9,6 +9,8 @@ import grp
 from time import sleep
 from docker import from_env as docker_init
 
+DOMAIN="photon.rkevin.dev"
+
 validservices=[
     "adminme",
     "phpeval",
@@ -136,11 +138,11 @@ def serve():
                 data=conn.recv(10000).decode()
                 logging.debug("Got a request: %s"%data)
                 service=data.split('_')[1]
-                if not service.endswith(".webchal.twinpeaks.cs.ucdavis.edu"):
+                if not service.endswith(".webchal.%s"%DOMAIN):
                     logging.warning("Host field %s malformed! Rejecting"%service)
                     conn.sendall(NAUGHTY.encode())
                     continue
-                service=service[:-len(".webchal.twinpeaks.cs.ucdavis.edu")]
+                service=service[:-len(".webchal.%s"%DOMAIN)]
                 if service not in validservices:
                     logging.warning("%s not a valid service! Rejecting"%service)
                     conn.sendall(NAUGHTY.encode())
@@ -149,7 +151,7 @@ def serve():
                 if not production and ip not in whitelist:
                     conn.sendall(NAUGHTY.encode())
                     continue
-                cookies=data[len(ip)+1+len(service)+len(".webchal.twinpeaks.cs.ucdavis.edu")+1:].split("; ")
+                cookies=data[len(ip)+1+len(service)+len(".webchal.%s"%DOMAIN)+1:].split("; ")
                 ins=None
                 for s in cookies:
                     if s.startswith("beamsplitter_%s="%service):
