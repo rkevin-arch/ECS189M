@@ -4,6 +4,8 @@ This is the repo for all the ECS189M challenges and how to set everything up. Us
 
 For the list of challenges, you can look [here](lectures/challenges.md).
 
+I have spent some time porting all the challenges over to my [private server](https://photon.rkevin.dev), so if you want to continue trying out the challenges, you can! I put it together hastily, so let me know if there are technical issues so I can fix it.
+
 # Table of Contents
 1. [Directory structure](#directory-structure)
 2. [Creating your own challenges](#creating-your-own-challenges)
