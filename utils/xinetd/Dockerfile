@@ -9,7 +9,7 @@ RUN \
       python3-setuptools \
       python3-cryptography \
       python3-pip && \
-  apt clean &&
+  apt clean && \
   pip3 install wheel && \
   pip3 install timeout-decorator
 ENTRYPOINT [ "xinetd", "-dontfork" ]

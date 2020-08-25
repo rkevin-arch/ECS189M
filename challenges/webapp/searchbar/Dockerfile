@@ -1,6 +1,7 @@
 FROM debian:latest
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
-    apache2 mariadb-server php libapache2-mod-php php-mysql
+    apache2 mariadb-server php libapache2-mod-php php-mysql && \
+  apt clean
 
 COPY db.php index.php /var/www/html/
 COPY start.sh /docker-entrypoint.sh
@@ -10,10 +11,10 @@ CMD /docker-entrypoint.sh
 RUN service mysql start && echo "\
 CREATE DATABASE IF NOT EXISTS sqli;\
 USE sqli;\
-CREATE TABLE inventory (\                                                                                                                                                                                          
-    item varchar(255) NOT NULL,\                                                                                                                                                                                   
-    count INT NOT NULL\                                                                                                                                                                                            
-);\                                                                                                                                                                                                                
+CREATE TABLE inventory (\
+    item varchar(255) NOT NULL,\
+    count INT NOT NULL\
+);\
 CREATE TABLE heyo_flag_here (\
     flag varchar(255) NOT NULL\
 );\

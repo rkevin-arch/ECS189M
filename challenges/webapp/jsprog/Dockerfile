@@ -3,7 +3,8 @@ RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive \
     apt-get -y install --no-install-recommends \
-    python3-bottle curl bzip2 fontconfig ca-certificates python3-paste
+    python3-bottle curl bzip2 fontconfig ca-certificates python3-paste && \
+  apt clean
 
 RUN sed -i "s/env.get('HTTP_X_FORWARDED_HOST') or //" /usr/lib/python3/dist-packages/bottle.py
 

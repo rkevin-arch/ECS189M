@@ -3,7 +3,8 @@ RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive \
     apt-get -y install --no-install-recommends \
-    tmux screen nano vim procps sudo less curl wget cron
+    tmux screen nano vim procps sudo less curl wget cron && \
+  apt clean
 
 RUN useradd -s /bin/bash -m -u 1337 user && \
 groupmod -g 1338 operator && \

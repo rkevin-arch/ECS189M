@@ -5,6 +5,7 @@ RUN \
     apt-get -y install --no-install-recommends \
     python3-bottle curl bzip2 fontconfig ca-certificates \
     mariadb-server python3-pip && \
+  apt clean && \
   pip3 install mysql-connector-python
 
 RUN sed -i "s/env.get('HTTP_X_FORWARDED_HOST') or //" /usr/lib/python3/dist-packages/bottle.py

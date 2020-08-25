@@ -3,7 +3,8 @@ RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive \
     apt-get -y install --no-install-recommends \
-    tmux screen nano vim procps man-db less
+    tmux screen nano vim procps man-db less && \
+  apt clean
 
 RUN useradd -s /bin/bash -m -u 1337 user && \
 chown -R root:root /home/user

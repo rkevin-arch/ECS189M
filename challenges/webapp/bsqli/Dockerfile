@@ -1,6 +1,7 @@
 FROM debian:latest
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install --no-install-recommends \
-    apache2 mariadb-server php libapache2-mod-php php-mysql
+    apache2 mariadb-server php libapache2-mod-php php-mysql && \
+  apt clean
 
 COPY db.php index.php /var/www/html/
 COPY start.sh /docker-entrypoint.sh
