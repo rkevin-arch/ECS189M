@@ -9,7 +9,7 @@ import grp
 from time import sleep
 from docker import from_env as docker_init
 
-DOMAIN="photon.rkevin.dev"
+DOMAIN="twinpeaks.cs.ucdavis.edu"
 
 validservices=[
     "adminme",

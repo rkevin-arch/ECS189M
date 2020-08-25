@@ -26,8 +26,8 @@
 |Webapp exploitation|Jan 26|Feb 17|1700|10/10 done|
 |Binary exploitation|Feb 9|Mar 9|2650|14/14 done|
 |Cryptography|Feb 24|Mar 15|1450|8/8 done|
-|Final challenges|Mar 9|Mar 19|2300+500|3/5 done|
-|TOTAL|10500|||49/51 done|
+|Final challenges|Mar 9|Mar 19|2300+500|5/5 done|
+|TOTAL|10500|||51/51 done|
 ## Linux and miscellaneous
 |Challenge|Points|Type|Status|
 |-|-|-|-|
@@ -98,9 +98,8 @@
 |Challenge|Points|Type|Status|
 |-|-|-|-|
 |finalprivesc|550|sshable|Done|
-|finalwebapp|550|web|Working on|
+|finalwebapp|550|web|Done|
 |finalbinary|550|xinetd(30016)|Done|
 |finalcrypto|550|xinetd(30017)|Done|
-|thankyou|100|misc|Working on feedback form|
-|writeup|500+partial credit|misc|Working on rubric|
-|TOTAL|2300||3/5 done|
+|thankyou|100|misc|Done|
+|TOTAL|2300||5/5 done|

@@ -1,5 +1,5 @@
 <?php
-    $domain="photon.rkevin.dev";
+    $domain="twinpeaks.cs.ucdavis.edu";
 
     preg_match('/[a-z]+/', $_GET['challenge'],$safevar);
     if($safevar[0]!=$_GET['challenge']){
