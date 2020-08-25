@@ -132,7 +132,7 @@ def main():
                 elif y['type']=="xinetd":
                     with open("build/xinetd/xinetd.d/%s"%challenge,"w") as wf:
                         wf.write(XINETD_CONF_BASE.format(challenge,y['xinetd_config']['executable'],y['xinetd_config']['port']))
-                    shutil.copytree("xinetd_base/%s"%y['xinetd_config']['base'],"build/xinetd/src/%s"%challenge,symlinks=True)
+                    if os.system("cp -lr 'xinetd_base/%s' 'build/xinetd/src/%s'"%(y['xinetd_config']['base'],challenge)
                     if os.system("cp -r challenges/%s/%s/dist/* build/xinetd/src/%s"%(category,challenge,challenge)):
                         raise Exception("Copy dist folder to final xinetd build failed!")
                     with open("build/xinetd/src/%s/flag"%challenge,"w") as wf:
