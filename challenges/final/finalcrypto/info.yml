@@ -1,6 +1,6 @@
 flag: ECS{D3J0HN_VU_1E5642D125D521B176F1145B95A75BB3}
 type: xinetd
 xinetd_config:
-  base: python-crypto
+  base: python
   port: 30017
   executable: python3 /server.py
