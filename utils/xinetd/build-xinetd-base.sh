@@ -25,6 +25,7 @@ for u in cat bash base64 whoami uname echo more hostname touch pwd true false ls
     copybin $u
 done
 cp ../noaslr/noaslr $TARGET/bin/
+ln -s bash $TARGET/bin/sh
 
 docker cp $CONTAINER:/lib/terminfo $TARGET/lib/terminfo
 docker cp -L $CONTAINER:/lib/ld-linux.so.2 $TARGET/lib/
