@@ -48,7 +48,7 @@ EOF
 # python environment
 TARGET=../../xinetd_base/python
 rm -rf $TARGET
-cp -lr ../../xinetd_base/binary $TARGET
+cp -Plr ../../xinetd_base/binary $TARGET
 
 copybin python3
 mkdir -p $TARGET/usr/lib/
