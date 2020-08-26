@@ -3,6 +3,7 @@ RUN \
   apt-get update && \
   DEBIAN_FRONTEND=noninteractive \
     apt-get -y install --no-install-recommends \
+      libc6-i386 \
       tcpd \
       xinetd \
       python3 \

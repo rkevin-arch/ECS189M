@@ -27,7 +27,8 @@ done
 cp ../noaslr/noaslr $TARGET/bin/
 
 docker cp $CONTAINER:/lib/terminfo $TARGET/lib/terminfo
-
+docker cp -L $CONTAINER:/lib/ld-linux.so.2 $TARGET/lib/
+docker cp -L $CONTAINER:/lib32/libc.so.6 $TARGET/lib/
 mkdir $TARGET/etc
 
 cat <<EOF >$TARGET/etc/group
