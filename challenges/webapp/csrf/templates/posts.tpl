@@ -1,7 +1,7 @@
 % rebase('templates/base.tpl')
 <div id="newpost">
     <form method="POST" action="/post" class="border boxshadow">
-        <textarea class="console u-full-width" placeholder="Enter something here..." id="posttext" name="posttext" maxlength=200 style="min-height: 200px;"></textarea>
+        <textarea class="console u-full-width" placeholder="Enter something here..." id="posttext" name="posttext" style="min-height: 200px;"></textarea>
         <input class="button-primary" type="submit" value="Create Post" >
 
     </form>
