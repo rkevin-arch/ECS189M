@@ -8,7 +8,7 @@ copybin() {
     u=$1
     docker cp -L $CONTAINER:$(docker exec $CONTAINER which $u) $TARGET/bin/
     for l in `docker exec $CONTAINER sh -c 'ldd $(which '$u')'`; do
-        if echo $l | grep '^/lib' >/dev/null; then
+        if echo $l | grep '^/lib\|^/usr/lib' >/dev/null; then
             mkdir -p $TARGET$(dirname $l)
             docker cp -L $CONTAINER:$l $TARGET$l
         fi
@@ -55,5 +55,7 @@ mkdir -p $TARGET/usr/lib/
 docker cp $CONTAINER:/usr/lib/python3.7 $TARGET/usr/lib/
 docker cp $CONTAINER:/usr/lib/python3/dist-packages/ $TARGET/usr/lib/python3.7/
 docker cp $CONTAINER:/usr/local/lib/python3.7/dist-packages/timeout_decorator $TARGET/usr/lib/python3.7/dist-packages/
+copybin openssl
+docker cp -L $CONTAINER:/usr/lib/x86_64-linux-gnu/libffi.so.6 $TARGET/usr/lib/x86_64-linux-gnu/
 
 docker stop $CONTAINER
