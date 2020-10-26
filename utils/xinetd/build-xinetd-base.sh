@@ -53,9 +53,7 @@ cp -Plr ../../xinetd_base/binary $TARGET
 copybin python3
 mkdir -p $TARGET/usr/lib/
 docker cp $CONTAINER:/usr/lib/python3.7 $TARGET/usr/lib/
-mkdir $TARGET/usr/lib/python3.7/dist-packages/
-docker cp $CONTAINER:/usr/lib/python3/dist-packages/cryptography $TARGET/usr/lib/python3.7/dist-packages/
-docker cp $CONTAINER:/usr/lib/python3/dist-packages/six.py $TARGET/usr/lib/python3.7/dist-packages/
+docker cp $CONTAINER:/usr/lib/python3/dist-packages/ $TARGET/usr/lib/python3.7/
 docker cp $CONTAINER:/usr/local/lib/python3.7/dist-packages/timeout_decorator $TARGET/usr/lib/python3.7/dist-packages/
 
 docker stop $CONTAINER
