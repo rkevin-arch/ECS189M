@@ -1,4 +1,4 @@
-bottle==0.12.18
+bottle==0.12.20
 certifi==2019.11.28
 chardet==3.0.4
 idna==2.8
